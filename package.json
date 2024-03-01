@@ -1,0 +1,23 @@
+{
+  "name": "100commits-project",
+  "version": "1.0.0",
+  "description": "automation tests in playwright",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MJakubowska359/100commits-project.git"
+  },
+  "author": "Monika Jakubowska",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MJakubowska359/100commits-project/issues"
+  },
+  "homepage": "https://github.com/MJakubowska359/100commits-project#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.42.0",
+    "@types/node": "^20.11.24"
+  }
+}
