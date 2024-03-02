@@ -4,7 +4,8 @@
   "description": "automation tests in playwright",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test"
+    "test": "npx playwright test",
+    "test-headed": "npx playwright test --headed"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,7 @@
   },
   "homepage": "https://github.com/MJakubowska359/100commits-project#readme",
   "devDependencies": {
-    "@playwright/test": "^1.42.0",
+    "@playwright/test": "^1.41.0",
     "@types/node": "^20.11.24"
   }
 }
