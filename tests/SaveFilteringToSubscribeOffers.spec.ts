@@ -23,7 +23,6 @@ test.describe('Save filtering to subscribe offers', () => {
         await filtersPage.clickTurnOnEmailNotificationsButton();
         await expect(page.getByRole('heading', {name: 'Add an e-mail notification'})).toBeVisible();
         await formsPage.fillEmailField()
-
     });
 
     test('Should be able to subscribe filtering offers as LOGGED USER', async ({ page }) => {
