@@ -8,7 +8,7 @@ test.describe('Sending message on live chat', () => {
         formsPage = new FormsPage(page);
 
         await page.goto('/');
-        await page.getByRole('button', { name: 'Yes, I accept Cookies' }).click()
+        await page.getByRole('button', { name: 'ACCEPT ALL' }).click()
     })
 
     test('Should be able to send message on live chat', async ({ page }) => {

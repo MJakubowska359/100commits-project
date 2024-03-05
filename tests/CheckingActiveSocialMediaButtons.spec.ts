@@ -8,7 +8,7 @@ test.describe('Checking active social media buttons', () => {
         footerPage = new FooterPage(page);
 
         await page.goto('/');
-        await page.getByRole('button', { name: 'Yes, I accept Cookies' }).click()
+        await page.getByRole('button', { name: 'ACCEPT ALL' }).click()
     })
 
     test('Should be able to click social media buttons from the footer', async ({ page }) => {

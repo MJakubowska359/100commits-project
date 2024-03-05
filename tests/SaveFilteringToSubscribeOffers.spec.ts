@@ -11,7 +11,7 @@ test.describe('Save filtering to subscribe offers', () => {
         formsPage = new FormsPage(page);
 
         await page.goto('/');
-        await page.getByRole('button', { name: 'Yes, I accept Cookies' }).click()
+        await page.getByRole('button', { name: 'ACCEPT ALL' }).click()
     })
 
     test('Should be able to subscribe filtering offers as ANONYMOUS USER', async ({ page }) => {

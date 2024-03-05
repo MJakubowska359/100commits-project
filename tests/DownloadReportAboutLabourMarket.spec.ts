@@ -11,7 +11,7 @@ test.describe('Downloading report about labor market', () => {
         formsPage = new FormsPage(page)
 
         await page.goto('/');
-        await page.getByRole('button', { name: 'Yes, I accept Cookies' }).click()
+        await page.getByRole('button', { name: 'ACCEPT ALL' }).click()
     })
 
     // test('Should not be able to download IT salary report if require fields are empty', async ({ page }) => {

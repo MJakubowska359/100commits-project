@@ -10,17 +10,17 @@ export class FormsPage {
     // raport.justjoin.it
     nameAndSurnameBtn = this.page.getByLabel('Imię i nazwisko')
     whoAreYou = this.page.getByPlaceholder('Wybierz jedną z opcji')
-    termsCheckbox = this.page.getByRole('checkbox', {name: 'zgoda1'})
-    downloadReportBtn = this.page.getByRole('button', {name: 'POBIERZ RAPORT'})
+    termsCheckbox = this.page.getByRole('checkbox', { name: 'zgoda1' })
+    downloadReportBtn = this.page.getByRole('button', { name: 'POBIERZ RAPORT' })
 
     // live chat
-    openChatBtn = this.page.getByLabel('Open LiveChat chat widget')
-    yourNameField = this.page.getByLabel('Your name')
+    openChatBtn = this.page.frameLocator('iframe[name="chat-widget-minimized"]').getByLabel('Open LiveChat chat widget').click();
+    nameField = this.page.getByLabel('Your name')
     subjectField = this.page.getByLabel('Subject')
     messageField = this.page.getByLabel('Message')
     openMenu = this.page.getByLabel('Open menu')
     minimizeWindow = this.page.getByLabel('Minimize window')
-    leaveMessageBtn = this.page.getByRole('button', {name: 'Leave a message'})
+    leaveMessageBtn = this.page.getByRole('button', { name: 'Leave a message' })
 
     // checboxy terms/privacy policy and handel informations
 
@@ -44,13 +44,19 @@ export class FormsPage {
         await this.emailField.fill('');
     }
 
+    async clickEveryFieldAndstayItEmpty() {
+        await this.nameField.press('Tab');
+        await this.emailField.press('Tab');
+        await this.subjectField.press('Tab');
+        await this.messageField.press('Tab');
+    }
+
     async fillFormToSendMessageOnLiveChat() {
-        await this.openChatBtn.click();
         await this.openMenu.click();
-        await this.yourNameField.fill('Tamara');
+        await this.nameField.fill('Tamara');
         await this.emailField.fill('');
         await this.subjectField.fill('Usuwanie konta kandydata');
         await this.messageField.fill('Dzień dobry. Chciałam dowiedzieć się jak usunąć konto kandydata, proszę o odpowiedź. Pozdrawiam');
         await this.leaveMessageBtn.click();
-    } 
+    }
 }
