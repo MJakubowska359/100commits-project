@@ -14,7 +14,7 @@ export class FormsPage {
     downloadReportBtn = this.page.getByRole('button', { name: 'POBIERZ RAPORT' })
 
     // live chat
-    openChatBtn = this.page.frameLocator('iframe[name="chat-widget-minimized"]').getByLabel('Open LiveChat chat widget').click();
+    // openChatBtn = this.page.frameLocator('iframe[name="chat-widget-minimized"]').getByLabel('Open LiveChat chat widget').click();
     nameField = this.page.getByLabel('Your name')
     subjectField = this.page.getByLabel('Subject')
     messageField = this.page.getByLabel('Message')
