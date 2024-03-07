@@ -3,22 +3,21 @@ import { Page } from "@playwright/test";
 export class FiltersPage {
     constructor(private page: Page) { }
 
-    // technology
+    // main page - technology
     rubyBtn = this.page.getByRole('link', { name: 'Ruby' })
     pythonBtn = this.page.getByRole('link', { name: 'Python' })
 
-    // basic filters
+    // main page - basic filters
     searchBtn = this.page.getByRole('combobox', { name: 'Search' });
     locationBtn = this.page.getByRole('button', { name: 'Location' });
     withSalaryBtn = this.page.getByRole('button', { name: 'With salary' });
     alloffersBtn = this.page.getByRole('button', { name: 'All offers' });
     remoteCheckbox = this.page.getByRole('checkbox', { name: 'Remote' });
 
-    // subscribe
+    // main page - main page - subscribe
     subscribeCheckbox = this.page.getByRole('checkbox', { name: 'Subscribe' });
     saveSearchCheckbox = this.page.getByRole('checkbox', { name: 'Save your search' });
     turnNotificationsCheckbox = this.page.getByRole('checkbox', { name: 'Turn on email notifications' });
-
 
     // more filters
     moreFiltersBtn = this.page.getByRole('button', { name: 'More filters' });

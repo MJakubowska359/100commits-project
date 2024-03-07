@@ -4,10 +4,10 @@ export class HeaderPage {
     constructor(private page: Page) { }
 
     // products
-    jobOffersBtn = this.page.getByRole('button', { name: 'Job offers' });
-    topCompaniesBtn = this.page.getByRole('button', { name: 'Top Companies' });
-    geekBtn = this.page.getByRole('button', { name: 'Geek' });
-    postAJobBtn = this.page.getByRole('button', { name: 'Post a job' });
+    jobOffersBtn = this.page.getByRole('link', { name: 'Job offers' });
+    topCompaniesBtn = this.page.getByRole('link', { name: 'Top Companies' });
+    geekBtn = this.page.getByRole('link', { name: 'Geek' });
+    postAJobBtn = this.page.getByRole('link', { name: 'Post a job' });
     starOfSubscribe = this.page.getByRole('button', { name: 'Subscribe' });
     currencyList = this.page.getByRole('button', { name: 'PLN' });
 
@@ -27,6 +27,7 @@ export class HeaderPage {
     }
     // await page.locator('button[name="sidebar-open"]').click();
 
-    async clickItSalaryReport() {
+    async clickTopCompaniesButtonOnTheMainPage() {
+        await this.topCompaniesBtn.click();
     }
 }

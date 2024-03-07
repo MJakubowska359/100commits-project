@@ -13,6 +13,9 @@ export class FormsPage {
     termsCheckbox = this.page.getByRole('checkbox', { name: 'zgoda1' })
     downloadReportBtn = this.page.getByRole('button', { name: 'POBIERZ RAPORT' })
 
+    // justjoin.it/brands - get started option
+
+
     // live chat
     // openChatBtn = this.page.frameLocator('iframe[name="chat-widget-minimized"]').getByLabel('Open LiveChat chat widget').click();
     nameField = this.page.getByLabel('Your name')

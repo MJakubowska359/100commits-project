@@ -8,7 +8,7 @@ test.describe('Checking require fields on live chat', () => {
         formsPage = new FormsPage(page);
     })
 
-    test.only('Should not be able to send message if field on live chat form are empty', async ({ page }) => {
+    test('Should not be able to send message if field on live chat form are empty', async ({ page }) => {
         await page.goto('/');
         await page.waitForTimeout(3000)
         await expect(page.locator('#chat-widget-minimized')).toBeVisible()
