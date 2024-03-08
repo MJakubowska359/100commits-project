@@ -7,7 +7,7 @@ export class FiltersPage {
     rubyBtn = this.page.getByRole('link', { name: 'Ruby' })
     pythonBtn = this.page.getByRole('link', { name: 'Python' })
 
-    // main page - basic filters
+    // main page - basic filters, top companies page
     searchBtn = this.page.getByRole('combobox', { name: 'Search' });
     locationBtn = this.page.getByRole('button', { name: 'Location' });
     withSalaryBtn = this.page.getByRole('button', { name: 'With salary' });
@@ -47,6 +47,10 @@ export class FiltersPage {
     // assertion ready to use on tests
     // await page.getByRole('heading', { name: 'More filters' }).click();
     // await page.getByRole('heading', { name: 'Friendly Offer' }).click();
+
+    async fillNameCompanyInSearch() {
+        await this.searchBtn.fill('PKO');
+    }
 
     async clickPythonLogo() {
         await this.pythonBtn.click();

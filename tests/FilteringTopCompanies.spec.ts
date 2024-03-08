@@ -10,12 +10,31 @@ test.describe('Filtering top companies', () => {
     let filtersPage: FiltersPage;
     let formsPage: FormsPage;
 
-    test.only('Should be able to filtering top companies by type', async ({ page }) => {
+    test.beforeEach(async ({ page }) => {
+        headerPage = new HeaderPage(page);
+        formsPage = new FormsPage(page);
+        topCompaniesPage = new TopCompaniesPage(page);
+
         await page.goto('/');
-        await page.getByRole('button', { name: 'ACCEPT ALL' }).click()
-        await page.waitForTimeout(5000)
+        await page.getByRole('button', { name: 'ACCEPT ALL' }).click();
+        await expect(page.locator('#cookiescript_injected')).not.toBeVisible();
+        await page.waitForURL('/', {waitUntil: 'domcontentloaded'});
+    })
+
+    test('Should be able to filtering top companies by type of company', async ({ page }) => {
         await headerPage.clickTopCompaniesButtonOnTheMainPage();
+        await page.waitForURL('/brands', {waitUntil: 'domcontentloaded'});
         await topCompaniesPage.clickSoftwareHouseButton();
-        await expect(page.getByText('Software House').nth(5)).toBeVisible();
+        await page.waitForTimeout(2000)
+        await expect(page.locator('ul li').first()).toContainText('Software House');
+        await topCompaniesPage.clickCorporationButton();
+        await page.waitForTimeout(2000)
+        await expect(page.locator('ul li').nth(1)).toContainText('Corporation');
+    });
+
+    test.only('Should be able to filtering top companies by name', async ({ page }) => {
+        await headerPage.clickTopCompaniesButtonOnTheMainPage();
+        await page.waitForURL('/brands', {waitUntil: 'domcontentloaded'});
+        await filtersPage.fillNameCompanyInSearch();
     });
 });
