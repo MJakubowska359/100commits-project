@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, expect } from "@playwright/test";
 
 export class HeaderPage {
     constructor(private page: Page) { }
@@ -29,5 +29,5 @@ export class HeaderPage {
 
     async clickTopCompaniesButtonOnTheMainPage() {
         await this.topCompaniesBtn.click();
-    }
+            }
 }

@@ -4,26 +4,30 @@ export class FormsPage {
     constructor(private page: Page) { }
 
     // 
-    emailField = this.page.getByPlaceholder('forexample@domain.com') // raport.justjoin.it
-    passwordBtn = this.page.getByPlaceholder('At least 8 characters')
+    emailField = this.page.getByPlaceholder('forexample@domain.com'); // raport.justjoin.it
+    passwordBtn = this.page.getByPlaceholder('At least 8 characters');
 
     // raport.justjoin.it
-    nameAndSurnameBtn = this.page.getByLabel('Imię i nazwisko')
-    whoAreYou = this.page.getByPlaceholder('Wybierz jedną z opcji')
-    termsCheckbox = this.page.getByRole('checkbox', { name: 'zgoda1' })
-    downloadReportBtn = this.page.getByRole('button', { name: 'POBIERZ RAPORT' })
+    nameAndSurnameBtn = this.page.getByLabel('Imię i nazwisko');
+    whoAreYou = this.page.getByPlaceholder('Wybierz jedną z opcji');
+    termsCheckbox = this.page.getByRole('checkbox', { name: 'zgoda1' });
+    downloadReportBtn = this.page.getByRole('button', { name: 'POBIERZ RAPORT' });
 
     // justjoin.it/brands - get started option
-
+    firstAndLastNameField = this.page.getByLabel('First name and last name');
+    addressEmailField = this.page.getByLabel('Address email');
+    companyNameField = this.page.getByLabel('Company name');
+    acceptTermsCheckbox = this.page.getByRole('checkbox', {name: 'I accept the terms and conditions of service.'})
+    sendARequestBtn = this.page.getByRole('button', {name: 'Send a request'});
 
     // live chat
     // openChatBtn = this.page.frameLocator('iframe[name="chat-widget-minimized"]').getByLabel('Open LiveChat chat widget').click();
-    nameField = this.page.getByLabel('Your name')
-    subjectField = this.page.getByLabel('Subject')
-    messageField = this.page.getByLabel('Message')
-    openMenu = this.page.getByLabel('Open menu')
-    minimizeWindow = this.page.getByLabel('Minimize window')
-    leaveMessageBtn = this.page.getByRole('button', { name: 'Leave a message' })
+    nameField = this.page.getByLabel('Your name');
+    subjectField = this.page.getByLabel('Subject');
+    messageField = this.page.getByLabel('Message');
+    openMenu = this.page.getByLabel('Open menu');
+    minimizeWindow = this.page.getByLabel('Minimize window');
+    leaveMessageBtn = this.page.getByRole('button', { name: 'Leave a message' });
 
     // checboxy terms/privacy policy and handel informations
 
@@ -31,7 +35,7 @@ export class FormsPage {
         await this.nameAndSurnameBtn.fill('Monika Miś');
         await this.emailField.fill('monikamis@interia.pl');
         await this.whoAreYou.selectOption('Pracuję w IT');
-        await this.termsCheckbox.check()
+        await this.termsCheckbox.check();
         // await this.downloadReportBtn.click()
 
         // await page1.getByLabel('Imię i nazwisko').click();
@@ -41,6 +45,17 @@ export class FormsPage {
         // await page1.getByText('Wymagane').first().click();
         // await page1.getByText('Wymagane').first().click();
         // await page1.getByText('Wymagane').click();
+    }
+
+    async fillFormToACompanyProfile() {
+        await this.firstAndLastNameField.fill('Monika Testowa');
+        await this.addressEmailField.fill('monikatestowazoo@bug.pl');
+        await this.companyNameField.fill('Bug Sp. z o.o.');
+        await this.acceptTermsCheckbox.check()
+    }
+
+    async clickSendARequestToACompanyProfile() {
+        await this.sendARequestBtn.click();
     }
 
     async fillEmailField() {

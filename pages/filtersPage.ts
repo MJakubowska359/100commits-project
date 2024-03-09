@@ -1,5 +1,4 @@
 import { Page } from "@playwright/test";
-
 export class FiltersPage {
     constructor(private page: Page) { }
 
@@ -9,6 +8,7 @@ export class FiltersPage {
 
     // main page - basic filters, top companies page
     searchBtn = this.page.getByRole('combobox', { name: 'Search' });
+    searchCompany = this.page.getByPlaceholder('Search company');
     locationBtn = this.page.getByRole('button', { name: 'Location' });
     withSalaryBtn = this.page.getByRole('button', { name: 'With salary' });
     alloffersBtn = this.page.getByRole('button', { name: 'All offers' });
@@ -49,7 +49,8 @@ export class FiltersPage {
     // await page.getByRole('heading', { name: 'Friendly Offer' }).click();
 
     async fillNameCompanyInSearch() {
-        await this.searchBtn.fill('PKO');
+        await this.searchCompany.fill('pko');
+        await this.searchCompany.press('Enter');
     }
 
     async clickPythonLogo() {
