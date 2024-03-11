@@ -19,7 +19,7 @@ test.describe('Filtering top companies', () => {
         await page.waitForURL('/', {waitUntil: 'domcontentloaded'});
     })
 
-    test.only('Should be able to filling data of company and send form about company profile', async ({ page }) => {
+    test('Should be able to filling data of company and send form about company profile', async ({ page }) => {
         await headerPage.clickTopCompaniesButtonOnTheMainPage();
         await page.waitForURL('/brands', {waitUntil: 'domcontentloaded'});
         await topCompaniesPage.clickGetStartedButton();
