@@ -1,14 +1,18 @@
 import { test, expect } from '@playwright/test';
+import { GeneralPage } from '../pages/generalPage';
 import { FooterPage } from '../pages/footerPage';
 
 test.describe('Checking active social media buttons', () => {
+    let generalPage: GeneralPage;
     let footerPage: FooterPage;
 
     test.beforeEach(async ({ page }) => {
+        generalPage = new GeneralPage(page);
         footerPage = new FooterPage(page);
 
         await page.goto('/');
-        await page.getByRole('button', { name: 'ACCEPT ALL' }).click()
+        await generalPage.clickAcceptCookiesOnPage();
+        await expect(page.locator('#cookiescript_injected')).not.toBeVisible();
     })
 
     test('Should be able to click social media buttons from the footer', async ({ page }) => {

@@ -12,12 +12,10 @@ export class GeneralPage {
     hideCookies = this.page.getByRole('button', { name: 'Hide cookies', exact: true })
     // hideCookies = this.page.getByText('Hide cookies')
     switchBtn = this.page.getByRole('switch')
-    declineAllBtn = this.page.getByRole('button', { name: 'Decline all' })
+    declineAllBtn = this.page.getByRole('button', { name: 'Decline all', exact: true })
     saveAndCloseBtn = this.page.getByRole('button', { name: 'Save & Close', exact: true })
 
     async choosePerformanceAndFunctionalityCookiesOnPage() {
-        await this.customizeBtn.click();
-        await expect(this.page.getByText('This website uses cookies')).toBeVisible();
         await this.aboutCookies.click();
         await this.cookieDeclaration.click();
         await this.showCookies.nth(2).click();
@@ -26,18 +24,21 @@ export class GeneralPage {
         await this.hideCookies.click();
         await this.switchBtn.nth(1).click();
         await this.switchBtn.nth(3).click();
+    }
+
+    async clickCustomizeCookiesOnPage() {
+        await this.customizeBtn.click();
+    }
+
+    async clickAcceptCookiesOnPage() {
+        await this.acceptAllBtn.click();
+    }
+
+    async saveSettingsOfCookiesAndClose() {
         await this.saveAndCloseBtn.click();
     }
 
-    async acceptCookiesOnPage() {
-        await this.acceptAllBtn.click();
-    }
-
-    async saveAndCloseCookiesOnPage() {
-        await this.acceptAllBtn.click();
-    }
-
-    async declineCookiesOnPage() {
+    async clickDeclineCookies() {
         await this.declineAllBtn.click();
     }
 }

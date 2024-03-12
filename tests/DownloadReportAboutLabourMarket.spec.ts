@@ -1,17 +1,21 @@
 import { test, expect } from '@playwright/test';
+import { GeneralPage } from '../pages/generalPage';
 import { HeaderPage } from '../pages/headerPage';
 import { FormsPage } from '../pages/formsPage';
 
 test.describe('Downloading report about labor market', () => {
+    let generalPage: GeneralPage;
     let headerPage: HeaderPage;
     let formsPage: FormsPage
 
     test.beforeEach(async ({ page }) => {
+        generalPage = new GeneralPage(page);
         headerPage = new HeaderPage(page);
         formsPage = new FormsPage(page)
 
         await page.goto('/');
-        await page.getByRole('button', { name: 'ACCEPT ALL' }).click()
+        await generalPage.clickAcceptCookiesOnPage();
+        await expect(page.locator('#cookiescript_injected')).not.toBeVisible();
     })
 
     // test('Should not be able to download IT salary report if require fields are empty', async ({ page }) => {
