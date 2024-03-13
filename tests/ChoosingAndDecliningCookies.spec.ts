@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { GeneralPage } from '../pages/generalPage';
 
-test.describe.only('Choosing cookies', () => {
+test.describe('Choosing cookies', () => {
     let generalPage: GeneralPage;
 
     test.beforeEach(async ({ page }) => {

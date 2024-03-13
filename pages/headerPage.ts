@@ -8,6 +8,7 @@ export class HeaderPage {
     topCompaniesBtn = this.page.getByRole('link', { name: 'Top Companies' });
     geekBtn = this.page.getByRole('link', { name: 'Geek' });
     postAJobBtn = this.page.getByRole('link', { name: 'Post a job' });
+    signInBtn = this.page.getByRole('button', { name: 'Sign in' });
     starOfSubscribe = this.page.getByRole('button', { name: 'Subscribe' });
     currencyList = this.page.getByRole('button', { name: 'PLN' });
 
@@ -20,6 +21,11 @@ export class HeaderPage {
     termsBtn = this.page.getByRole('link', { name: 'Terms' });
     signInAsCandidate = this.page.getByRole('button', { name: "Sign in to Candidate's profile" });
     signInAsCompany = this.page.getByRole('button', { name: "Sign in to Employer's panel" });
+
+    async goToSignInPageFromMenuOnMainPage() {
+        await this.menuBtn.click();
+        await this.signInAsCandidate.click();
+    }
 
     async chooseItSalaryReportFromMenu() {
         await this.menuBtn.click();

@@ -3,14 +3,25 @@ import { Page } from "@playwright/test";
 export class FormsPage {
     constructor(private page: Page) { }
 
-    // 
+    // register account
+    emailOfRegisterAccountField = this.page.getByPlaceholder('name@domain.com');
+    passwordOfRegisterAccountField = this.page.getByPlaceholder('At least 8 characters');
+    repeatPasswordField = this.page.getByPlaceholder('Same password as above');
+    checkboxConfirmTerms = this.page.getByRole('checkbox').nth(0);
+    checkboxCommercialCorrespondence = this.page.getByRole('checkbox').nth(1);
+    createAccountBtn = this.page.getByRole('button', {name: 'Create account'});
+
+    //
     emailField = this.page.getByPlaceholder('forexample@domain.com'); // raport.justjoin.it
     passwordBtn = this.page.getByPlaceholder('At least 8 characters');
 
     // raport.justjoin.it
     nameAndSurnameBtn = this.page.getByLabel('Imię i nazwisko');
     whoAreYou = this.page.getByPlaceholder('Wybierz jedną z opcji');
-    termsCheckbox = this.page.getByRole('checkbox', { name: 'zgoda1' });
+    // termsCheckbox = this.page.getByRole('checkbox', { name: 'zgoda1' });
+
+    termsCheckbox = this.page.getByRole('checkbox', { name: 'policy' });
+
     downloadReportBtn = this.page.getByRole('button', { name: 'POBIERZ RAPORT' });
 
     // justjoin.it/brands - get started option
@@ -30,6 +41,14 @@ export class FormsPage {
     leaveMessageBtn = this.page.getByRole('button', { name: 'Leave a message' });
 
     // checboxy terms/privacy policy and handel informations
+
+    async fillFormToRegisterNewAccount() {
+        await this.emailOfRegisterAccountField.fill('monika.testowa@bug.pl');
+        await this.passwordOfRegisterAccountField.fill('4$41gdfgbF');
+        await this.repeatPasswordField.fill('4$41gdfgbF');
+        await this.termsCheckbox.click();
+        // await this.createAccountBtn.click();
+        }
 
     async fillFormToDownloadReport() {
         await this.nameAndSurnameBtn.fill('Monika Miś');
