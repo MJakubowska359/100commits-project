@@ -5,7 +5,7 @@ export class LoginPage {
 
     // locators
     signUpBtn = this.page.getByRole('button', { name: "Don't have an account? Sign up" });
-    signInEmailBtn = this.page.getByRole('button', { name: 'Sign in using address email' });
+    signInUsingEmailBtn = this.page.getByRole('button', { name: 'Sign in using address email' });
     mailField = this.page.getByPlaceholder('name@domain.com');
     passwordField = this.page.getByPlaceholder('At least 8 characters');
     signInBtn = this.page.getByRole('button', { name: 'Sign in' });
@@ -20,34 +20,23 @@ export class LoginPage {
         await this.signUpBtn.click();
     }
 
-    async signInAsCandidateFromTopNavigationOnMainPage() {
-        await this.signInEmailBtn.click();
+    async signInAsCandidate() {
+        await this.signInUsingEmailBtn.click();
         await this.mailField.fill('');
         await this.passwordField.fill('');
-        await this.signInBtn.click();
+        // await this.signInBtn.click();
     }
 
-    async signInAsCandidateFromMenuOnMainPage() {
-        await this.signInEmailBtn.click();
+    async signInAsCompany() {
+        await this.signInUsingEmailBtn.click();
         await this.mailField.fill('');
         await this.passwordField.fill('');
-        await this.signInBtn.click();
-    }
-
-    async signInAsCompanyFromTopNavigationOnMainPage() {
-
-    }
-
-    async signInAsCompanyFromMenuOnMainPage() {
-        await this.signInEmailBtn.click();
-        await this.mailField.fill('');
-        await this.passwordField.fill('');
-        await this.signInBtn.click();
+        // await this.signInBtn.click();
     }
 
     async useForgotPasswordOption() {
         await this.forgetPasswordBtn.click();
         await this.mailField.fill('');
-        await this.resetPasswordBtn.click();
+        // await this.resetPasswordBtn.click();
     }
 }
