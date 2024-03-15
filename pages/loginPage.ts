@@ -28,7 +28,6 @@ export class LoginPage {
     }
 
     async signInAsCompany() {
-        await this.signInUsingEmailBtn.click();
         await this.mailField.fill('');
         await this.passwordField.fill('');
         // await this.signInBtn.click();

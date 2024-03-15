@@ -22,14 +22,24 @@ export class HeaderPage {
     signInAsCandidate = this.page.getByRole('button', { name: "Sign in to Candidate's profile" });
     signInAsCompany = this.page.getByRole('button', { name: "Sign in to Employer's panel" });
 
-    async goToSignInPageFromHeader() {
+    async goToSignInPageForCandidateFromPageHeader() {
         await this.signInBtn.click();
         await this.signInAsCandidate.click();
     }
 
-    async goToSignInPageFromMenuOnMainPage() {
+    async goToSignInPageForCandidateFromMenuOnMainPage() {
         await this.menuBtn.click();
         await this.signInAsCandidate.click();
+    }
+
+    async goToSignInPageForCompanyFromPageHeader() {
+        await this.signInBtn.click();
+        await this.signInAsCompany.click();
+    }
+
+    async goToSignInPageForCompanyFromMenuOnMainPage() {
+        await this.menuBtn.click();
+        await this.signInAsCompany.click();
     }
 
     async chooseItSalaryReportFromMenu() {

@@ -3,7 +3,7 @@ import { GeneralPage } from '../pages/generalPage';
 import { HeaderPage } from '../pages/headerPage';
 import { LoginPage } from '../pages/loginPage';
 
-test.describe('Logging user', () => {
+test.describe.only('Logging user', () => {
   let generalPage: GeneralPage;
   let headerPage: HeaderPage;
   let loginPage: LoginPage;
@@ -19,15 +19,15 @@ test.describe('Logging user', () => {
     await expect(page.locator('#cookiescript_injected')).not.toBeVisible();
   })
 
-  test('Should be able to login candidate from top navigation on the main page', async ({ page }) => {
-    await headerPage.goToSignInPageForCandidateFromPageHeader();
-    await expect(page.getByText("Sign in or sign up")).toBeVisible();
-    await loginPage.signInAsCandidate();
+  test('Should be able to login company from top navigation on the main page', async ({ page }) => {
+    await headerPage.goToSignInPageForCompanyFromPageHeader();
+    await expect(page.getByRole('heading', { name: 'Employer panel', exact: true })).toBeVisible();
+    await loginPage.signInAsCompany();
   });
 
-  test('Should be able to login candidate from menu on the main page', async ({ page }) => {
-    await headerPage.goToSignInPageForCandidateFromMenuOnMainPage();
-    await expect(page.getByText("Sign in or sign up")).toBeVisible();
-    await loginPage.signInAsCandidate();
+  test('Should be able to login company from menu on the main page', async ({ page }) => {
+    await headerPage.goToSignInPageForCompanyFromMenuOnMainPage();
+    await expect(page.getByRole('heading', { name: 'Employer panel', exact: true })).toBeVisible();
+    await loginPage.signInAsCompany();
   });
 });
