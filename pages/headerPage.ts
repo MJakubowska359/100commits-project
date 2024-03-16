@@ -50,5 +50,9 @@ export class HeaderPage {
 
     async clickTopCompaniesButtonOnTheMainPage() {
         await this.topCompaniesBtn.click();
-            }
+    }
+
+    async goToPostAJobSubPageOnTheMainPage() {
+        await this.postAJobBtn.click();
+    }
 }

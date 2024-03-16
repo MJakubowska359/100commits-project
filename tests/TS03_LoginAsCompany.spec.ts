@@ -3,7 +3,7 @@ import { GeneralPage } from '../pages/generalPage';
 import { HeaderPage } from '../pages/headerPage';
 import { LoginPage } from '../pages/loginPage';
 
-test.describe.only('Logging user', () => {
+test.describe('Logging user', () => {
   let generalPage: GeneralPage;
   let headerPage: HeaderPage;
   let loginPage: LoginPage;
