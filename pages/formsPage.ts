@@ -31,7 +31,12 @@ export class FormsPage {
     acceptTermsCheckbox = this.page.getByRole('checkbox', {name: 'I accept the terms and conditions of service.'})
     sendARequestBtn = this.page.getByRole('button', {name: 'Send a request'});
 
-    // live chat
+    // post a job form
+    fullNameField = this.page.getByLabel('Full name');
+    contactEmailField = this.page.getByLabel('Contact e-mail');
+    phoneField = this.page.getByLabel('Phone number');
+    sendBtn = this.page.getByRole('button', { name: 'Send' });
+
     // openChatBtn = this.page.frameLocator('iframe[name="chat-widget-minimized"]').getByLabel('Open LiveChat chat widget').click();
     nameField = this.page.getByLabel('Your name');
     subjectField = this.page.getByLabel('Subject');
@@ -43,9 +48,9 @@ export class FormsPage {
     // checboxy terms/privacy policy and handel informations
 
     async fillFormToRegisterNewAccount() {
-        await this.emailOfRegisterAccountField.fill('monika.testowa@bug.pl');
-        await this.passwordOfRegisterAccountField.fill('4$41gdfgbF');
-        await this.repeatPasswordField.fill('4$41gdfgbF');
+        await this.emailOfRegisterAccountField.fill('');
+        await this.passwordOfRegisterAccountField.fill('');
+        await this.repeatPasswordField.fill('');
         await this.termsCheckbox.click();
         // await this.createAccountBtn.click();
         }
@@ -95,5 +100,12 @@ export class FormsPage {
         await this.subjectField.fill('Usuwanie konta kandydata');
         await this.messageField.fill('Dzień dobry. Chciałam dowiedzieć się jak usunąć konto kandydata, proszę o odpowiedź. Pozdrawiam');
         await this.leaveMessageBtn.click();
+    }
+
+    async fillFormToLearnDetailsAdvertisementsOfJobs() {
+        await this.fullNameField.fill('Test');
+        await this.contactEmailField.fill('Test@test.pl');
+        await this.phoneField.fill('666222555');
+        // await this.sendBtn.click();
     }
 }

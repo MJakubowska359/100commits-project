@@ -27,4 +27,12 @@ test.describe('Checking post a job subpage', () => {
         await postAJobPage.changeLanguageAndCurrency();
         await expect(page.getByText('Potrzebujesz pakietu ogłoszeń? Skontaktuj się z nami.')).toBeVisible();
     });
+
+    test.only('Should be able to send request about contact to add advertisement  of job on the page', async ({ page }) => {
+        await headerPage.goToPostAJobSubPageOnTheMainPage();
+        await postAJobPage.clickGetInTouchButton();
+        // await expect(page.getByRole('dialog')).toBeVisible();
+        // await expect(page.getByRole('heading', {name: 'Do you need a job offers package?'})).toBeVisible();
+        await formsPage.fillFormToLearnDetailsAdvertisementsOfJobs();
+    });
 });

@@ -5,10 +5,15 @@ export class PostAJobPage {
 
     languageAndCurrency = this.page.locator('#select-pricing-language')
     polishLanguage = this.page.getByRole('option', {name: 'Polski, PLN'})
-    writeToUs = this.page.getByRole('button', {name: 'Napisz do nas'})
+    getInTouchBtn = this.page.getByRole('button', {name: 'Get in touch'})
 
     async changeLanguageAndCurrency() {
         await this.languageAndCurrency.click();
         await this.polishLanguage.click();
+    }
+
+    async clickGetInTouchButton() {
+        await this.getInTouchBtn.click();
+        await this.page.waitForTimeout(3000);
     }
 }
