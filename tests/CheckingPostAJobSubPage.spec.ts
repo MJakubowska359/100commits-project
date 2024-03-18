@@ -28,11 +28,16 @@ test.describe('Checking post a job subpage', () => {
         await expect(page.getByText('Potrzebujesz pakietu ogłoszeń? Skontaktuj się z nami.')).toBeVisible();
     });
 
-    test.only('Should be able to send request about contact to add advertisement  of job on the page', async ({ page }) => {
+    test('Should be able to send request about contact to add advertisement of job on the page', async ({ page }) => {
         await headerPage.goToPostAJobSubPageOnTheMainPage();
         await postAJobPage.clickGetInTouchButton();
-        // await expect(page.getByRole('dialog')).toBeVisible();
-        // await expect(page.getByRole('heading', {name: 'Do you need a job offers package?'})).toBeVisible();
+        await expect(page.getByText('Do you need a job offers package?')).toBeVisible();
         await formsPage.fillFormToLearnDetailsAdvertisementsOfJobs();
     });
+
+    test.only('Should be able to post a job', async ({ page }) => {
+        await headerPage.goToPostAJobSubPageOnTheMainPage();
+        await postAJobPage.clickFirstPostAJobButton();
+        await expect(page).toHaveURL('https://justjoin.it/offer-create/06eef5b7-a0a1-482d-9953-38a551082fc0/form?t=06eef5b7-a0a1-482d-9953-38a551082fc0');
+        });
 });

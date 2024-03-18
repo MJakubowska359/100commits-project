@@ -32,9 +32,14 @@ export class FormsPage {
     sendARequestBtn = this.page.getByRole('button', {name: 'Send a request'});
 
     // post a job form
-    fullNameField = this.page.getByLabel('Full name');
-    contactEmailField = this.page.getByLabel('Contact e-mail');
-    phoneField = this.page.getByLabel('Phone number');
+    // fullNameField = this.page.locator('input[type=text]');
+    // contactEmailField = this.page.locator('input[type=email]');
+    // phoneField = this.page.locator('input[type=tel]');
+
+    fullNameField = this.page.frameLocator('iframe[title="pipedrive-contact-form"]').getByLabel('Full name')
+    contactEmailField = this.page.frameLocator('iframe[title="pipedrive-contact-form"]').getByLabel('Contact e-mail')
+    phoneField = this.page.frameLocator('iframe[title="pipedrive-contact-form"]').getByLabel('Phone number')
+
     sendBtn = this.page.getByRole('button', { name: 'Send' });
 
     // openChatBtn = this.page.frameLocator('iframe[name="chat-widget-minimized"]').getByLabel('Open LiveChat chat widget').click();
@@ -56,9 +61,9 @@ export class FormsPage {
         }
 
     async fillFormToDownloadReport() {
-        await this.nameAndSurnameBtn.fill('Monika Miś');
-        await this.emailField.fill('monikamis@interia.pl');
-        await this.whoAreYou.selectOption('Pracuję w IT');
+        await this.nameAndSurnameBtn.fill('');
+        await this.emailField.fill('');
+        await this.whoAreYou.selectOption('');
         await this.termsCheckbox.check();
         // await this.downloadReportBtn.click()
 
@@ -72,9 +77,9 @@ export class FormsPage {
     }
 
     async fillFormToACompanyProfile() {
-        await this.firstAndLastNameField.fill('Monika Testowa');
-        await this.addressEmailField.fill('monikatestowazoo@bug.pl');
-        await this.companyNameField.fill('Bug Sp. z o.o.');
+        await this.firstAndLastNameField.fill('');
+        await this.addressEmailField.fill('');
+        await this.companyNameField.fill('');
         await this.acceptTermsCheckbox.check()
     }
 
@@ -95,17 +100,17 @@ export class FormsPage {
 
     async fillFormToSendMessageOnLiveChat() {
         await this.openMenu.click();
-        await this.nameField.fill('Tamara');
+        await this.nameField.fill('');
         await this.emailField.fill('');
-        await this.subjectField.fill('Usuwanie konta kandydata');
-        await this.messageField.fill('Dzień dobry. Chciałam dowiedzieć się jak usunąć konto kandydata, proszę o odpowiedź. Pozdrawiam');
-        await this.leaveMessageBtn.click();
+        await this.subjectField.fill('');
+        await this.messageField.fill('');
+        // await this.leaveMessageBtn.click();
     }
 
     async fillFormToLearnDetailsAdvertisementsOfJobs() {
-        await this.fullNameField.fill('Test');
-        await this.contactEmailField.fill('Test@test.pl');
-        await this.phoneField.fill('666222555');
+        await this.fullNameField.fill('');
+        await this.contactEmailField.fill('');
+        await this.phoneField.fill('');
         // await this.sendBtn.click();
     }
 }
