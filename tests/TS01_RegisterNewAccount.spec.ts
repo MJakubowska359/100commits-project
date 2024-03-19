@@ -20,10 +20,10 @@ test.describe('Register a new account', () => {
 
   test('Should be able to register new account ', async ({ page }) => {
     await page.goto('/');
-    await page.waitForTimeout(3000)
+    await page.waitForTimeout(3000);
     await generalPage.clickAcceptCookiesOnPage();
     await expect(page.locator('#cookiescript_injected')).not.toBeVisible();
-    await headerPage.goToSignInPageFromMenuOnMainPage();
+    await headerPage.goToSignInPageForCandidateFromPageHeader();
     await expect(page.getByText('Sign in or sign up')).toBeVisible();
     await loginPage.goToCreateAccountFromSignInPage();
     await formsPage.fillFormToRegisterNewAccount();
