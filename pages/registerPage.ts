@@ -18,4 +18,8 @@ export class RegisterPage {
     await this.checkboxConfirmTerms.click();
     await this.createAccountBtn.click();
     }
+
+    async clickCreateAccountButton() {
+        await this.createAccountBtn.click();
+    }
 }

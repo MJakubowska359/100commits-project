@@ -3,7 +3,7 @@ import { Page } from "@playwright/test";
 export class FormsPage {
     constructor(private page: Page) { }
 
-    // register account
+    // locators on register account page
     emailOfRegisterAccountField = this.page.getByPlaceholder('name@domain.com');
     passwordOfRegisterAccountField = this.page.getByPlaceholder('At least 8 characters');
     repeatPasswordField = this.page.getByPlaceholder('Same password as above');
@@ -11,9 +11,9 @@ export class FormsPage {
     checkboxCommercialCorrespondence = this.page.getByRole('checkbox').nth(1);
     createAccountBtn = this.page.getByRole('button', {name: 'Create account'});
 
-    //
-    emailField = this.page.getByPlaceholder('forexample@domain.com'); // raport.justjoin.it
-    passwordBtn = this.page.getByPlaceholder('At least 8 characters');
+    // locators on login page by email
+    emailFieldOnSignInPage = this.page.getByPlaceholder('forexample@domain.com'); // raport.justjoin.it
+    passwordFieldOnSignInPage = this.page.getByPlaceholder('At least 8 characters');
 
     // raport.justjoin.it
     nameAndSurnameBtn = this.page.getByLabel('Imię i nazwisko');
@@ -58,11 +58,25 @@ export class FormsPage {
         await this.repeatPasswordField.fill('');
         await this.termsCheckbox.click();
         // await this.createAccountBtn.click();
-        }
+    }
+
+    async fillFormToLoginAsCandidate() {
+            await this.emailFieldOnSignInPage.fill('');
+            await this.passwordFieldOnSignInPage.fill('');
+    }
+
+    async signInAsCompany() {
+        await this.emailFieldOnSignInPage.fill('');
+        await this.passwordFieldOnSignInPage.fill('');
+    }
+
+    async useForgotPasswordOption() {
+        await this.emailFieldOnSignInPage.fill('');
+    }
 
     async fillFormToDownloadReport() {
         await this.nameAndSurnameBtn.fill('');
-        await this.emailField.fill('');
+        await this.emailFieldOnSignInPage.fill('');
         await this.whoAreYou.selectOption('');
         await this.termsCheckbox.check();
         // await this.downloadReportBtn.click()
@@ -88,12 +102,12 @@ export class FormsPage {
     }
 
     async fillEmailField() {
-        await this.emailField.fill('');
+        await this.emailFieldOnSignInPage.fill('');
     }
 
     async clickEveryFieldAndstayItEmpty() {
         await this.nameField.press('Tab');
-        await this.emailField.press('Tab');
+        await this.emailFieldOnSignInPage.press('Tab');
         await this.subjectField.press('Tab');
         await this.messageField.press('Tab');
     }
@@ -101,7 +115,7 @@ export class FormsPage {
     async fillFormToSendMessageOnLiveChat() {
         await this.openMenu.click();
         await this.nameField.fill('');
-        await this.emailField.fill('');
+        await this.emailFieldOnSignInPage.fill('');
         await this.subjectField.fill('');
         await this.messageField.fill('');
         // await this.leaveMessageBtn.click();
