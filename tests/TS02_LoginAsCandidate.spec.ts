@@ -4,7 +4,7 @@ import { HeaderPage } from '../pages/headerPage';
 import { LoginPage } from '../pages/loginPage';
 import { FormsPage } from '../pages/formsPage';
 
-test.describe.only("Logging to candidate's profile", () => {
+test.describe("Logging to candidate's profile", () => {
   let generalPage: GeneralPage;
   let headerPage: HeaderPage;
   let loginPage: LoginPage;

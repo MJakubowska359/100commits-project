@@ -65,7 +65,7 @@ export class FormsPage {
             await this.passwordFieldOnSignInPage.fill('');
     }
 
-    async signInAsCompany() {
+    async fillFormToLoginAsCompany() {
         await this.emailFieldOnSignInPage.fill('');
         await this.passwordFieldOnSignInPage.fill('');
     }
