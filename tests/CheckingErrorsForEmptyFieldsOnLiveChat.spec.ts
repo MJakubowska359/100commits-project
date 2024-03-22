@@ -1,14 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { GeneralPage } from '../pages/generalPage';
-import { FormsPage } from '../pages/formsPage';
 
 test.describe('Checking require fields on live chat', () => {
     let generalPage: GeneralPage;
-    let formsPage: FormsPage;
 
     test.beforeEach(async ({ page }) => {
         generalPage = new GeneralPage(page);
-        formsPage = new FormsPage(page);
     })
 
     test('Should not be able to send message if field on live chat form are empty', async ({ page }) => {

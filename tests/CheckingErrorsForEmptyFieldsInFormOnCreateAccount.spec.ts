@@ -17,7 +17,7 @@ test.describe('Checking require fields on create account', () => {
     registerPage = new RegisterPage(page);
   })
 
-  test.only('Should not be able to creating account if fields in form are empty', async ({ page }) => {
+  test('Should not be able to creating account if fields in form are empty', async ({ page }) => {
     await page.goto('/');
     await page.waitForTimeout(3000);
     await generalPage.clickAcceptCookiesOnPage();

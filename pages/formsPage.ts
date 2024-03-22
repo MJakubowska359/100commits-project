@@ -61,8 +61,8 @@ export class FormsPage {
     }
 
     async fillFormToLoginAsCandidate() {
-            await this.emailFieldOnSignInPage.fill('');
-            await this.passwordFieldOnSignInPage.fill('');
+        await this.emailFieldOnSignInPage.fill('');
+        await this.passwordFieldOnSignInPage.fill('');
     }
 
     async fillFormToLoginAsCompany() {
