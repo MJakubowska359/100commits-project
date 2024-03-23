@@ -17,7 +17,7 @@ test.describe('Checking require fields on comapny profile', () => {
     formsPage = new FormsPage(page);
   })
 
-  test('Should not be able to send form about company profile if fields in form are empty', async ({ page }) => {
+  test  ('Should not be able to send form about company profile if fields in form are empty', async ({ page }) => {
     await page.goto('/');
     await page.waitForTimeout(3000);
     await generalPage.clickAcceptCookiesOnPage();

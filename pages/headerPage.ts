@@ -10,7 +10,8 @@ export class HeaderPage {
     postAJobBtn = this.page.getByRole('link', { name: 'Post a job' });
     signInBtn = this.page.getByRole('button', { name: 'Sign in' });
     starOfSubscribe = this.page.getByRole('button', { name: 'Subscribe' });
-    currencyList = this.page.getByRole('button', { name: 'PLN' });
+    plnCurrency = this.page.getByRole('banner').getByRole('button').nth(3);
+    usdCurrency = this.page.getByRole('button', { name: 'USD' });
 
     // menu
     menuBtn = this.page.locator('button[name="sidebar-open"]');
@@ -54,5 +55,11 @@ export class HeaderPage {
 
     async goToPostAJobSubPageOnTheMainPage() {
         await this.postAJobBtn.click();
+    }
+
+    async changeCurrencyFromPlnToUsdOnMainPage() {
+        await this.plnCurrency.click();
+        await this.usdCurrency.click();
+        await this.page.waitForTimeout(5000);
     }
 }

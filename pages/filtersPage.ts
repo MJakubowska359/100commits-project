@@ -10,7 +10,7 @@ export class FiltersPage {
     searchBtn = this.page.getByRole('combobox', { name: 'Search' });
     searchCompany = this.page.getByPlaceholder('Search company');
     locationBtn = this.page.getByRole('button', { name: 'Location' });
-    withSalaryBtn = this.page.getByRole('button', { name: 'With salary' });
+    withSalaryBtn = this.page.getByRole('tab', { name: 'With salary' });
     alloffersBtn = this.page.getByRole('button', { name: 'All offers' });
     remoteCheckbox = this.page.getByRole('checkbox', { name: 'Remote' });
 
@@ -21,8 +21,8 @@ export class FiltersPage {
 
     // more filters
     moreFiltersBtn = this.page.getByRole('button', { name: 'More filters' });
-    salaryMinField = this.page.getByRole('textbox').first().click();
-    salaryMaxField = this.page.getByRole('textbox').nth(1).click();
+    salaryMinField = this.page.getByRole('textbox').first()
+    salaryMaxField = this.page.getByRole('textbox').nth(1)
     ukraineFriendlyChecbox = this.page.getByRole('checkbox', { name: 'Show only Friendly Offers' });
     //// experience
     juniorCheckbox = this.page.getByRole('checkbox', { name: 'Junior' });
@@ -43,10 +43,6 @@ export class FiltersPage {
 
     showOffersBtn = this.page.getByRole('button', { name: 'Show offers' });
     clearBtn = this.page.getByRole('button', { name: 'Clear filters' });
-
-    // assertion ready to use on tests
-    // await page.getByRole('heading', { name: 'More filters' }).click();
-    // await page.getByRole('heading', { name: 'Friendly Offer' }).click();
 
     async fillNameCompanyInSearch() {
         await this.searchCompany.fill('pko');
