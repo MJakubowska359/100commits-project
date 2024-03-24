@@ -27,7 +27,7 @@ test.describe('Checking post a job subpage', () => {
         await postAJobPage.changeLanguageAndCurrency();
         await expect(page.getByText('Potrzebujesz pakietu ogłoszeń? Skontaktuj się z nami.')).toBeVisible();
         const page1Promise = page.waitForEvent('popup');
-         await page.getByRole("link", {name: 'GENERAL TERMS AND CONDITIONS OF SERVICES'}).click();
+        await page.getByRole("link", {name: 'GENERAL TERMS AND CONDITIONS OF SERVICES'}).click();
         const page1 = await page1Promise;
     });
 

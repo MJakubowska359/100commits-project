@@ -10,8 +10,11 @@ export class HeaderPage {
     postAJobBtn = this.page.getByRole('link', { name: 'Post a job' });
     signInBtn = this.page.getByRole('button', { name: 'Sign in' });
     starOfSubscribe = this.page.getByRole('button', { name: 'Subscribe' });
-    plnCurrency = this.page.getByRole('banner').getByRole('button').nth(3);
+    defaultCurrencyPln = this.page.getByRole('banner').getByRole('button').nth(3);
     usdCurrency = this.page.getByRole('button', { name: 'USD' });
+    defaultCurrencyUsd = this.page.getByRole('banner').getByRole('button').nth(3);
+    eurCurrency = this.page.getByRole('button', { name: 'EUR' });
+
 
     // menu
     menuBtn = this.page.locator('button[name="sidebar-open"]');
@@ -58,8 +61,14 @@ export class HeaderPage {
     }
 
     async changeCurrencyFromPlnToUsdOnMainPage() {
-        await this.plnCurrency.click();
+        await this.defaultCurrencyPln.click();
         await this.usdCurrency.click();
+        await this.page.waitForTimeout(5000);
+    }
+
+    async changeCurrencyFromUsdToEurOnMainPage() {
+        await this.defaultCurrencyUsd.click();
+        await this.eurCurrency.click();
         await this.page.waitForTimeout(5000);
     }
 }
