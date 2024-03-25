@@ -30,5 +30,9 @@ test.describe.only('Changing currency on page', () => {
         await expect(page.locator(currency).nth(4)).toContainText('eur');
         await expect(page.locator(currency).nth(9)).toContainText('eur');
         await expect(page.locator(currency).nth(16)).toContainText('eur');
+
+        await expect(page.locator(currency).nth(2)).toContainText('gbp');
+        await expect(page.locator(currency).nth(7)).toContainText('gbp');
+        await expect(page.locator(currency).nth(14)).toContainText('gbp');
     });
 });
