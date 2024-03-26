@@ -22,15 +22,15 @@ test.describe.only('Changing currency on page', () => {
 
     test('Should be able to change currency in advertisements of jobs', async ({ page }) => {
         await filtersPage.clickWithSalaryButton();
-        await headerPage.changeCurrencyFromPlnToUsdOnMainPage();
-        await expect(page.locator(currency).nth(3)).toContainText('usd');
-        await expect(page.locator(currency).nth(8)).toContainText('usd');
-        await expect(page.locator(currency).nth(15)).toContainText('usd');
-        await headerPage.changeCurrencyFromUsdToEurOnMainPage();
-        await expect(page.locator(currency).nth(4)).toContainText('eur');
-        await expect(page.locator(currency).nth(9)).toContainText('eur');
-        await expect(page.locator(currency).nth(16)).toContainText('eur');
-
+        await headerPage.changeCurrencyFromPlnToEurOnMainPage();
+        await expect(page.locator(currency).nth(3)).toContainText('eur');
+        await expect(page.locator(currency).nth(8)).toContainText('eur');
+        await expect(page.locator(currency).nth(15)).toContainText('eur');
+        await headerPage.changeCurrencyFromEurToUsdOnMainPage();
+        await expect(page.locator(currency).nth(4)).toContainText('usd');
+        await expect(page.locator(currency).nth(9)).toContainText('usd');
+        await expect(page.locator(currency).nth(16)).toContainText('usd');
+        await headerPage.changeCurrencyFromUsdToGbpOnMainPage();
         await expect(page.locator(currency).nth(2)).toContainText('gbp');
         await expect(page.locator(currency).nth(7)).toContainText('gbp');
         await expect(page.locator(currency).nth(14)).toContainText('gbp');

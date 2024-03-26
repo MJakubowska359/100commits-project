@@ -67,15 +67,21 @@ export class HeaderPage {
         await this.postAJobBtn.click();
     }
 
-    async changeCurrencyFromPlnToUsdOnMainPage() {
+    async changeCurrencyFromPlnToEurOnMainPage() {
         await this.defaultCurrencyPln.click();
+        await this.eurCurrency.click();
+        await this.page.waitForTimeout(5000);
+    }
+
+    async changeCurrencyFromEurToUsdOnMainPage() {
+        await this.defaultCurrencyEur.click();
         await this.usdCurrency.click();
         await this.page.waitForTimeout(5000);
     }
 
-    async changeCurrencyFromUsdToEurOnMainPage() {
+    async changeCurrencyFromUsdToGbpOnMainPage() {
         await this.defaultCurrencyUsd.click();
-        await this.eurCurrency.click();
+        await this.gbpCurrency.click();
         await this.page.waitForTimeout(5000);
     }
 }
