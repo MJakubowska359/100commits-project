@@ -11,10 +11,17 @@ export class HeaderPage {
     signInBtn = this.page.getByRole('button', { name: 'Sign in' });
     starOfSubscribe = this.page.getByRole('button', { name: 'Subscribe' });
     defaultCurrencyPln = this.page.getByRole('banner').getByRole('button').nth(3);
-    usdCurrency = this.page.getByRole('button', { name: 'USD' });
+    defaultCurrencyEur = this.page.getByRole('banner').getByRole('button').nth(3);
     defaultCurrencyUsd = this.page.getByRole('banner').getByRole('button').nth(3);
+    defaultCurrencyGbp = this.page.getByRole('banner').getByRole('button').nth(3);
+    defaultCurrencyChf = this.page.getByRole('banner').getByRole('button').nth(3);
+    defaultCurrencyDef = this.page.getByRole('banner').getByRole('button').nth(3);
+    plnCurrency = this.page.getByRole('button', { name: 'PLN' });
     eurCurrency = this.page.getByRole('button', { name: 'EUR' });
-
+    usdCurrency = this.page.getByRole('button', { name: 'USD' });
+    gbpCurrency = this.page.getByRole('button', { name: 'GBP' });
+    chfCurrency = this.page.getByRole('button', { name: 'CHF' });
+    defCurrency = this.page.getByRole('button', { name: 'DEF' });
 
     // menu
     menuBtn = this.page.locator('button[name="sidebar-open"]');
