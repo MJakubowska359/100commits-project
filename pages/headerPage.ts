@@ -84,4 +84,10 @@ export class HeaderPage {
         await this.gbpCurrency.click();
         await this.page.waitForTimeout(5000);
     }
+
+    async changeCurrencyFromGbpToChfOnMainPage() {
+        await this.defaultCurrencyGbp.click();
+        await this.chfCurrency.click();
+        await this.page.waitForTimeout(5000);
+    }
 }
