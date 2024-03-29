@@ -90,4 +90,10 @@ export class HeaderPage {
         await this.chfCurrency.click();
         await this.page.waitForTimeout(5000);
     }
+
+    async changeCurrencyFromChfToDefOnMainPage() {
+        await this.defaultCurrencyChf.click();
+        await this.defCurrency.click();
+        await this.page.waitForTimeout(5000);
+    }
 }
