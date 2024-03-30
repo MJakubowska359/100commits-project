@@ -70,30 +70,30 @@ export class HeaderPage {
     async changeCurrencyFromPlnToEurOnMainPage() {
         await this.defaultCurrencyPln.click();
         await this.eurCurrency.click();
-        await this.page.waitForTimeout(5000);
+        // await this.page.waitForTimeout(3000);
     }
 
     async changeCurrencyFromEurToUsdOnMainPage() {
         await this.defaultCurrencyEur.click();
         await this.usdCurrency.click();
-        await this.page.waitForTimeout(5000);
+        // await this.page.waitForTimeout(3000);
     }
 
     async changeCurrencyFromUsdToGbpOnMainPage() {
         await this.defaultCurrencyUsd.click();
         await this.gbpCurrency.click();
-        await this.page.waitForTimeout(5000);
+        // await this.page.waitForTimeout(3000);
     }
 
     async changeCurrencyFromGbpToChfOnMainPage() {
         await this.defaultCurrencyGbp.click();
         await this.chfCurrency.click();
-        await this.page.waitForTimeout(5000);
+        // await this.page.waitForTimeout(3000);
     }
 
     async changeCurrencyFromChfToDefOnMainPage() {
         await this.defaultCurrencyChf.click();
         await this.defCurrency.click();
-        await this.page.waitForTimeout(5000);
+        // await this.page.waitForTimeout(3000);
     }
 }

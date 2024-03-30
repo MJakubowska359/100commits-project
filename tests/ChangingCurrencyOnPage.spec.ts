@@ -38,5 +38,6 @@ test.describe.only('Changing currency on page', () => {
         await expect(page.locator(currency).nth(1)).toContainText('chf');
         await expect(page.locator(currency).nth(6)).toContainText('chf');
         await expect(page.locator(currency).nth(13)).toContainText('chf');
+        await headerPage.changeCurrencyFromChfToDefOnMainPage();
     });
 });

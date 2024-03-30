@@ -59,6 +59,7 @@ export class FiltersPage {
 
     async clickWithSalaryButton() {
         await this.withSalaryBtn.click();
+        await this.page.waitForTimeout(2000);
     }
 
     async clickSubscribeOption() {
