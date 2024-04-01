@@ -96,4 +96,10 @@ export class HeaderPage {
         await this.defCurrency.click();
         await this.page.waitForTimeout(3000);
     }
+
+    async changeCurrencyFromDefToPlnOnMainPage() {
+        await this.defaultCurrencyDef.click();
+        await this.plnCurrency.click();
+        await this.page.waitForTimeout(3000);
+    }
 }
