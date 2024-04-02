@@ -5,7 +5,7 @@ import { FiltersPage } from '../pages/filtersPage';
 
 const currency = '.css-17pspck'
 
-test.describe.only('Changing currency on page', () => {
+test.describe('Changing currency on page', () => {
     let generalPage: GeneralPage;
     let headerPage: HeaderPage;
     let filtersPage: FiltersPage;

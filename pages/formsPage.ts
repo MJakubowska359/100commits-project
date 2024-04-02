@@ -127,4 +127,8 @@ export class FormsPage {
         await this.phoneField.fill('');
         // await this.sendBtn.click();
     }
+
+    async fillEmailAddressToResetPassword() {
+        await this.emailOfRegisterAccountField.fill('');
+    }
 }
