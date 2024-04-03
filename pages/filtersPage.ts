@@ -12,11 +12,12 @@ export class FiltersPage {
     locationBtn = this.page.getByRole('button', { name: 'Location' });
     withSalaryBtn = this.page.getByRole('tab', { name: 'With salary' });
     alloffersBtn = this.page.getByRole('button', { name: 'All offers' });
-    remoteCheckbox = this.page.getByRole('checkbox', { name: 'Remote' });
+    remoteCheckbox = this.page.getByRole('checkbox');
 
-    // main page - main page - subscribe
+    // main page - subscribe
+    subscribeOption = this.page.getByRole('button', {name: 'Subscribe'});
     subscribeCheckbox = this.page.getByRole('checkbox', { name: 'Subscribe' });
-    saveSearchCheckbox = this.page.getByRole('checkbox', { name: 'Save your search' });
+    saveSearchCheckbox = this.page.locator('#save-filters');
     turnNotificationsCheckbox = this.page.getByRole('checkbox', { name: 'Turn on email notifications' });
 
     // more filters
@@ -51,6 +52,7 @@ export class FiltersPage {
 
     async clickPythonLogo() {
         await this.pythonBtn.click();
+        await this.page.waitForTimeout(2000);
     }
 
     async clickRemoteCheckbox() {
@@ -63,7 +65,7 @@ export class FiltersPage {
     }
 
     async clickSubscribeOption() {
-        await this.subscribeCheckbox.click();
+        await this.subscribeOption.click();
     }
 
     async clickSaveYourSearchCheckbox() {

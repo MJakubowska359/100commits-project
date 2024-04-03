@@ -11,7 +11,6 @@ test.describe("Resetting password to account", () => {
   let formsPage: FormsPage;
   
   test.beforeEach(async ({page}) => {
-    generalPage = new GeneralPage(page);
     headerPage = new HeaderPage(page);
     loginPage = new LoginPage(page);
     formsPage = new FormsPage(page);

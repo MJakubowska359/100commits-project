@@ -9,7 +9,9 @@ export class HeaderPage {
     geekBtn = this.page.getByRole('link', { name: 'Geek' });
     postAJobBtn = this.page.getByRole('link', { name: 'Post a job' });
     signInBtn = this.page.getByRole('button', { name: 'Sign in' });
-    starOfSubscribe = this.page.getByRole('button', { name: 'Subscribe' });
+    starOfSubscribe = this.page.getByLabel('Saved searches');
+    closeSavedSearchesBtn = this.page.locator('button[name="header_job_alerts_close_button"]');
+
     defaultCurrencyPln = this.page.getByRole('banner').getByRole('button').nth(3);
     defaultCurrencyEur = this.page.getByRole('banner').getByRole('button').nth(3);
     defaultCurrencyUsd = this.page.getByRole('banner').getByRole('button').nth(3);
@@ -101,5 +103,13 @@ export class HeaderPage {
         await this.defaultCurrencyDef.click();
         await this.plnCurrency.click();
         await this.page.waitForTimeout(3000);
+    }
+
+    async clickStarIconOnHeaderOfPage() {
+        await this.starOfSubscribe.click();
+    }
+
+    async closeSavedSearches() {
+        await this.closeSavedSearchesBtn.click();
     }
 }
