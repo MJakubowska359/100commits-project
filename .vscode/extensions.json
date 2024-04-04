@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "pkief.material-icon-theme",
+        "dbaeumer.vscode-eslint",
+        "ms-playwright.playwright",
+        "esbenp.prettier-vscode"
+    ]
+}

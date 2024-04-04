@@ -1,7 +1,7 @@
-import { Page, expect } from "@playwright/test";
+import { Page, expect } from '@playwright/test';
 
 export class HeaderPage {
-    constructor(private page: Page) { }
+    constructor(private page: Page) {}
 
     // products
     jobOffersBtn = this.page.getByRole('link', { name: 'Job offers' });
@@ -10,14 +10,34 @@ export class HeaderPage {
     postAJobBtn = this.page.getByRole('link', { name: 'Post a job' });
     signInBtn = this.page.getByRole('button', { name: 'Sign in' });
     starOfSubscribe = this.page.getByLabel('Saved searches');
-    closeSavedSearchesBtn = this.page.locator('button[name="header_job_alerts_close_button"]');
+    closeSavedSearchesBtn = this.page.locator(
+        'button[name="header_job_alerts_close_button"]',
+    );
 
-    defaultCurrencyPln = this.page.getByRole('banner').getByRole('button').nth(3);
-    defaultCurrencyEur = this.page.getByRole('banner').getByRole('button').nth(3);
-    defaultCurrencyUsd = this.page.getByRole('banner').getByRole('button').nth(3);
-    defaultCurrencyGbp = this.page.getByRole('banner').getByRole('button').nth(3);
-    defaultCurrencyChf = this.page.getByRole('banner').getByRole('button').nth(3);
-    defaultCurrencyDef = this.page.getByRole('banner').getByRole('button').nth(3);
+    defaultCurrencyPln = this.page
+        .getByRole('banner')
+        .getByRole('button')
+        .nth(3);
+    defaultCurrencyEur = this.page
+        .getByRole('banner')
+        .getByRole('button')
+        .nth(3);
+    defaultCurrencyUsd = this.page
+        .getByRole('banner')
+        .getByRole('button')
+        .nth(3);
+    defaultCurrencyGbp = this.page
+        .getByRole('banner')
+        .getByRole('button')
+        .nth(3);
+    defaultCurrencyChf = this.page
+        .getByRole('banner')
+        .getByRole('button')
+        .nth(3);
+    defaultCurrencyDef = this.page
+        .getByRole('banner')
+        .getByRole('button')
+        .nth(3);
     plnCurrency = this.page.getByRole('button', { name: 'PLN' });
     eurCurrency = this.page.getByRole('button', { name: 'EUR' });
     usdCurrency = this.page.getByRole('button', { name: 'USD' });
@@ -32,8 +52,12 @@ export class HeaderPage {
     careerBtn = this.page.getByRole('link', { name: 'Career' });
     helpBtn = this.page.getByRole('button', { name: 'Help' });
     termsBtn = this.page.getByRole('link', { name: 'Terms' });
-    signInAsCandidate = this.page.getByRole('button', { name: "Sign in to Candidate's profile" });
-    signInAsCompany = this.page.getByRole('button', { name: "Sign in to Employer's panel" });
+    signInAsCandidate = this.page.getByRole('button', {
+        name: "Sign in to Candidate's profile",
+    });
+    signInAsCompany = this.page.getByRole('button', {
+        name: "Sign in to Employer's panel",
+    });
 
     async goToSignInPageForCandidateFromPageHeader() {
         await this.signInBtn.click();

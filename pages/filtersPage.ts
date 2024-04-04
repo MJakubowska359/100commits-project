@@ -1,10 +1,11 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test';
+
 export class FiltersPage {
-    constructor(private page: Page) { }
+    constructor(private page: Page) {}
 
     // main page - technology
-    rubyBtn = this.page.getByRole('link', { name: 'Ruby' })
-    pythonBtn = this.page.getByRole('link', { name: 'Python' })
+    rubyBtn = this.page.getByRole('link', { name: 'Ruby' });
+    pythonBtn = this.page.getByRole('link', { name: 'Python' });
 
     // main page - basic filters, top companies page
     searchBtn = this.page.getByRole('combobox', { name: 'Search' });
@@ -15,16 +16,20 @@ export class FiltersPage {
     remoteCheckbox = this.page.getByRole('checkbox');
 
     // main page - subscribe
-    subscribeOption = this.page.getByRole('button', {name: 'Subscribe'});
+    subscribeOption = this.page.getByRole('button', { name: 'Subscribe' });
     subscribeCheckbox = this.page.getByRole('checkbox', { name: 'Subscribe' });
     saveSearchCheckbox = this.page.locator('#save-filters');
-    turnNotificationsCheckbox = this.page.getByRole('checkbox', { name: 'Turn on email notifications' });
+    turnNotificationsCheckbox = this.page.getByRole('checkbox', {
+        name: 'Turn on email notifications',
+    });
 
     // more filters
     moreFiltersBtn = this.page.getByRole('button', { name: 'More filters' });
-    salaryMinField = this.page.getByRole('textbox').first()
-    salaryMaxField = this.page.getByRole('textbox').nth(1)
-    ukraineFriendlyChecbox = this.page.getByRole('checkbox', { name: 'Show only Friendly Offers' });
+    salaryMinField = this.page.getByRole('textbox').first();
+    salaryMaxField = this.page.getByRole('textbox').nth(1);
+    ukraineFriendlyChecbox = this.page.getByRole('checkbox', {
+        name: 'Show only Friendly Offers',
+    });
     //// experience
     juniorCheckbox = this.page.getByRole('checkbox', { name: 'Junior' });
     midCheckbox = this.page.getByRole('checkbox', { name: 'Mid' });
@@ -33,13 +38,21 @@ export class FiltersPage {
     //// employment type
     b2bCheckbox = this.page.getByRole('checkbox', { name: 'B2B' });
     permanentCheckbox = this.page.getByRole('checkbox', { name: 'Permanent' });
-    internshipCheckbox = this.page.getByRole('checkbox', { name: 'Internship' });
-    mandateContractCheckbox = this.page.getByRole('checkbox', { name: 'Mandate contract' });
-    specificContractCheckbox = this.page.getByRole('checkbox', { name: 'Specific-task contract' });
+    internshipCheckbox = this.page.getByRole('checkbox', {
+        name: 'Internship',
+    });
+    mandateContractCheckbox = this.page.getByRole('checkbox', {
+        name: 'Mandate contract',
+    });
+    specificContractCheckbox = this.page.getByRole('checkbox', {
+        name: 'Specific-task contract',
+    });
     //// type of work
     fullTimeCheckbox = this.page.getByRole('checkbox', { name: 'Full-time' });
     partTimeCheckbox = this.page.getByRole('checkbox', { name: 'Part-time' });
-    practiceCheckbox = this.page.getByRole('checkbox', { name: 'Practice / Intership' });
+    practiceCheckbox = this.page.getByRole('checkbox', {
+        name: 'Practice / Intership',
+    });
     freelanceCheckbox = this.page.getByRole('checkbox', { name: 'Freelance' });
 
     showOffersBtn = this.page.getByRole('button', { name: 'Show offers' });

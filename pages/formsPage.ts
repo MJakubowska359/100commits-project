@@ -1,19 +1,27 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test';
 
 export class FormsPage {
-    constructor(private page: Page) { }
+    constructor(private page: Page) {}
 
     // locators on register account page
     emailOfRegisterAccountField = this.page.getByPlaceholder('name@domain.com');
-    passwordOfRegisterAccountField = this.page.getByPlaceholder('At least 8 characters');
+    passwordOfRegisterAccountField = this.page.getByPlaceholder(
+        'At least 8 characters',
+    );
     repeatPasswordField = this.page.getByPlaceholder('Same password as above');
     checkboxConfirmTerms = this.page.getByRole('checkbox').nth(0);
     checkboxCommercialCorrespondence = this.page.getByRole('checkbox').nth(1);
-    createAccountBtn = this.page.getByRole('button', {name: 'Create account'});
+    createAccountBtn = this.page.getByRole('button', {
+        name: 'Create account',
+    });
 
     // locators on login page by email
-    emailFieldOnSignInPage = this.page.getByPlaceholder('forexample@domain.com'); // raport.justjoin.it
-    passwordFieldOnSignInPage = this.page.getByPlaceholder('At least 8 characters');
+    emailFieldOnSignInPage = this.page.getByPlaceholder(
+        'forexample@domain.com',
+    ); // raport.justjoin.it
+    passwordFieldOnSignInPage = this.page.getByPlaceholder(
+        'At least 8 characters',
+    );
 
     // raport.justjoin.it
     nameAndSurnameBtn = this.page.getByLabel('Imię i nazwisko');
@@ -22,23 +30,33 @@ export class FormsPage {
 
     termsCheckbox = this.page.getByRole('checkbox', { name: 'policy' });
 
-    downloadReportBtn = this.page.getByRole('button', { name: 'POBIERZ RAPORT' });
+    downloadReportBtn = this.page.getByRole('button', {
+        name: 'POBIERZ RAPORT',
+    });
 
     // justjoin.it/brands - get started option
     firstAndLastNameField = this.page.getByLabel('First name and last name');
     addressEmailField = this.page.getByLabel('Address email');
     companyNameField = this.page.getByLabel('Company name');
-    acceptTermsCheckbox = this.page.getByRole('checkbox', {name: 'I accept the terms and conditions of service.'})
-    sendARequestBtn = this.page.getByRole('button', {name: 'Send a request'});
+    acceptTermsCheckbox = this.page.getByRole('checkbox', {
+        name: 'I accept the terms and conditions of service.',
+    });
+    sendARequestBtn = this.page.getByRole('button', { name: 'Send a request' });
 
     // post a job form
     // fullNameField = this.page.locator('input[type=text]');
     // contactEmailField = this.page.locator('input[type=email]');
     // phoneField = this.page.locator('input[type=tel]');
 
-    fullNameField = this.page.frameLocator('iframe[title="pipedrive-contact-form"]').getByLabel('Full name')
-    contactEmailField = this.page.frameLocator('iframe[title="pipedrive-contact-form"]').getByLabel('Contact e-mail')
-    phoneField = this.page.frameLocator('iframe[title="pipedrive-contact-form"]').getByLabel('Phone number')
+    fullNameField = this.page
+        .frameLocator('iframe[title="pipedrive-contact-form"]')
+        .getByLabel('Full name');
+    contactEmailField = this.page
+        .frameLocator('iframe[title="pipedrive-contact-form"]')
+        .getByLabel('Contact e-mail');
+    phoneField = this.page
+        .frameLocator('iframe[title="pipedrive-contact-form"]')
+        .getByLabel('Phone number');
 
     sendBtn = this.page.getByRole('button', { name: 'Send' });
 
@@ -48,7 +66,9 @@ export class FormsPage {
     messageField = this.page.getByLabel('Message');
     openMenu = this.page.getByLabel('Open menu');
     minimizeWindow = this.page.getByLabel('Minimize window');
-    leaveMessageBtn = this.page.getByRole('button', { name: 'Leave a message' });
+    leaveMessageBtn = this.page.getByRole('button', {
+        name: 'Leave a message',
+    });
 
     // checboxy terms/privacy policy and handel informations
 
@@ -94,7 +114,7 @@ export class FormsPage {
         await this.firstAndLastNameField.fill('');
         await this.addressEmailField.fill('');
         await this.companyNameField.fill('');
-        await this.acceptTermsCheckbox.check()
+        await this.acceptTermsCheckbox.check();
     }
 
     async clickSendARequestToACompanyProfile() {

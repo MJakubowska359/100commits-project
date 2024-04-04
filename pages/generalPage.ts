@@ -1,19 +1,28 @@
-import { Page, expect } from "@playwright/test";
+import { Page, expect } from '@playwright/test';
 
 export class GeneralPage {
-    constructor(private page: Page) { }
+    constructor(private page: Page) {}
 
     // cookies
-    acceptAllBtn = this.page.getByRole('button', { name: 'Accept all' })
-    customizeBtn = this.page.getByRole('button', { name: 'Customize' })
-    cookieDeclaration = this.page.getByText('Cookie declaration')
-    aboutCookies = this.page.getByText('About cookies')
-    showCookies = this.page.getByRole('button', { name: 'Show cookies' })
-    hideCookies = this.page.getByRole('button', { name: 'Hide cookies', exact: true })
+    acceptAllBtn = this.page.getByRole('button', { name: 'Accept all' });
+    customizeBtn = this.page.getByRole('button', { name: 'Customize' });
+    cookieDeclaration = this.page.getByText('Cookie declaration');
+    aboutCookies = this.page.getByText('About cookies');
+    showCookies = this.page.getByRole('button', { name: 'Show cookies' });
+    hideCookies = this.page.getByRole('button', {
+        name: 'Hide cookies',
+        exact: true,
+    });
     // hideCookies = this.page.getByText('Hide cookies')
-    switchBtn = this.page.getByRole('switch')
-    declineAllBtn = this.page.getByRole('button', { name: 'Decline all', exact: true })
-    saveAndCloseBtn = this.page.getByRole('button', { name: 'Save & Close', exact: true })
+    switchBtn = this.page.getByRole('switch');
+    declineAllBtn = this.page.getByRole('button', {
+        name: 'Decline all',
+        exact: true,
+    });
+    saveAndCloseBtn = this.page.getByRole('button', {
+        name: 'Save & Close',
+        exact: true,
+    });
 
     async choosePerformanceAndFunctionalityCookiesOnPage() {
         await this.aboutCookies.click();

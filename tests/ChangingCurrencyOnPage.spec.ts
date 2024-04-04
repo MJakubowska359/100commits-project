@@ -1,9 +1,9 @@
-import { test, expect } from '@playwright/test';
+import { FiltersPage } from '../pages/filtersPage';
 import { GeneralPage } from '../pages/generalPage';
 import { HeaderPage } from '../pages/headerPage';
-import { FiltersPage } from '../pages/filtersPage';
+import { expect, test } from '@playwright/test';
 
-const currency = '.css-17pspck'
+const currency = '.css-17pspck';
 
 test.describe('Changing currency on page', () => {
     let generalPage: GeneralPage;
@@ -17,10 +17,12 @@ test.describe('Changing currency on page', () => {
 
         await page.goto('/');
         await generalPage.clickAcceptCookiesOnPage();
-        await expect(page.locator('#cookiescript_injected')).not.toBeVisible();
-    })
+        await expect(page.locator('#cookiescript_injected')).toBeHidden();
+    });
 
-    test('Should be able to change currency in advertisements of jobs', async ({ page }) => {
+    test('Should be able to change currency in advertisements of jobs', async ({
+        page,
+    }) => {
         await filtersPage.clickWithSalaryButton();
         await headerPage.changeCurrencyFromPlnToEurOnMainPage();
         await expect(page.locator(currency).nth(1)).toContainText('eur');

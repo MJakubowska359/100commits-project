@@ -1,8 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { FormsPage } from '../pages/formsPage';
 import { GeneralPage } from '../pages/generalPage';
 import { HeaderPage } from '../pages/headerPage';
 import { PostAJobPage } from '../pages/postAJobPage';
-import { FormsPage } from '../pages/formsPage';
+import { expect, test } from '@playwright/test';
 
 test.describe('Checking post a job subpage', () => {
     let generalPage: GeneralPage;
@@ -18,23 +18,41 @@ test.describe('Checking post a job subpage', () => {
 
         await page.goto('/');
         await generalPage.clickAcceptCookiesOnPage();
-        await expect(page.locator('#cookiescript_injected')).not.toBeVisible();
-    })
+        await expect(page.locator('#cookiescript_injected')).toBeHidden();
+    });
 
-    test('Should be able to navigate and change language, currency on the page', async ({ page }) => {
+    test('Should be able to navigate and change language, currency on the page', async ({
+        page,
+    }) => {
         await headerPage.goToPostAJobSubPageOnTheMainPage();
-        await expect(page.getByText('Do you need a job offers package? Get in touch with us.')).toBeVisible();
+        await expect(
+            page.getByText(
+                'Do you need a job offers package? Get in touch with us.',
+            ),
+        ).toBeVisible();
         await postAJobPage.changeLanguageAndCurrency();
-        await expect(page.getByText('Potrzebujesz pakietu ogłoszeń? Skontaktuj się z nami.')).toBeVisible();
+        await expect(
+            page.getByText(
+                'Potrzebujesz pakietu ogłoszeń? Skontaktuj się z nami.',
+            ),
+        ).toBeVisible();
         const page1Promise = page.waitForEvent('popup');
-        await page.getByRole("link", {name: 'GENERAL TERMS AND CONDITIONS OF SERVICES'}).click();
+        await page
+            .getByRole('link', {
+                name: 'GENERAL TERMS AND CONDITIONS OF SERVICES',
+            })
+            .click();
         const page1 = await page1Promise;
     });
 
-    test('Should be able to send request about contact to add advertisement of job on the page', async ({ page }) => {
+    test('Should be able to send request about contact to add advertisement of job on the page', async ({
+        page,
+    }) => {
         await headerPage.goToPostAJobSubPageOnTheMainPage();
         await postAJobPage.clickGetInTouchButton();
-        await expect(page.getByText('Do you need a job offers package?')).toBeVisible();
+        await expect(
+            page.getByText('Do you need a job offers package?'),
+        ).toBeVisible();
         await formsPage.fillFormToLearnDetailsAdvertisementsOfJobs();
     });
 

@@ -1,44 +1,49 @@
-import { test, expect } from '@playwright/test';
+import { FiltersPage } from '../pages/filtersPage';
 import { GeneralPage } from '../pages/generalPage';
 import { HeaderPage } from '../pages/headerPage';
 import { TopCompaniesPage } from '../pages/topCompaniesPage';
-import { FiltersPage } from '../pages/filtersPage';
-import { FormsPage } from '../pages/formsPage';
+import { expect, test } from '@playwright/test';
 
 test.describe('Filtering top companies', () => {
     let generalPage: GeneralPage;
     let headerPage: HeaderPage;
     let topCompaniesPage: TopCompaniesPage;
     let filtersPage: FiltersPage;
-    let formsPage: FormsPage;
 
     test.beforeEach(async ({ page }) => {
         generalPage = new GeneralPage(page);
         headerPage = new HeaderPage(page);
         topCompaniesPage = new TopCompaniesPage(page);
         filtersPage = new FiltersPage(page);
-        formsPage = new FormsPage(page);
 
         await page.goto('/brands');
         await generalPage.clickAcceptCookiesOnPage();
-        await expect(page.locator('#cookiescript_injected')).not.toBeVisible();
-        await page.waitForTimeout(5000);
-        await page.waitForURL('/brands', {waitUntil: 'domcontentloaded'});
-    })
+        await expect(page.locator('#cookiescript_injected')).toBeHidden();
+        await page.waitForLoadState();
+        await page.waitForURL('/brands', { waitUntil: 'domcontentloaded' });
+    });
 
-    test('Should be able to filtering top companies by type of company', async ({ page }) => {
-        // await headerPage.clickTopCompaniesButtonOnTheMainPage();
-        // await page.waitForURL('/brands', {waitUntil: 'domcontentloaded'});
+    test('Should be able to filtering top companies by type of company', async ({
+        page,
+    }) => {
+        await headerPage.clickTopCompaniesButtonOnTheMainPage();
+        await page.waitForURL('/brands', { waitUntil: 'domcontentloaded' });
         await topCompaniesPage.clickSoftwareHouseButton();
-        await page.waitForTimeout(3000);
-        await expect(page.locator('ul li').first()).toContainText('Software House');
+        await page.waitForLoadState();
+        await expect(page.locator('ul li').first()).toContainText(
+            'Software House',
+        );
         await topCompaniesPage.clickCorporationButton();
-        await page.waitForTimeout(3000);
+        await page.waitForLoadState();
         await expect(page.locator('ul li').nth(1)).toContainText('Corporation');
     });
 
-    test('Should be able to filtering top companies by name', async ({ page }) => {
+    test('Should be able to filtering top companies by name', async ({
+        page,
+    }) => {
         await filtersPage.fillNameCompanyInSearch();
-        await expect(page.getByRole('link', { name: 'PKO Bank Polski' })).toBeVisible();
+        await expect(
+            page.getByRole('link', { name: 'PKO Bank Polski' }),
+        ).toBeVisible();
     });
 });

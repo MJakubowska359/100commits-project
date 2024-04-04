@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test';
 
 export class RegisterPage {
     constructor(private page: Page) {}
@@ -9,14 +9,16 @@ export class RegisterPage {
     repeatPasswordField = this.page.getByPlaceholder('Same password as above');
     checkboxConfirmTerms = this.page.getByRole('checkbox').nth(0);
     checkboxCommercialCorrespondence = this.page.getByRole('checkbox').nth(1);
-    createAccountBtn = this.page.getByRole('button', {name: 'Create account'});
+    createAccountBtn = this.page.getByRole('button', {
+        name: 'Create account',
+    });
 
     async goToCreateAccountFromMenuOnMainPage() {
-    await this.mailField.fill('');
-    await this.passwordField.fill('');
-    await this.repeatPasswordField.fill('');
-    await this.checkboxConfirmTerms.click();
-    await this.createAccountBtn.click();
+        await this.mailField.fill('');
+        await this.passwordField.fill('');
+        await this.repeatPasswordField.fill('');
+        await this.checkboxConfirmTerms.click();
+        await this.createAccountBtn.click();
     }
 
     async clickCreateAccountButton() {

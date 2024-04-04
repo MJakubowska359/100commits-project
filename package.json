@@ -1,24 +1,33 @@
 {
-  "name": "100commits-project",
-  "version": "1.0.0",
-  "description": "automation tests in playwright",
-  "main": "index.js",
-  "scripts": {
-    "test": "npx playwright test",
-    "test-headed": "npx playwright test --headed"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MJakubowska359/100commits-project.git"
-  },
-  "author": "Monika Jakubowska",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MJakubowska359/100commits-project/issues"
-  },
-  "homepage": "https://github.com/MJakubowska359/100commits-project#readme",
-  "devDependencies": {
-    "@playwright/test": "^1.42.1",
-    "@types/node": "^20.11.24"
-  }
+    "name": "100commits-project",
+    "version": "1.0.0",
+    "description": "automation tests in playwright",
+    "main": "index.js",
+    "scripts": {
+        "format": "npx prettier --write .",
+        "lint": "npx eslint . --ext .ts --max-warnings=0",
+        "test": "npx playwright test",
+        "test-headed": "npx playwright test --headed"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MJakubowska359/100commits-project.git"
+    },
+    "author": "Monika Jakubowska",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/MJakubowska359/100commits-project/issues"
+    },
+    "homepage": "https://github.com/MJakubowska359/100commits-project#readme",
+    "devDependencies": {
+        "@playwright/test": "^1.42.1",
+        "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+        "@types/node": "^20.11.24",
+        "@typescript-eslint/eslint-plugin": "^7.5.0",
+        "@typescript-eslint/parser": "^7.5.0",
+        "eslint": "^8.57.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-playwright": "^1.5.4",
+        "eslint-plugin-prettier": "^5.1.3"
+    }
 }

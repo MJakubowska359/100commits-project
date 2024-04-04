@@ -1,12 +1,12 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test';
 
 export class PostAJobPage {
-    constructor(private page: Page) { }
+    constructor(private page: Page) {}
 
-    languageAndCurrency = this.page.locator('#select-pricing-language')
-    polishLanguage = this.page.getByRole('option', {name: 'Polski, PLN'})
-    getInTouchBtn = this.page.getByRole('button', {name: 'Get in touch'})
-    postAJob = this.page.getByRole('button', {name: 'Post a job'}).first()
+    languageAndCurrency = this.page.locator('#select-pricing-language');
+    polishLanguage = this.page.getByRole('option', { name: 'Polski, PLN' });
+    getInTouchBtn = this.page.getByRole('button', { name: 'Get in touch' });
+    postAJob = this.page.getByRole('button', { name: 'Post a job' }).first();
 
     async changeLanguageAndCurrency() {
         await this.languageAndCurrency.click();
