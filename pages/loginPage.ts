@@ -11,7 +11,7 @@ export class LoginPage {
         name: 'Sign in using address email',
     });
 
-    signInBtn = this.page.getByRole('button', { name: 'Sign in' });
+    signInBtn = this.page.locator('#login-form').getByRole('button', { name: 'Sign in' })
     forgetPasswordBtn = this.page.getByRole('button', {
         name: 'Forgot your password?',
     });

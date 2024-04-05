@@ -24,6 +24,8 @@ export class GeneralPage {
         exact: true,
     });
 
+    logoJustJoin = this.page.locator('#Warstwa_1')
+
     async choosePerformanceAndFunctionalityCookiesOnPage() {
         await this.aboutCookies.click();
         await this.cookieDeclaration.click();
@@ -49,5 +51,9 @@ export class GeneralPage {
 
     async clickDeclineCookies() {
         await this.declineAllBtn.click();
+    }
+
+    async clickLogoJustJoin() {
+        await this.logoJustJoin.first().click();
     }
 }
