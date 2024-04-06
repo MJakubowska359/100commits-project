@@ -70,7 +70,12 @@ export class FormsPage {
         name: 'Leave a message',
     });
 
-    // checboxy terms/privacy policy and handel informations
+    // subscribe offers
+    defaultFrequency = this.page.getByLabel('Twice a week (Monday, Thursdady');
+    everydayFrequency = this.page.getByRole('option', { name: 'Everyday' });
+    oneAMonthFrequency = this.page.getByRole('option', { name: 'Once a week' });
+    nameOfNotification = this.page.getByLabel('Name of notification*');
+    addNotificationBtn = this.page.getByRole('button', { name: 'Add notification' });
 
     async fillFormToRegisterNewAccount() {
         await this.emailOfRegisterAccountField.fill('');
@@ -150,5 +155,12 @@ export class FormsPage {
 
     async fillEmailAddressToResetPassword() {
         await this.emailOfRegisterAccountField.fill('');
+    }
+
+    async chooseOptionsForSubscribeOffers() {
+        await this.defaultFrequency.click();
+        await this.everydayFrequency.click();
+        await this.nameOfNotification.fill('Oferty dla pythonowca');
+        await this.addNotificationBtn.click();
     }
 }

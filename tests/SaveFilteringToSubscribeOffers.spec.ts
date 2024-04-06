@@ -71,5 +71,10 @@ test.describe('Save filtering to subscribe offers', () => {
         await filtersPage.clickSubscribeOption();
         await filtersPage.clickSaveYourSearchCheckbox();
         await filtersPage.clickTurnOnEmailNotificationsButton();
+        await expect(
+            page.getByRole('heading', { name: 'Add an e-mail notification' }),
+        ).toBeVisible();
+        await expect(page.getByText('Python Remote With salary')).toBeVisible();
+        await formsPage.chooseOptionsForSubscribeOffers();
     });
 });

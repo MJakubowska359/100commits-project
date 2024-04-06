@@ -56,4 +56,5 @@ export class GeneralPage {
     async clickLogoJustJoin() {
         await this.logoJustJoin.first().click();
     }
+
 }
