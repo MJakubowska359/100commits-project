@@ -19,9 +19,7 @@ export class FiltersPage {
     subscribeOption = this.page.getByRole('button', { name: 'Subscribe' });
     subscribeCheckbox = this.page.getByRole('checkbox', { name: 'Subscribe' });
     saveSearchCheckbox = this.page.locator('#save-filters');
-    turnNotificationsCheckbox = this.page.getByRole('checkbox', {
-        name: 'Turn on email notifications',
-    });
+    turnNotificationsCheckbox = this.page.locator('button[name="job_alerts_switcher_popup_add_email_button"]')
 
     // more filters
     moreFiltersBtn = this.page.getByRole('button', { name: 'More filters' });
@@ -86,6 +84,6 @@ export class FiltersPage {
     }
 
     async clickTurnOnEmailNotificationsButton() {
-        await this.saveSearchCheckbox.click();
+        await this.turnNotificationsCheckbox.click();
     }
 }

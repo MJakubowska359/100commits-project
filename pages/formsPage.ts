@@ -71,7 +71,7 @@ export class FormsPage {
     });
 
     // subscribe offers
-    defaultFrequency = this.page.getByLabel('Twice a week (Monday, Thursdady');
+    defaultFrequency = this.page.getByLabel('Twice a week (Monday, Thursday');
     everydayFrequency = this.page.getByRole('option', { name: 'Everyday' });
     oneAMonthFrequency = this.page.getByRole('option', { name: 'Once a week' });
     nameOfNotification = this.page.getByLabel('Name of notification*');
@@ -86,8 +86,8 @@ export class FormsPage {
     }
 
     async fillFormToLoginAsCandidate() {
-        await this.emailOfRegisterAccountField.fill('');
-        await this.passwordFieldOnSignInPage.fill('');
+        await this.emailOfRegisterAccountField.fill('mjakubowska.official@gmail.com');
+        await this.passwordFieldOnSignInPage.fill('$!F&t2B$!@5AGglRe9lkE');
     }
 
     async fillFormToLoginAsCompany() {

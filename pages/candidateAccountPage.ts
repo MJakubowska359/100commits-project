@@ -10,6 +10,10 @@ export class CandidateAccountPage {
     settingsTab = this.page.getByRole('menuitem', { name: 'Settings' });
     logoutTab = this.page.getByRole('menuitem', { name: 'Log out' });
 
+    async goToMyAccount() {
+        await this.myAccount.click();
+    }
+
     async clickSavedSearchesTabInCandidateMenu() {
         await this.savedSearchesTab.click();
     }
