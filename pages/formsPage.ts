@@ -61,7 +61,7 @@ export class FormsPage {
     sendBtn = this.page.getByRole('button', { name: 'Send' });
 
     // openChatBtn = this.page.frameLocator('iframe[name="chat-widget-minimized"]').getByLabel('Open LiveChat chat widget').click();
-    nameField = this.page.getByLabel('Your name');
+    nameField = this.page.locator('#name');
     subjectField = this.page.getByLabel('Subject');
     messageField = this.page.getByLabel('Message');
     openMenu = this.page.getByLabel('Open menu');
@@ -82,12 +82,12 @@ export class FormsPage {
         await this.passwordOfRegisterAccountField.fill('');
         await this.repeatPasswordField.fill('');
         await this.termsCheckbox.click();
-        // await this.createAccountBtn.click();
+        await this.createAccountBtn.click();
     }
 
     async fillFormToLoginAsCandidate() {
-        await this.emailOfRegisterAccountField.fill('mjakubowska.official@gmail.com');
-        await this.passwordFieldOnSignInPage.fill('$!F&t2B$!@5AGglRe9lkE');
+        await this.emailOfRegisterAccountField.fill('');
+        await this.passwordFieldOnSignInPage.fill('');
     }
 
     async fillFormToLoginAsCompany() {
@@ -138,10 +138,9 @@ export class FormsPage {
     }
 
     async fillFormToSendMessageOnLiveChat() {
-        await this.openMenu.click();
-        await this.nameField.fill('');
-        await this.emailFieldOnSignInPage.fill('');
-        await this.subjectField.fill('');
+        await this.nameField.fill('Testowa Halina');
+        await this.emailFieldOnSignInPage.fill('testowa.halina@test.pl');
+        await this.subjectField.fill('Pytanie testowe');
         await this.messageField.fill('');
         // await this.leaveMessageBtn.click();
     }

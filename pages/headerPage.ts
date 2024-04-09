@@ -1,4 +1,4 @@
-import { Page, expect } from '@playwright/test';
+import { Page } from '@playwright/test';
 
 export class HeaderPage {
     constructor(private page: Page) {}
@@ -50,7 +50,7 @@ export class HeaderPage {
     pressRoomBtn = this.page.getByRole('link', { name: 'Press Room' });
     salaryReportBtn = this.page.getByRole('link', { name: 'IT Salary Report' });
     careerBtn = this.page.getByRole('link', { name: 'Career' });
-    helpBtn = this.page.getByRole('button', { name: 'Help' });
+    helpBtn = this.page.getByText('Help');
     termsBtn = this.page.getByRole('link', { name: 'Terms' });
     signInAsCandidate = this.page.getByRole('button', {
         name: "Sign in to Candidate's profile",
@@ -135,5 +135,10 @@ export class HeaderPage {
 
     async closeSavedSearches() {
         await this.closeSavedSearchesBtn.click();
+    }
+
+    async openMenuAndLiveChat() {
+        await this.menuBtn.click();
+        await this.helpBtn.click();
     }
 }

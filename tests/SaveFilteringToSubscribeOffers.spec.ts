@@ -58,7 +58,7 @@ test.describe('Save filtering to subscribe offers', () => {
         await formsPage.fillEmailField();
     });
 
-    test.only('Should be able to subscribe filtering offers as LOGGED USER', async ({
+    test('Should be able to subscribe filtering offers as LOGGED USER', async ({
         page,
     }) => {
         await headerPage.goToSignInPageForCandidateFromPageHeader();
