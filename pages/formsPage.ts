@@ -61,9 +61,10 @@ export class FormsPage {
     sendBtn = this.page.getByRole('button', { name: 'Send' });
 
     // openChatBtn = this.page.frameLocator('iframe[name="chat-widget-minimized"]').getByLabel('Open LiveChat chat widget').click();
-    nameField = this.page.locator('#name');
-    subjectField = this.page.getByLabel('Subject');
-    messageField = this.page.getByLabel('Message');
+    nameField = this.page.frameLocator('iframe[name="chat-widget"]').getByLabel('Your name:');
+    emailField = this.page.frameLocator('iframe[name="chat-widget"]').getByLabel('E-mail:');
+    subjectField = this.page.frameLocator('iframe[name="chat-widget"]').getByLabel('Subject:');
+    messageField = this.page.frameLocator('iframe[name="chat-widget"]').getByLabel('Message:');
     openMenu = this.page.getByLabel('Open menu');
     minimizeWindow = this.page.getByLabel('Minimize window');
     leaveMessageBtn = this.page.getByRole('button', {
@@ -138,10 +139,10 @@ export class FormsPage {
     }
 
     async fillFormToSendMessageOnLiveChat() {
-        await this.nameField.fill('Testowa Halina');
-        await this.emailFieldOnSignInPage.fill('testowa.halina@test.pl');
-        await this.subjectField.fill('Pytanie testowe');
-        await this.messageField.fill('');
+        await this.nameField.fill('Testowa Halinka');
+        await this.emailField.fill('testowa.halinka@test.pl');
+        await this.subjectField.fill('Testowe pytanie');
+        await this.messageField.fill('Testowa wiadomość');
         // await this.leaveMessageBtn.click();
     }
 
