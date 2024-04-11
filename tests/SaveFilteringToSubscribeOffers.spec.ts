@@ -76,8 +76,8 @@ test.describe('Save filtering to subscribe offers', () => {
             page.getByRole('heading', { name: 'Add an e-mail notification' }),
         ).toBeVisible();
         await formsPage.chooseOptionsForSubscribeOffers();
-        await candidateAccountPage.goToMyAccount();
-        await candidateAccountPage.clickSavedSearchesTabInCandidateMenu();
+        await candidateAccountPage.clickMyAccount();
+        await candidateAccountPage.goToSavedSearchesTabInCandidateMenu();
         await expect(
             page.locator('p').filter({ hasText: 'Saved searches' })).toBeVisible();
         await expect(page.getByText('Python Remote With salary')).toBeVisible();

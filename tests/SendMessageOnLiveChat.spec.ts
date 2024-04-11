@@ -18,7 +18,7 @@ test.describe('Sending message on live chat', () => {
         await expect(page.locator('#cookiescript_injected')).toBeHidden();
     });
 
-    test.only('Should be able to send message on live chat', async ({ page }) => {
+    test('Should be able to send message on live chat', async ({ page }) => {
         await headerPage.openMenuAndLiveChat();
         await formsPage.fillFormToSendMessageOnLiveChat();
     });
