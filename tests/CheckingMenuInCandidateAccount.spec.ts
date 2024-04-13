@@ -1,4 +1,5 @@
 /* eslint-disable playwright/no-focused-test */
+
 /* eslint-disable prettier/prettier */
 import { CandidateAccountPage } from '../pages/candidateAccountPage';
 import { FormsPage } from '../pages/formsPage';
@@ -34,8 +35,13 @@ test.describe('Save filtering to subscribe offers', () => {
     await formsPage.fillFormToLoginAsCandidate();
     await loginPage.clickSignInButton();
     await expect(page.getByRole('heading', { name: 'Profile' })).toBeVisible();
-    await candidateAccountPage.clickMyAccount();
-    await candidateAccountPage.goToChats();
-    await expect(page.getByRole('heading', { name: 'No chats yet' })).toBeVisible();
+    await candidateAccountPage.clickMyProfileOnHeaderOfPage();
+    await candidateAccountPage.goToChartsFromTopMenu();
+    await expect(
+      page.getByRole('heading', { name: 'No chats yet' }),
+    ).toBeVisible();
+    await candidateAccountPage.clickMyProfileOnHeaderOfPage();
+    await candidateAccountPage.goToSavedSearchesFromTopMenu();
+    await expect(page.locator('p').filter({ hasText: 'Saved searches' })).toBeVisible();
   });
 });

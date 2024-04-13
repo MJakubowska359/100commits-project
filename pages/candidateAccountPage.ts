@@ -13,19 +13,27 @@ export class CandidateAccountPage {
   settingsTab = this.page.getByRole('menuitem', { name: 'Settings' });
   logoutTab = this.page.getByRole('menuitem', { name: 'Log out' });
 
-  async clickMyAccount() {
+  async clickMyProfileOnHeaderOfPage() {
     await this.myAccount.click();
   }
 
-  async goToMyProfile() {
+  async goToMyProfileFromTopMenu() {
     await this.myProfileTab.click();
   }
 
-  async goToChats() {
+  async goToChartsFromTopMenu() {
     await this.chatsTab.click();
   }
 
-  async goToSavedSearchesTabInCandidateMenu() {
+  async goToSavedSearchesFromTopMenu() {
     await this.savedSearchesTab.click();
+  }
+
+  async goToSettingsFromTopMenu() {
+    await this.chatsTab.click();
+  }
+
+  async clickLogoutInTopMenu() {
+    await this.chatsTab.click();
   }
 }
