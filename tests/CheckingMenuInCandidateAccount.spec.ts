@@ -43,5 +43,8 @@ test.describe('Save filtering to subscribe offers', () => {
     await candidateAccountPage.clickMyProfileOnHeaderOfPage();
     await candidateAccountPage.goToSavedSearchesFromTopMenu();
     await expect(page.locator('p').filter({ hasText: 'Saved searches' })).toBeVisible();
+    await candidateAccountPage.clickMyProfileOnHeaderOfPage();
+    await candidateAccountPage.goToSettingsFromTopMenu();
+    await expect(page.getByText('Settings').nth(1)).toBeVisible();
   });
 });
