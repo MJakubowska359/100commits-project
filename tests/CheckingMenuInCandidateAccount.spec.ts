@@ -27,7 +27,7 @@ test.describe('Save filtering to subscribe offers', () => {
     await expect(page.locator('#cookiescript_injected')).toBeHidden();
   });
 
-  test.only('Should be able to navigate to menu tabs on candidate account', async ({
+  test.only('Should be able to navigate to menu tabs on candidate account by top menu', async ({
     page,
   }) => {
     await headerPage.goToSignInPageForCandidateFromPageHeader();
@@ -46,5 +46,8 @@ test.describe('Save filtering to subscribe offers', () => {
     await candidateAccountPage.clickMyProfileOnHeaderOfPage();
     await candidateAccountPage.goToSettingsFromTopMenu();
     await expect(page.getByText('Settings').nth(1)).toBeVisible();
+    await candidateAccountPage.clickMyProfileOnHeaderOfPage();
+    await candidateAccountPage.clickLogoutInTopMenu();
+    await expect(page.getByText("Sign in or sign up")).toBeVisible();
   });
 });

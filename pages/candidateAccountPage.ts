@@ -30,10 +30,10 @@ export class CandidateAccountPage {
   }
 
   async goToSettingsFromTopMenu() {
-    await this.chatsTab.click();
+    await this.settingsTab.click();
   }
 
   async clickLogoutInTopMenu() {
-    await this.chatsTab.click();
+    await this.logoutTab.click();
   }
 }
