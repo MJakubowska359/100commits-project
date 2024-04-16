@@ -27,7 +27,7 @@ test.describe('Save filtering to subscribe offers', () => {
     await expect(page.locator('#cookiescript_injected')).toBeHidden();
   });
 
-  test.only('Should be able to navigate to menu tabs on candidate account by top menu', async ({
+  test('Should be able to navigate to chosen parts of account by top menu', async ({
     page,
   }) => {
     await headerPage.goToSignInPageForCandidateFromPageHeader();

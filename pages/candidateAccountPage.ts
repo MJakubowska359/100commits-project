@@ -36,4 +36,20 @@ export class CandidateAccountPage {
   async clickLogoutInTopMenu() {
     await this.logoutTab.click();
   }
+
+  async goToChartsFromSideMenu() {
+    await this.chatsTab.click();
+  }
+
+  async goToSavedSearchesFromSideMenu() {
+    await this.savedSearchesTab.click();
+  }
+
+  async goToSettingsFromSideMenu() {
+    await this.settingsTab.click();
+  }
+
+  async clickLogoutInSideMenu() {
+    await this.logoutTab.click();
+  }
 }
