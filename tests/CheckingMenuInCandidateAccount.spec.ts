@@ -50,4 +50,18 @@ test.describe('Save filtering to subscribe offers', () => {
     await candidateAccountPage.clickLogoutInTopMenu();
     await expect(page.getByText("Sign in or sign up")).toBeVisible();
   });
+
+  test('Should be able to navigate to chosen parts of account by side menu', async ({
+    page,
+  }) => {
+    await headerPage.goToSignInPageForCandidateFromPageHeader();
+    await loginPage.goToSignInPageByEmail();
+    await formsPage.fillFormToLoginAsCandidate();
+    await loginPage.clickSignInButton();
+    await expect(page.getByRole('heading', { name: 'Profile' })).toBeVisible();
+    await candidateAccountPage.goToChartsFromSideMenu();
+    await expect(
+      page.getByRole('heading', { name: 'No chats yet' }),
+    ).toBeVisible();
+  });
 });
