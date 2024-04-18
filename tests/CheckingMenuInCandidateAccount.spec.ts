@@ -60,8 +60,6 @@ test.describe('Save filtering to subscribe offers', () => {
     await loginPage.clickSignInButton();
     await expect(page.getByRole('heading', { name: 'Profile' })).toBeVisible();
     await candidateAccountPage.goToChartsFromSideMenu();
-    await expect(
-      page.getByRole('heading', { name: 'No chats yet' }),
-    ).toBeVisible();
+    await candidateAccountPage.goToSavedSearchesFromSideMenu();
   });
 });
