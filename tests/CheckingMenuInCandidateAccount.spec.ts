@@ -42,13 +42,15 @@ test.describe('Save filtering to subscribe offers', () => {
     ).toBeVisible();
     await candidateAccountPage.clickMyProfileOnHeaderOfPage();
     await candidateAccountPage.goToSavedSearchesFromTopMenu();
-    await expect(page.locator('p').filter({ hasText: 'Saved searches' })).toBeVisible();
+    await expect(
+      page.locator('p').filter({ hasText: 'Saved searches' }),
+    ).toBeVisible();
     await candidateAccountPage.clickMyProfileOnHeaderOfPage();
     await candidateAccountPage.goToSettingsFromTopMenu();
     await expect(page.getByText('Settings').nth(1)).toBeVisible();
     await candidateAccountPage.clickMyProfileOnHeaderOfPage();
     await candidateAccountPage.clickLogoutInTopMenu();
-    await expect(page.getByText("Sign in or sign up")).toBeVisible();
+    await expect(page.getByText('Sign in or sign up')).toBeVisible();
   });
 
   test('Should be able to navigate to chosen parts of account by side menu', async ({
@@ -61,5 +63,6 @@ test.describe('Save filtering to subscribe offers', () => {
     await expect(page.getByRole('heading', { name: 'Profile' })).toBeVisible();
     await candidateAccountPage.goToChartsFromSideMenu();
     await candidateAccountPage.goToSavedSearchesFromSideMenu();
+    await candidateAccountPage.goToSettingsFromSideMenu();
   });
 });
