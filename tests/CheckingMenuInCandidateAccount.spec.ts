@@ -64,5 +64,6 @@ test.describe('Save filtering to subscribe offers', () => {
     await candidateAccountPage.goToChartsFromSideMenu();
     await candidateAccountPage.goToSavedSearchesFromSideMenu();
     await candidateAccountPage.goToSettingsFromSideMenu();
+    await candidateAccountPage.clickLogoutInSideMenu();
   });
 });
