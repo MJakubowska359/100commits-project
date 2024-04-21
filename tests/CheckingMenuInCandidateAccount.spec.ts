@@ -1,6 +1,4 @@
 /* eslint-disable playwright/no-focused-test */
-
-/* eslint-disable prettier/prettier */
 import { CandidateAccountPage } from '../pages/candidateAccountPage';
 import { FormsPage } from '../pages/formsPage';
 import { GeneralPage } from '../pages/generalPage';

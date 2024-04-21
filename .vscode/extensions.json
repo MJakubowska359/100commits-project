@@ -1,8 +1,10 @@
 {
-    "recommendations": [
-        "pkief.material-icon-theme",
-        "dbaeumer.vscode-eslint",
-        "ms-playwright.playwright",
-        "esbenp.prettier-vscode"
-    ]
+  "recommendations": [
+    "pkief.material-icon-theme",
+    "dbaeumer.vscode-eslint",
+    "ms-playwright.playwright",
+    "esbenp.prettier-vscode",
+    "eamodio.gitlens",
+    "streetsidesoftware.code-spell-checker"
+  ]
 }
