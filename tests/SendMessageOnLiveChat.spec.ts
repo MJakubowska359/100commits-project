@@ -1,3 +1,6 @@
+/* eslint-disable playwright/expect-expect */
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FormsPage } from '../pages/formsPage';
 import { GeneralPage } from '../pages/generalPage';
 import { HeaderPage } from '../pages/headerPage';

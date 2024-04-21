@@ -76,8 +76,8 @@ test.describe('Save filtering to subscribe offers', () => {
       page.getByRole('heading', { name: 'Add an e-mail notification' }),
     ).toBeVisible();
     await formsPage.chooseOptionsForSubscribeOffers();
-    await candidateAccountPage.clickMyAccount();
-    await candidateAccountPage.goToSavedSearchesTabInCandidateMenu();
+    await candidateAccountPage.clickMyProfileOnHeaderOfPage();
+    await candidateAccountPage.goToSavedSearchesFromTopMenu();
     await expect(
       page.locator('p').filter({ hasText: 'Saved searches' }),
     ).toBeVisible();

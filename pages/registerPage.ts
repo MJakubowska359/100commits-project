@@ -1,3 +1,6 @@
+/* eslint-disable playwright/no-wait-for-timeout */
+
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Page } from '@playwright/test';
 
 export class RegisterPage {

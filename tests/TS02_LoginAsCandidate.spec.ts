@@ -17,9 +17,8 @@ test.describe("Logging to candidate's profile", () => {
     formsPage = new FormsPage(page);
 
     await page.goto('/');
-    await page.waitForTimeout(3000);
     await generalPage.clickAcceptCookiesOnPage();
-    await expect(page.locator('#cookiescript_injected')).not.toBeVisible();
+    await expect(page.locator('#cookiescript_injected')).toBeHidden();
   });
 
   test('Should be able to login candidate from top navigation on the main page', async ({

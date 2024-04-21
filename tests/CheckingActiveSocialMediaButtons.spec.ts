@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FooterPage } from '../pages/footerPage';
 import { GeneralPage } from '../pages/generalPage';
 import { HeaderPage } from '../pages/headerPage';
