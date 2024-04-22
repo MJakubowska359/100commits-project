@@ -13,6 +13,12 @@ export class CandidateAccountPage {
   settingsTab = this.page.getByRole('menuitem', { name: 'Settings' });
   logoutTab = this.page.getByRole('menuitem', { name: 'Log out' });
 
+  changeBtn = this.page.locator('#change-password-button');
+  currentPassword = this.page.getByPlaceholder('Your current password to');
+  newPassword = this.page.getByPlaceholder('At least 8 characters');
+  sameNewPassword = this.page.getByPlaceholder('Same password as above');
+  changePasswordBtn = this.page.getByText('Current passwordNew');
+
   async clickMyProfileOnHeaderOfPage() {
     await this.myAccount.click();
   }
@@ -51,5 +57,13 @@ export class CandidateAccountPage {
 
   async clickLogoutInSideMenu() {
     await this.logoutTab.click();
+  }
+
+  async changePassword() {
+    await this.changeBtn.click();
+    await this.currentPassword.fill('');
+    await this.newPassword.fill('');
+    await this.sameNewPassword.fill('');
+    await this.changePasswordBtn.click();
   }
 }
