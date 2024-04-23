@@ -10,7 +10,7 @@ import { HeaderPage } from '../pages/headerPage';
 import { LoginPage } from '../pages/loginPage';
 import { expect, test } from '@playwright/test';
 
-test.describe('Changing password for the account', () => {
+test.describe('Changing consent for the account', () => {
   let loginPage: LoginPage;
   let generalPage: GeneralPage;
   let headerPage: HeaderPage;
@@ -29,14 +29,13 @@ test.describe('Changing password for the account', () => {
     await expect(page.locator('#cookiescript_injected')).toBeHidden();
   });
 
-  test('Should be able to change password for the account', async ({
-    page,
-  }) => {
+  test('Should be able to change consent for the account', async ({ page }) => {
     await headerPage.goToSignInPageForCandidateFromPageHeader();
     await loginPage.goToSignInPageByEmail();
     await formsPage.fillFormToLoginAsCandidate();
     await loginPage.clickSignInButton();
     await candidateAccountPage.goToSettingsFromSideMenu();
-    await candidateAccountPage.changePassword();
+    await candidateAccountPage.changeConsent();
+    await expect(page.getByRole('checkbox')).not.toBeChecked();
   });
 });

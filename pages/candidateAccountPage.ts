@@ -3,7 +3,7 @@ import { Page } from '@playwright/test';
 
 export class CandidateAccountPage {
   constructor(private page: Page) {}
-
+  // locators for top menu
   myAccount = this.page.getByRole('button', { name: 'My profile' });
   myProfileTab = this.page.getByRole('menuitem', { name: 'My profile' });
   chatsTab = this.page.getByRole('menuitem', { name: 'Chats' });
@@ -13,11 +13,26 @@ export class CandidateAccountPage {
   settingsTab = this.page.getByRole('menuitem', { name: 'Settings' });
   logoutTab = this.page.getByRole('menuitem', { name: 'Log out' });
 
-  changeBtn = this.page.locator('#change-password-button');
+  // locators for side menu
+  chatsSideMenu = this.page.getByRole('link', { name: 'Chats' });
+  savedSearchesSideMenu = this.page.getByRole('link', {
+    name: 'Saved searches',
+  });
+  settingsSideMenu = this.page.getByRole('link', { name: 'Settings' });
+  logoutSideMenu = this.page.getByRole('button', { name: 'Log out' });
+
+  // locators for change password
+  firstChangeBtn = this.page.locator('#change-password-button');
   currentPassword = this.page.getByPlaceholder('Your current password to');
   newPassword = this.page.getByPlaceholder('At least 8 characters');
   sameNewPassword = this.page.getByPlaceholder('Same password as above');
   changePasswordBtn = this.page.getByText('Current passwordNew');
+
+  // locators for change consent
+  secondChangeBtn = this.page.locator('#notifications-button');
+  moreInformation = this.page.getByText('more', { exact: true });
+  lessInformation = this.page.getByText('less');
+  commercialCorrespondenceCheckbox = this.page.getByRole('checkbox');
 
   async clickMyProfileOnHeaderOfPage() {
     await this.myAccount.click();
@@ -44,26 +59,34 @@ export class CandidateAccountPage {
   }
 
   async goToChartsFromSideMenu() {
-    await this.chatsTab.click();
+    await this.chatsSideMenu.click();
   }
 
   async goToSavedSearchesFromSideMenu() {
-    await this.savedSearchesTab.click();
+    await this.savedSearchesSideMenu.click();
   }
 
   async goToSettingsFromSideMenu() {
-    await this.settingsTab.click();
+    await this.settingsSideMenu.click();
   }
 
   async clickLogoutInSideMenu() {
-    await this.logoutTab.click();
+    await this.logoutSideMenu.click();
   }
 
   async changePassword() {
-    await this.changeBtn.click();
-    await this.currentPassword.fill('');
-    await this.newPassword.fill('');
-    await this.sameNewPassword.fill('');
-    await this.changePasswordBtn.click();
+    await this.firstChangeBtn.click();
+    await this.currentPassword.fill('abc');
+    await this.newPassword.fill('abc');
+    await this.sameNewPassword.fill('abc');
+    // await this.changePasswordBtn.click();
+  }
+
+  async changeConsent() {
+    await this.secondChangeBtn.click();
+    await this.moreInformation.click();
+    await this.lessInformation.click();
+    await this.commercialCorrespondenceCheckbox.check();
+    await this.commercialCorrespondenceCheckbox.uncheck();
   }
 }
