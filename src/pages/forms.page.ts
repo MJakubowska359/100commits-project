@@ -96,10 +96,8 @@ export class FormsPage {
   }
 
   async fillFormToLoginAsCandidate() {
-    await this.emailOfRegisterAccountField.fill(
-      'mjakubowska.official@gmail.com',
-    );
-    await this.passwordFieldOnSignInPage.fill('YGI7Q#&RKECzzxB0D$v3y');
+    await this.emailOfRegisterAccountField.fill('');
+    await this.passwordFieldOnSignInPage.fill('');
   }
 
   async fillFormToLoginAsCompany() {

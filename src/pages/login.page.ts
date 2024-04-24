@@ -1,10 +1,13 @@
 /* eslint-disable playwright/no-wait-for-timeout */
 
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { BasePage } from './base.page';
 import { Page } from '@playwright/test';
 
-export class LoginPage {
-  constructor(private page: Page) {}
+export class LoginPage extends BasePage {
+  constructor(page: Page) {
+    super(page);
+  }
 
   // locators
   signUpBtn = this.page.getByRole('button', {

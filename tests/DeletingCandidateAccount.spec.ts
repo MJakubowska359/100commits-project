@@ -10,7 +10,7 @@ import { HeaderPage } from '../src/pages/header.page';
 import { LoginPage } from '../src/pages/login.page';
 import { expect, test } from '@playwright/test';
 
-test.describe('Changing consent for the account', () => {
+test.describe('Deleting the candidate account', () => {
   let loginPage: LoginPage;
   let generalPage: GeneralPage;
   let headerPage: HeaderPage;
@@ -29,7 +29,7 @@ test.describe('Changing consent for the account', () => {
     await expect(page.locator('#cookiescript_injected')).toBeHidden();
   });
 
-  test('Should be able to change consent for the account', async ({ page }) => {
+  test('Should be able to delete the candidate account', async ({ page }) => {
     await headerPage.goToSignInPageForCandidateFromPageHeader();
     await loginPage.goToSignInPageByEmail();
     await formsPage.fillFormToLoginAsCandidate();

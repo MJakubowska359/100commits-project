@@ -34,6 +34,10 @@ export class CandidateAccountPage {
   lessInformation = this.page.getByText('less');
   commercialCorrespondenceCheckbox = this.page.getByRole('checkbox');
 
+  // locators for delete account
+  deleteAccountBtnInSettings = this.page.locator('#button');
+  deleteAccountBtn = this.page.getByRole('button', { name: 'Delete account' });
+
   async clickMyProfileOnHeaderOfPage() {
     await this.myAccount.click();
   }
