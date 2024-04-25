@@ -1,7 +1,7 @@
-import { FiltersPage } from '../pages/filtersPage';
-import { GeneralPage } from '../pages/generalPage';
-import { HeaderPage } from '../pages/headerPage';
-import { TopCompaniesPage } from '../pages/topCompaniesPage';
+import { FiltersPage } from '../src/pages/filters.page';
+import { GeneralPage } from '../src/pages/general.page';
+import { HeaderPage } from '../src/pages/header.page';
+import { TopCompaniesPage } from '../src/pages/topCompanies.page';
 import { expect, test } from '@playwright/test';
 
 test.describe('Filtering top companies', () => {

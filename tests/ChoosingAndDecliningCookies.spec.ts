@@ -1,4 +1,4 @@
-import { GeneralPage } from '../pages/generalPage';
+import { GeneralPage } from '../src/pages/general.page';
 import { expect, test } from '@playwright/test';
 
 test.describe('Choosing cookies', () => {

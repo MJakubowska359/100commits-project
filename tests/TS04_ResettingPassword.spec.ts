@@ -1,7 +1,7 @@
-import { FormsPage } from '../pages/formsPage';
-import { GeneralPage } from '../pages/generalPage';
-import { HeaderPage } from '../pages/headerPage';
-import { LoginPage } from '../pages/loginPage';
+import { FormsPage } from '../src/pages/forms.page';
+import { GeneralPage } from '../src/pages/general.page';
+import { HeaderPage } from '../src/pages/header.page';
+import { LoginPage } from '../src/pages/login.page';
 import { expect, test } from '@playwright/test';
 
 test.describe('Resetting password to account', () => {

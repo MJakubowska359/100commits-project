@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FormsPage } from '../pages/formsPage';
-import { GeneralPage } from '../pages/generalPage';
-import { HeaderPage } from '../pages/headerPage';
-import { PostAJobPage } from '../pages/postAJobPage';
+import { FormsPage } from '../src/pages/forms.page';
+import { GeneralPage } from '../src/pages/general.page';
+import { HeaderPage } from '../src/pages/header.page';
+import { PostAJobPage } from '../src/pages/postAJob.page';
 import { expect, test } from '@playwright/test';
 
 test.describe('Checking post a job subpage', () => {

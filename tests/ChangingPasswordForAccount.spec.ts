@@ -3,11 +3,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 /* eslint-disable playwright/no-focused-test */
-import { CandidateAccountPage } from '../pages/candidateAccountPage';
-import { FormsPage } from '../pages/formsPage';
-import { GeneralPage } from '../pages/generalPage';
-import { HeaderPage } from '../pages/headerPage';
-import { LoginPage } from '../pages/loginPage';
+import { CandidateAccountPage } from '../src/pages/candidateAccount.page';
+import { FormsPage } from '../src/pages/forms.page';
+import { GeneralPage } from '../src/pages/general.page';
+import { HeaderPage } from '../src/pages/header.page';
+import { LoginPage } from '../src/pages/login.page';
 import { expect, test } from '@playwright/test';
 
 test.describe('Changing password for the account', () => {

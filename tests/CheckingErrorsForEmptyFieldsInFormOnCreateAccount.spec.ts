@@ -1,7 +1,7 @@
-import { GeneralPage } from '../pages/generalPage';
-import { HeaderPage } from '../pages/headerPage';
-import { LoginPage } from '../pages/loginPage';
-import { RegisterPage } from '../pages/registerPage';
+import { GeneralPage } from '../pages/general.page';
+import { HeaderPage } from '../pages/header.page';
+import { LoginPage } from '../pages/login.page';
+import { RegisterPage } from '../pages/register.page';
 import { expect, test } from '@playwright/test';
 
 test.describe('Checking require fields on create account', () => {

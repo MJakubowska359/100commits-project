@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FormsPage } from '../pages/formsPage';
-import { GeneralPage } from '../pages/generalPage';
+import { FormsPage } from '../src/pages/forms.page';
+import { GeneralPage } from '../src/pages/general.page';
 import { expect, test } from '@playwright/test';
 
 test.describe('Downloading report about labor market', () => {

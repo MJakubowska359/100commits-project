@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FooterPage } from '../pages/footerPage';
-import { GeneralPage } from '../pages/generalPage';
-import { HeaderPage } from '../pages/headerPage';
+import { FooterPage } from '../src/pages/footer.page';
+import { GeneralPage } from '../src/pages/general.page';
+import { HeaderPage } from '../src/pages/header.page';
 import { expect, test } from '@playwright/test';
 
 test.describe('Checking active social media buttons', () => {

@@ -1,4 +1,4 @@
-import { GeneralPage } from '../pages/generalPage';
+import { GeneralPage } from '../src/pages/general.page';
 import { expect, test } from '@playwright/test';
 
 test.describe('Checking require fields on live chat', () => {

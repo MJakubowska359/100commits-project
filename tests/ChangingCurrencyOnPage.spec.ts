@@ -1,6 +1,5 @@
-import { FiltersPage } from '../pages/filtersPage';
-import { GeneralPage } from '../pages/generalPage';
-import { HeaderPage } from '../pages/headerPage';
+import { FiltersPage } from '../src/pages/filters.page';
+import { Header
 import { expect, test } from '@playwright/test';
 
 const currency = '.css-17pspck';

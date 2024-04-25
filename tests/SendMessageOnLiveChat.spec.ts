@@ -1,9 +1,9 @@
 /* eslint-disable playwright/expect-expect */
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { FormsPage } from '../pages/formsPage';
-import { GeneralPage } from '../pages/generalPage';
-import { HeaderPage } from '../pages/headerPage';
+import { FormsPage } from '../src/pages/forms.page';
+import { GeneralPage } from '../src/pages/general.page';
+import { HeaderPage } from '../src/pages/header.page';
 import { expect, test } from '@playwright/test';
 
 test.describe('Sending message on live chat', () => {
