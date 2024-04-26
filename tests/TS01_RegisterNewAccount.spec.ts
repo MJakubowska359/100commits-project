@@ -36,6 +36,20 @@ test.describe('Register a new account', () => {
     await expect(page.getByText(expectedThankForRegistering)).toBeVisible();
   });
 
+  test('Should not be able to register a new account with wrong email address', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedError = 'Invalid email address.';
+    testUser1.userEmail = 'testowyemail';
+
+    // Act
+    await registerPage.registerANewAccount(testUser1);
+
+    // Assert
+    await expect(page.getByText(expectedError)).toBeVisible();
+  });
+
   test('Should not be able to register a new account with too short password', async ({
     page,
   }) => {
