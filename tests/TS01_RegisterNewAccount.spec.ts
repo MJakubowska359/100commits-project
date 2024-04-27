@@ -65,4 +65,18 @@ test.describe('Register a new account', () => {
     // Assert
     await expect(page.getByText(expectedError)).toBeVisible();
   });
+
+  test('Should not be able to register a new account with different passwords', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedError = 'Passwords must be the same.';
+    testUser1.repeatPassword = 'oE!c1*';
+
+    // Act
+    await registerPage.registerANewAccount(testUser1);
+
+    // Assert
+    await expect(page.getByText(expectedError)).toBeVisible();
+  });
 });
