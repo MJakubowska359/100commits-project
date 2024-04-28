@@ -4,25 +4,10 @@ import { Page } from '@playwright/test';
 export class FormsPage {
   constructor(private page: Page) {}
 
-  // locators on register account page
-  emailOfRegisterAccountField = this.page.getByPlaceholder('name@domain.com');
-  passwordOfRegisterAccountField = this.page.getByPlaceholder(
-    'At least 8 characters',
-  );
-  repeatPasswordField = this.page.getByPlaceholder('Same password as above');
-  checkboxConfirmTerms = this.page.getByRole('checkbox').nth(0);
-  checkboxCommercialCorrespondence = this.page.getByRole('checkbox').nth(1);
-  createAccountBtn = this.page.getByRole('button', {
-    name: 'Create account',
-  });
-
-  // locators on login page by email
-  emailFieldOnSignInPage = this.page.getByPlaceholder('forexample@domain.com'); // raport.justjoin.it
-  passwordFieldOnSignInPage = this.page.getByPlaceholder(
-    'At least 8 characters',
-  );
+  emailInput = this.page.getByPlaceholder('name@domain.com');
 
   // raport.justjoin.it
+  emailInputOnSignInPage = this.page.getByPlaceholder('forexample@domain.com');
   nameAndSurnameBtn = this.page.getByLabel('Imię i nazwisko');
   whoAreYou = this.page.getByPlaceholder('Wybierz jedną z opcji');
   // termsCheckbox = this.page.getByRole('checkbox', { name: 'zgoda1' });
@@ -87,31 +72,9 @@ export class FormsPage {
     name: 'Add notification',
   });
 
-  async fillFormToRegisterNewAccount() {
-    await this.emailOfRegisterAccountField.fill('');
-    await this.passwordOfRegisterAccountField.fill('');
-    await this.repeatPasswordField.fill('');
-    await this.termsCheckbox.click();
-    await this.createAccountBtn.click();
-  }
-
-  async fillFormToLoginAsCandidate() {
-    await this.emailOfRegisterAccountField.fill('');
-    await this.passwordFieldOnSignInPage.fill('');
-  }
-
-  async fillFormToLoginAsCompany() {
-    await this.emailFieldOnSignInPage.fill('');
-    await this.passwordFieldOnSignInPage.fill('');
-  }
-
-  async useForgotPasswordOption() {
-    await this.emailFieldOnSignInPage.fill('');
-  }
-
   async fillFormToDownloadReport() {
     await this.nameAndSurnameBtn.fill('');
-    await this.emailFieldOnSignInPage.fill('');
+    await this.emailInputOnSignInPage.fill('');
     await this.whoAreYou.selectOption('');
     await this.termsCheckbox.check();
     // await this.downloadReportBtn.click()
@@ -137,12 +100,12 @@ export class FormsPage {
   }
 
   async fillEmailField() {
-    await this.emailFieldOnSignInPage.fill('');
+    await this.emailInputOnSignInPage.fill('');
   }
 
   async clickEveryFieldAndstayItEmpty() {
     await this.nameField.press('Tab');
-    await this.emailFieldOnSignInPage.press('Tab');
+    await this.emailInputOnSignInPage.press('Tab');
     await this.subjectField.press('Tab');
     await this.messageField.press('Tab');
   }
@@ -163,7 +126,7 @@ export class FormsPage {
   }
 
   async fillEmailAddressToResetPassword() {
-    await this.emailOfRegisterAccountField.fill('');
+    await this.emailInput.fill('');
   }
 
   async chooseOptionsForSubscribeOffers() {

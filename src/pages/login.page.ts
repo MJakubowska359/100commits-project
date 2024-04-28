@@ -1,6 +1,7 @@
 /* eslint-disable playwright/no-wait-for-timeout */
 
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { LoginUserModel } from '../models/user.model';
 import { BasePage } from './base.page';
 import { Page } from '@playwright/test';
 
@@ -27,6 +28,12 @@ export class LoginPage extends BasePage {
     name: 'Reset password',
   });
 
+  // locators on login page by email
+  emailInputOnSignInPage = this.page.getByPlaceholder('name@domain.com');
+  passwordInputOnSignInPage = this.page.getByPlaceholder(
+    'At least 8 characters',
+  );
+
   async goToCreateAccountFromSignInPage() {
     await this.signUpBtn.click();
   }
@@ -45,5 +52,11 @@ export class LoginPage extends BasePage {
 
   async clickResetPasswordButton() {
     await this.resetPasswordBtn.click();
+  }
+
+  async loginCandidateAccount(loginUserData: LoginUserModel): Promise<void> {
+    await this.emailInputOnSignInPage.fill(loginUserData.userEmail);
+    await this.passwordInputOnSignInPage.fill(loginUserData.userPassword);
+    await this.signInBtn.click();
   }
 }
