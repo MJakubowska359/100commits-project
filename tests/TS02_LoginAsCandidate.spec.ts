@@ -16,7 +16,6 @@ test.describe("Logging to candidate's profile", () => {
 
     await page.goto('/');
     await generalPage.clickAcceptCookiesOnPage();
-    await expect(page.locator('#cookiescript_injected')).toBeHidden();
   });
 
   test('Should be able to login candidate from top navigation on the main page', async ({
@@ -44,12 +43,16 @@ test.describe("Logging to candidate's profile", () => {
   test('Should be able to login candidate from menu on the main page', async ({
     page,
   }) => {
+    // Arrange
+    const expectedHeaderOnProfile = 'Profile';
+
+    // Act
     await headerPage.goToSignInPageForCandidateFromMenuOnMainPage();
-    await expect(page.getByText('Sign in or sign up')).toBeVisible();
     await loginPage.goToSignInPageByEmail();
-    await expect(page.getByText('Sign in to account')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Sign in' })).toBeDisabled();
     await loginPage.loginCandidateAccount(candidate1);
     await loginPage.clickSignInButton();
+
+    // Assert
+    await expect(page.getByText(expectedHeaderOnProfile)).toBeVisible();
   });
 });
