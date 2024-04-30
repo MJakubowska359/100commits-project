@@ -40,6 +40,22 @@ test.describe("Logging to candidate's profile", () => {
     await expect(page.getByText(expectedHeaderOnProfile)).toBeVisible();
   });
 
+  test('Should not be able to login candidate with wrong email address', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedError = 'Invalid email address.';
+    candidate1.userEmail = 'testowyemail';
+
+    // Act
+    await headerPage.goToSignInPageForCandidateFromPageHeader();
+    await loginPage.goToSignInPageByEmail();
+    await loginPage.loginCandidateAccount(candidate1);
+
+    // Assert
+    await expect(page.getByText(expectedError)).toBeVisible();
+  });
+
   test('Should be able to login candidate from menu on the main page', async ({
     page,
   }) => {
