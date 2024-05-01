@@ -56,6 +56,22 @@ test.describe("Logging to candidate's profile", () => {
     await expect(page.getByText(expectedError)).toBeVisible();
   });
 
+  test('Should not be able to login candidate without password', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedError = 'This field is required.';
+    candidate1.userPassword = '';
+
+    // Act
+    await headerPage.goToSignInPageForCandidateFromPageHeader();
+    await loginPage.goToSignInPageByEmail();
+    await loginPage.loginCandidateAccount(candidate1);
+
+    // Assert
+    await expect(page.getByText(expectedError)).toBeVisible();
+  });
+
   test('Should be able to login candidate from menu on the main page', async ({
     page,
   }) => {
