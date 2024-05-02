@@ -72,6 +72,22 @@ test.describe("Logging to candidate's profile", () => {
     await expect(page.getByText(expectedError)).toBeVisible();
   });
 
+  test('Should not be able to login candidate with wrong data', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedError = 'An error has occurred.';
+    candidate1.userPassword = '123456';
+
+    // Act
+    await headerPage.goToSignInPageForCandidateFromPageHeader();
+    await loginPage.goToSignInPageByEmail();
+    await loginPage.loginCandidateAccount(candidate1);
+
+    // Assert
+    await expect(page.getByText(expectedError)).toBeVisible();
+  });
+
   test('Should be able to login candidate from menu on the main page', async ({
     page,
   }) => {
