@@ -26,7 +26,9 @@ export class CandidateAccountPage {
   currentPassword = this.page.getByPlaceholder('Your current password to');
   newPassword = this.page.getByPlaceholder('At least 8 characters');
   sameNewPassword = this.page.getByPlaceholder('Same password as above');
-  changePasswordBtn = this.page.getByText('Current passwordNew');
+  changePasswordBtn = this.page.getByRole('button', {
+    name: 'Change password',
+  });
 
   // locators for change consent
   secondChangeBtn = this.page.locator('#notifications-button');
@@ -76,6 +78,14 @@ export class CandidateAccountPage {
 
   async clickLogoutInSideMenu() {
     await this.logoutSideMenu.click();
+  }
+
+  async clickChangeBtnForChangingPassword() {
+    await this.firstChangeBtn.click();
+  }
+
+  async clickChangePasswordBtn() {
+    await this.changePasswordBtn.click();
   }
 
   async changePassword() {

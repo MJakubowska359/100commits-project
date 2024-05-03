@@ -4,7 +4,7 @@ import { LoginPage } from '../src/pages/login.page';
 import { candidate1 } from '../src/test-data/user.data';
 import { expect, test } from '@playwright/test';
 
-test.describe("Logging to candidate's profile", () => {
+test.describe("Login to candidate's profile", () => {
   let generalPage: GeneralPage;
   let headerPage: HeaderPage;
   let loginPage: LoginPage;
