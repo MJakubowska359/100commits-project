@@ -88,6 +88,25 @@ test.describe("Login to candidate's profile", () => {
     await expect(page.getByText(expectedError)).toBeVisible();
   });
 
+  test('Should not be able to login candidate without filling data', async ({
+    page,
+  }) => {
+    // Arrange
+    const signInBtn = '#login-form';
+    const expectedSignInSubmitBtn = 'Sign In';
+
+    // Act
+    await headerPage.goToSignInPageForCandidateFromPageHeader();
+    await loginPage.goToSignInPageByEmail();
+
+    // Assert
+    await expect(
+      page
+        .locator(signInBtn)
+        .getByRole('button', { name: expectedSignInSubmitBtn }),
+    ).toBeDisabled();
+  });
+
   test('Should be able to login candidate from menu on the main page', async ({
     page,
   }) => {
