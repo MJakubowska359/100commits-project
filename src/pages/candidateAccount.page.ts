@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { ResetPasswordModel } from '../models/user.model';
 import { Page } from '@playwright/test';
 
 export class CandidateAccountPage {
@@ -25,7 +26,7 @@ export class CandidateAccountPage {
   firstChangeBtn = this.page.locator('#change-password-button');
   currentPassword = this.page.getByPlaceholder('Your current password to');
   newPassword = this.page.getByPlaceholder('At least 8 characters');
-  sameNewPassword = this.page.getByPlaceholder('Same password as above');
+  repeatNewPassword = this.page.getByPlaceholder('Same password as above');
   changePasswordBtn = this.page.getByRole('button', {
     name: 'Change password',
   });
@@ -88,12 +89,11 @@ export class CandidateAccountPage {
     await this.changePasswordBtn.click();
   }
 
-  async changePassword() {
-    await this.firstChangeBtn.click();
-    await this.currentPassword.fill('abc');
-    await this.newPassword.fill('abc');
-    await this.sameNewPassword.fill('abc');
-    // await this.changePasswordBtn.click();
+  async changePassword(userPassword: ResetPasswordModel): Promise<void> {
+    await this.currentPassword.fill(userPassword.currentPassword);
+    await this.newPassword.fill(userPassword.newPassword);
+    await this.repeatNewPassword.fill(userPassword.repeatNewPassword);
+    await this.changePasswordBtn.click();
   }
 
   async changeConsent() {

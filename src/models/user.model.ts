@@ -8,3 +8,9 @@ export interface RegisterUserModel {
   userPassword: string;
   repeatPassword: string;
 }
+
+export interface ResetPasswordModel {
+  currentPassword: string;
+  newPassword: string;
+  repeatNewPassword: string;
+}

@@ -2,7 +2,7 @@ import { CandidateAccountPage } from '../src/pages/candidateAccount.page';
 import { GeneralPage } from '../src/pages/general.page';
 import { HeaderPage } from '../src/pages/header.page';
 import { LoginPage } from '../src/pages/login.page';
-import { candidate1 } from '../src/test-data/user.data';
+import { candidate1, dataOfPassword } from '../src/test-data/user.data';
 import { expect, test } from '@playwright/test';
 
 test.describe('Reset password to account', () => {
@@ -23,6 +23,22 @@ test.describe('Reset password to account', () => {
     await headerPage.goToSignInPageForCandidateFromPageHeader();
     await loginPage.goToSignInPageByEmail();
     await loginPage.loginCandidateAccount(candidate1);
+    await candidateAccountPage.goToSettingsFromSideMenu();
+  });
+
+  test('Should be able to reset password in settings of account', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedConfirmChangedPassword = 'Password has been changed.';
+
+    // Act
+    await candidateAccountPage.clickChangeBtnForChangingPassword();
+    await candidateAccountPage.changePassword(dataOfPassword);
+    await candidateAccountPage.clickChangeBtnForChangingPassword();
+
+    // Assert
+    await expect(page.getByText(expectedConfirmChangedPassword)).toBeVisible();
   });
 
   test('Should not be able to reset password in settings of account without filling data', async ({
@@ -32,7 +48,6 @@ test.describe('Reset password to account', () => {
     const expectedChangePasswordSubmitBtn = 'Change password';
 
     // Act
-    await candidateAccountPage.goToSettingsFromSideMenu();
     await candidateAccountPage.clickChangeBtnForChangingPassword();
 
     // Assert
