@@ -41,6 +41,22 @@ test.describe('Reset password to account', () => {
     await expect(page.getByText(expectedConfirmChangedPassword)).toBeVisible();
   });
 
+  test('Should not be able to reset password in settings of account with too small new password', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedError =
+      'Your password must contain at least 8 characters, including one uppercase letter, one digit, and one special character.';
+    dataOfPassword.newPassword = '123456';
+
+    // Act
+    await candidateAccountPage.clickChangeBtnForChangingPassword();
+    await candidateAccountPage.changePassword(dataOfPassword);
+
+    // Assert
+    await expect(page.getByText(expectedError)).toBeVisible();
+  });
+
   test('Should not be able to reset password in settings of account without filling data', async ({
     page,
   }) => {
