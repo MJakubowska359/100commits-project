@@ -48,6 +48,22 @@ test.describe('Reset password to account', () => {
     const expectedError =
       'Your password must contain at least 8 characters, including one uppercase letter, one digit, and one special character.';
     dataOfPassword.newPassword = '123456';
+    dataOfPassword.repeatNewPassword = '123456';
+
+    // Act
+    await candidateAccountPage.clickChangeBtnForChangingPassword();
+    await candidateAccountPage.changePassword(dataOfPassword);
+
+    // Assert
+    await expect(page.getByText(expectedError)).toBeVisible();
+  });
+
+  test('Should not be able to reset password in settings of account with different passwords', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedError = 'Passwords must be the same.';
+    dataOfPassword.newPassword = '#b2HoT&BLHf2KbRQM196u';
 
     // Act
     await candidateAccountPage.clickChangeBtnForChangingPassword();
