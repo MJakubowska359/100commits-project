@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { LoginUserModel } from '../models/user.model';
 import { Page } from '@playwright/test';
 
 export class FormsPage {
@@ -125,8 +126,10 @@ export class FormsPage {
     // await this.sendBtn.click();
   }
 
-  async fillEmailAddressToResetPassword() {
-    await this.emailInput.fill('');
+  async fillEmailAddressToResetPassword(
+    loginUserData: LoginUserModel,
+  ): Promise<void> {
+    await this.emailInput.fill(loginUserData.userEmail);
   }
 
   async chooseOptionsForSubscribeOffers() {

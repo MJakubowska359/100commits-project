@@ -14,3 +14,7 @@ export interface ResetPasswordModel {
   newPassword: string;
   repeatNewPassword: string;
 }
+
+export interface UserEmailModel {
+  emailAddress: string;
+}

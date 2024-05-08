@@ -15,8 +15,14 @@ export const candidate1: LoginUserModel = {
   userPassword: process.env.USER_PASSWORD ?? '[NOT SET]',
 };
 
+export const candidateEmail: UserEmailModel = {
+  emailAddress: process.env.USER_EMAIL ?? '[NOT SET]',
+};
+
 export const dataOfPassword: ResetPasswordModel = {
   currentPassword: process.env.USER_PASSWORD ?? '[NOT SET]',
   newPassword: process.env.USER_NEWPASSWORD ?? '[NOT SET]',
   repeatNewPassword: process.env.USER_NEWPASSWORD ?? '[NOT SET]',
 };
+
+
