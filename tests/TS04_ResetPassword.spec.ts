@@ -2,7 +2,7 @@ import { FormsPage } from '../src/pages/forms.page';
 import { GeneralPage } from '../src/pages/general.page';
 import { HeaderPage } from '../src/pages/header.page';
 import { LoginPage } from '../src/pages/login.page';
-import { candidate1 } from '../src/test-data/user.data';
+import { candidateEmail } from '../src/test-data/user.data';
 import { expect, test } from '@playwright/test';
 
 test.describe('Reset password to account', () => {
@@ -25,19 +25,17 @@ test.describe('Reset password to account', () => {
     await loginPage.clickForgotPasswordButton();
   });
 
-  test('Should not be able to reset password by login page', async ({
-    page,
-  }) => {
+  test('Should be able to reset password by login page', async ({ page }) => {
     // Arrange
-    const expectedChangePasswordSubmitBtn = 'Change password';
+    const expectedTextAfterResetPassword =
+      'An instruction to change your password will be sent to your email inbox if you have an account associated with the email address.';
 
     // Act
-    await formsPage.fillEmailAddressToResetPassword(candidate1);
+    await page.waitForURL('https://profile.justjoin.it/password-reset');
+    await formsPage.fillEmailAddressToResetPassword(candidateEmail);
     await loginPage.clickResetPasswordButton();
 
     // Assert
-    await expect(
-      page.getByRole('button', { name: expectedChangePasswordSubmitBtn }),
-    ).toBeDisabled();
+    await expect(page.getByText(expectedTextAfterResetPassword)).toBeVisible();
   });
 });

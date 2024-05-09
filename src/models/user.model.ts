@@ -16,5 +16,5 @@ export interface ResetPasswordModel {
 }
 
 export interface UserEmailModel {
-  emailAddress: string;
+  userEmail: string;
 }
