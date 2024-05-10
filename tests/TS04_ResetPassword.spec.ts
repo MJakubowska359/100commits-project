@@ -23,6 +23,7 @@ test.describe('Reset password to account', () => {
     await headerPage.goToSignInPageForCandidateFromPageHeader();
     await loginPage.goToSignInPageByEmail();
     await loginPage.clickForgotPasswordButton();
+    await page.waitForURL('https://profile.justjoin.it/password-reset');
   });
 
   test('Should be able to reset password by login page', async ({ page }) => {
@@ -31,11 +32,23 @@ test.describe('Reset password to account', () => {
       'An instruction to change your password will be sent to your email inbox if you have an account associated with the email address.';
 
     // Act
-    await page.waitForURL('https://profile.justjoin.it/password-reset');
     await formsPage.fillEmailAddressToResetPassword(candidateEmail);
     await loginPage.clickResetPasswordButton();
 
     // Assert
     await expect(page.getByText(expectedTextAfterResetPassword)).toBeVisible();
+  });
+
+  test('Should not be able to reset password by login page without filing e-mail address', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedError = 'This field is required.';
+
+    // Act
+    await loginPage.clickResetPasswordButton();
+
+    // Assert
+    await expect(page.getByText(expectedError)).toBeVisible();
   });
 });
