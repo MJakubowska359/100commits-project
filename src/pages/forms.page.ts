@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { SendMessageModel } from '../models/form.model';
 import { UserEmailModel } from '../models/user.model';
 import { Page } from '@playwright/test';
 
@@ -46,6 +47,10 @@ export class FormsPage {
   sendBtn = this.page.getByRole('button', { name: 'Send' });
 
   // openChatBtn = this.page.frameLocator('iframe[name="chat-widget-minimized"]').getByLabel('Open LiveChat chat widget').click();
+  leaveAMessageBtn = this.page
+    .frameLocator('iframe[name="chat-widget"]')
+    .getByRole('button', { name: 'Leave a message' });
+
   nameField = this.page
     .frameLocator('iframe[name="chat-widget"]')
     .getByLabel('Your name:');
@@ -111,12 +116,15 @@ export class FormsPage {
     await this.messageField.press('Tab');
   }
 
-  async fillFormToSendMessageOnLiveChat() {
-    await this.nameField.fill('Testowa Halinka');
-    await this.emailField.fill('testowa.halinka@test.pl');
-    await this.subjectField.fill('Testowe pytanie');
-    await this.messageField.fill('Testowa wiadomość');
-    // await this.leaveMessageBtn.click();
+  async clickLeaveAMessageBtnAndFillFormToSendMessage(
+    messageOnLiveChat: SendMessageModel,
+  ): Promise<void> {
+    await this.leaveAMessageBtn.click();
+    await this.nameField.fill(messageOnLiveChat.userName);
+    await this.emailField.fill(messageOnLiveChat.userEmail);
+    await this.subjectField.fill(messageOnLiveChat.subject);
+    await this.messageField.fill(messageOnLiveChat.message);
+    await this.leaveMessageBtn.click();
   }
 
   async fillFormToLearnDetailsAdvertisementsOfJobs() {

@@ -1,9 +1,7 @@
-/* eslint-disable playwright/expect-expect */
-
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FormsPage } from '../src/pages/forms.page';
 import { GeneralPage } from '../src/pages/general.page';
 import { HeaderPage } from '../src/pages/header.page';
+import { messageOnLiveChat } from '../src/test-data/form.data';
 import { expect, test } from '@playwright/test';
 
 test.describe('Sending message on live chat', () => {
@@ -18,11 +16,22 @@ test.describe('Sending message on live chat', () => {
 
     await page.goto('/');
     await generalPage.clickAcceptCookiesOnPage();
-    await expect(page.locator('#cookiescript_injected')).toBeHidden();
   });
 
   test('Should be able to send message on live chat', async ({ page }) => {
+    // Arrange
+    const expectedParagraphAfterSendMessage =
+      'Thank you! Your message has been sent. Our support team will contact you soon.';
+
+    // Act
     await headerPage.openMenuAndLiveChat();
-    await formsPage.fillFormToSendMessageOnLiveChat();
+    await formsPage.clickLeaveAMessageBtnAndFillFormToSendMessage(
+      messageOnLiveChat,
+    );
+
+    // Assert
+    await expect(page.getByRole('paragraph')).toHaveText(
+      expectedParagraphAfterSendMessage,
+    );
   });
 });
