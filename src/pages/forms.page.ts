@@ -63,11 +63,15 @@ export class FormsPage {
   messageField = this.page
     .frameLocator('iframe[name="chat-widget"]')
     .getByLabel('Message:');
-  openMenu = this.page.getByLabel('Open menu');
-  minimizeWindow = this.page.getByLabel('Minimize window');
-  leaveMessageBtn = this.page.getByRole('button', {
-    name: 'Leave a message',
-  });
+  openMenu = this.page
+    .frameLocator('iframe[name="chat-widget"]')
+    .getByLabel('Open menu');
+  minimizeWindow = this.page
+    .frameLocator('iframe[name="chat-widget"]')
+    .getByLabel('Minimize window');
+  leaveMessageBtn = this.page
+    .frameLocator('iframe[name="chat-widget"]')
+    .getByRole('button', { name: 'Leave a message' });
 
   // subscribe offers
   defaultFrequency = this.page.getByLabel('Twice a week (Monday, Thursday');

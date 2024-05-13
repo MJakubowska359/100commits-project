@@ -34,4 +34,21 @@ test.describe('Sending message on live chat', () => {
       expectedParagraphAfterSendMessage,
     );
   });
+
+  test('Should not be able to send message on live chat', async ({ page }) => {
+    // Arrange
+    const expectedError = 'Please fill in required fields.';
+    messageOnLiveChat.message = '';
+
+    // Act
+    await headerPage.openMenuAndLiveChat();
+    await formsPage.clickLeaveAMessageBtnAndFillFormToSendMessage(
+      messageOnLiveChat,
+    );
+
+    // Assert
+    await expect(
+      page.frameLocator('iframe[name="chat-widget"]').getByRole('alert').nth(3),
+    ).toHaveText(expectedError);
+  });
 });
