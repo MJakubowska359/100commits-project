@@ -4,3 +4,7 @@ export interface SendMessageModel {
   subject: string;
   message: string;
 }
+
+export interface NameOfCompanyModel {
+  companyName: string;
+}

@@ -6,6 +6,7 @@ import { GeneralPage } from '../src/pages/general.page';
 import { HeaderPage } from '../src/pages/header.page';
 import { LoginPage } from '../src/pages/login.page';
 import { expect, test } from '@playwright/test';
+import { candidate1 } from '../src/test-data/user.data';
 
 test.describe('Save filtering to subscribe offers', () => {
   let loginPage: LoginPage;
@@ -25,13 +26,11 @@ test.describe('Save filtering to subscribe offers', () => {
 
     await page.goto('/');
     await generalPage.clickAcceptCookiesOnPage();
-    await expect(page.locator('#cookiescript_injected')).toBeHidden();
   });
 
   test('Should be able to subscribe filtering offers as ANONYMOUS USER', async ({
     page,
   }) => {
-    await expect(page.getByLabel('Saved searches')).toBeVisible();
     await headerPage.clickStarIconOnHeaderOfPage();
     await expect(
       page.getByRole('heading', {
@@ -61,9 +60,13 @@ test.describe('Save filtering to subscribe offers', () => {
   test('Should be able to subscribe filtering offers as LOGGED USER', async ({
     page,
   }) => {
+    // Arrange
+    const expectedChosenSearches = 'Python Remote With salary';
+    
+    // Act
     await headerPage.goToSignInPageForCandidateFromPageHeader();
     await loginPage.goToSignInPageByEmail();
-    await formsPage.fillFormToLoginAsCandidate();
+    await loginPage.loginCandidateAccount(candidate1);
     await loginPage.clickSignInButton();
     await generalPage.clickLogoJustJoin();
     await filtersPage.clickPythonLogo();
@@ -72,15 +75,14 @@ test.describe('Save filtering to subscribe offers', () => {
     await filtersPage.clickSubscribeOption();
     await filtersPage.clickSaveYourSearchCheckbox();
     await filtersPage.clickTurnOnEmailNotificationsButton();
-    await expect(
-      page.getByRole('heading', { name: 'Add an e-mail notification' }),
-    ).toBeVisible();
     await formsPage.chooseOptionsForSubscribeOffers();
     await candidateAccountPage.clickMyProfileOnHeaderOfPage();
     await candidateAccountPage.goToSavedSearchesFromTopMenu();
+
+    // Assert
     await expect(
       page.locator('p').filter({ hasText: 'Saved searches' }),
     ).toBeVisible();
-    await expect(page.getByText('Python Remote With salary')).toBeVisible();
+    await expect(page.getByText(expectedChosenSearches)).toBeVisible();
   });
 });

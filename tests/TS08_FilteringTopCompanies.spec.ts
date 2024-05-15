@@ -1,6 +1,7 @@
 import { FiltersPage } from '../src/pages/filters.page';
 import { GeneralPage } from '../src/pages/general.page';
 import { TopCompaniesPage } from '../src/pages/topCompanies.page';
+import { companyData } from '../src/test-data/form.data';
 import { expect, test } from '@playwright/test';
 
 test.describe('Filtering top companies', () => {
@@ -40,9 +41,15 @@ test.describe('Filtering top companies', () => {
   test('Should be able to filtering top companies by name', async ({
     page,
   }) => {
-    await filtersPage.fillNameCompanyInSearch();
+    // Arrange
+    const expectedNameOfCompany = 'Zero';
+
+    // Act
+    await filtersPage.fillNameOfCompanyInSearch(companyData);
+
+    // Assert
     await expect(
-      page.getByRole('link', { name: 'PKO Bank Polski' }),
+      page.getByRole('link', { name: expectedNameOfCompany }),
     ).toBeVisible();
   });
 });

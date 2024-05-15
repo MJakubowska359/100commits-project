@@ -1,6 +1,7 @@
 /* eslint-disable playwright/no-wait-for-timeout */
 
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { NameOfCompanyModel } from '../models/form.model';
 import { Page } from '@playwright/test';
 
 export class FiltersPage {
@@ -61,8 +62,10 @@ export class FiltersPage {
   showOffersBtn = this.page.getByRole('button', { name: 'Show offers' });
   clearBtn = this.page.getByRole('button', { name: 'Clear filters' });
 
-  async fillNameCompanyInSearch() {
-    await this.searchCompany.fill('pko');
+  async fillNameOfCompanyInSearch(
+    companyData: NameOfCompanyModel,
+  ): Promise<void> {
+    await this.searchCompany.fill(companyData.companyName);
     await this.searchCompany.press('Enter');
   }
 
