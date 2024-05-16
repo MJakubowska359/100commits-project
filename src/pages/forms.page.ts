@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { SendMessageModel } from '../models/form.model';
 import { UserEmailModel } from '../models/user.model';
+import { faker } from '@faker-js/faker/locale/pl';
 import { Page } from '@playwright/test';
 
 export class FormsPage {
@@ -19,15 +20,6 @@ export class FormsPage {
   downloadReportBtn = this.page.getByRole('button', {
     name: 'POBIERZ RAPORT',
   });
-
-  // justjoin.it/brands - get started option
-  firstAndLastNameField = this.page.getByLabel('First name and last name');
-  addressEmailField = this.page.getByLabel('Address email');
-  companyNameField = this.page.getByLabel('Company name');
-  acceptTermsCheckbox = this.page.getByRole('checkbox', {
-    name: 'I accept the terms and conditions of service.',
-  });
-  sendARequestBtn = this.page.getByRole('button', { name: 'Send a request' });
 
   // post a job form
   // fullNameField = this.page.locator('input[type=text]');
@@ -81,6 +73,9 @@ export class FormsPage {
   addNotificationBtn = this.page.getByRole('button', {
     name: 'Add notification',
   });
+  acceptTermsCheckbox = this.page.getByRole('checkbox', {
+    name: "I confirm that I've read and I agree to the site's Terms & Conditions and Privacy Policy.",
+  });
 
   async fillFormToDownloadReport() {
     await this.nameAndSurnameBtn.fill('');
@@ -98,19 +93,8 @@ export class FormsPage {
     // await page1.getByText('Wymagane').click();
   }
 
-  async fillFormToACompanyProfile() {
-    await this.firstAndLastNameField.fill('');
-    await this.addressEmailField.fill('');
-    await this.companyNameField.fill('');
-    await this.acceptTermsCheckbox.check();
-  }
-
-  async clickSendARequestToACompanyProfile() {
-    await this.sendARequestBtn.click();
-  }
-
-  async fillEmailField() {
-    await this.emailInputOnSignInPage.fill('');
+  async fillEmailField(userEmail: UserEmailModel): Promise<void> {
+    await this.emailInputOnSignInPage.fill(userEmail.userEmail);
   }
 
   async clickEveryFieldAndstayItEmpty() {
@@ -145,9 +129,12 @@ export class FormsPage {
   }
 
   async chooseOptionsForSubscribeOffers() {
+    const randomEmail = faker.internet.email();
+    await this.emailInputOnSignInPage.fill(randomEmail);
     await this.defaultFrequency.click();
     await this.everydayFrequency.click();
     await this.nameOfNotification.fill('Oferty dla pythonowca');
+    await this.acceptTermsCheckbox.check();
     await this.addNotificationBtn.click();
   }
 }

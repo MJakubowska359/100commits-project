@@ -31,10 +31,16 @@ test.describe('Save filtering to subscribe offers', () => {
   test('Should be able to subscribe filtering offers as ANONYMOUS USER', async ({
     page,
   }) => {
+    // Arrange
+    const expectedTextWithoutSavedSearches = "You haven't saved your search criteria yet";
+    const expectedChosenSearches = 'Python Remote With salary';
+    const expectedConfirmationAddedNotification = 'Adding a notification.';
+
+    // Act
     await headerPage.clickStarIconOnHeaderOfPage();
     await expect(
       page.getByRole('heading', {
-        name: "You haven't saved your search criteria yet",
+        name: expectedTextWithoutSavedSearches,
       }),
     ).toBeVisible();
     await headerPage.closeSavedSearches();
@@ -44,17 +50,22 @@ test.describe('Save filtering to subscribe offers', () => {
     await filtersPage.clickSubscribeOption();
     await filtersPage.clickSaveYourSearchCheckbox();
     await headerPage.clickStarIconOnHeaderOfPage();
-    await expect(page.getByText('Python Remote With salary')).toBeVisible();
+    await expect(page.getByText(expectedChosenSearches)).toBeVisible();
     await expect(
       page.getByRole('button', { name: 'Go to offers' }),
     ).toBeVisible();
-    await expect(page.locator('#job-alert-delete-button')).toBeVisible();
-    await filtersPage.clickTurnOnEmailNotificationsButton();
+    await filtersPage.clickGoToOffersButton();
     await filtersPage.clickSubscribeOption();
+    await filtersPage.clickTurnOnEmailNotificationsButton();
     await expect(
       page.getByRole('heading', { name: 'Add an e-mail notification' }),
     ).toBeVisible();
-    await formsPage.fillEmailField();
+    await formsPage.chooseOptionsForSubscribeOffers();
+
+    // Assert
+    await expect(
+      page.getByText(expectedConfirmationAddedNotification)
+    ).toBeVisible();
   });
 
   test('Should be able to subscribe filtering offers as LOGGED USER', async ({

@@ -58,7 +58,7 @@ export class FiltersPage {
     name: 'Practice / Intership',
   });
   freelanceCheckbox = this.page.getByRole('checkbox', { name: 'Freelance' });
-
+  goToOffersBtn = this.page.getByRole('button', { name: 'Go to offers' });
   showOffersBtn = this.page.getByRole('button', { name: 'Show offers' });
   clearBtn = this.page.getByRole('button', { name: 'Clear filters' });
 
@@ -93,5 +93,9 @@ export class FiltersPage {
 
   async clickTurnOnEmailNotificationsButton() {
     await this.turnNotificationsCheckbox.click();
+  }
+
+  async clickGoToOffersButton() {
+    await this.goToOffersBtn.click();
   }
 }
