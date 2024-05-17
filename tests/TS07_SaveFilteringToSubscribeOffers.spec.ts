@@ -1,12 +1,12 @@
-/* eslint-disable prettier/prettier */
 import { CandidateAccountPage } from '../src/pages/candidateAccount.page';
 import { FiltersPage } from '../src/pages/filters.page';
 import { FormsPage } from '../src/pages/forms.page';
 import { GeneralPage } from '../src/pages/general.page';
 import { HeaderPage } from '../src/pages/header.page';
 import { LoginPage } from '../src/pages/login.page';
+import { candidate1, candidateEmail } from '../src/test-data/user.data';
+import { faker } from '@faker-js/faker/locale/pl';
 import { expect, test } from '@playwright/test';
-import { candidate1 } from '../src/test-data/user.data';
 
 test.describe('Save filtering to subscribe offers', () => {
   let loginPage: LoginPage;
@@ -32,9 +32,11 @@ test.describe('Save filtering to subscribe offers', () => {
     page,
   }) => {
     // Arrange
-    const expectedTextWithoutSavedSearches = "You haven't saved your search criteria yet";
+    const expectedTextWithoutSavedSearches =
+      "You haven't saved your search criteria yet";
     const expectedChosenSearches = 'Python Remote With salary';
     const expectedConfirmationAddedNotification = 'Adding a notification.';
+    candidateEmail.userEmail = faker.internet.email();
 
     // Act
     await headerPage.clickStarIconOnHeaderOfPage();
@@ -60,12 +62,53 @@ test.describe('Save filtering to subscribe offers', () => {
     await expect(
       page.getByRole('heading', { name: 'Add an e-mail notification' }),
     ).toBeVisible();
+    await formsPage.fillEmailAddress(candidateEmail);
     await formsPage.chooseOptionsForSubscribeOffers();
 
     // Assert
     await expect(
-      page.getByText(expectedConfirmationAddedNotification)
+      page.getByText(expectedConfirmationAddedNotification),
     ).toBeVisible();
+  });
+
+  test('Should not be able to subscribe filtering offers if account for email address is existing', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedTextWithoutSavedSearches =
+      "You haven't saved your search criteria yet";
+    const expectedChosenSearches = 'Python Remote With salary';
+    const expectedErrorNotification = 'Log in to add notifications';
+
+    // Act
+    await headerPage.clickStarIconOnHeaderOfPage();
+    await expect(
+      page.getByRole('heading', {
+        name: expectedTextWithoutSavedSearches,
+      }),
+    ).toBeVisible();
+    await headerPage.closeSavedSearches();
+    await filtersPage.clickPythonLogo();
+    await filtersPage.clickWithSalaryButton();
+    await filtersPage.clickRemoteCheckbox();
+    await filtersPage.clickSubscribeOption();
+    await filtersPage.clickSaveYourSearchCheckbox();
+    await headerPage.clickStarIconOnHeaderOfPage();
+    await expect(page.getByText(expectedChosenSearches)).toBeVisible();
+    await expect(
+      page.getByRole('button', { name: 'Go to offers' }),
+    ).toBeVisible();
+    await filtersPage.clickGoToOffersButton();
+    await filtersPage.clickSubscribeOption();
+    await filtersPage.clickTurnOnEmailNotificationsButton();
+    await expect(
+      page.getByRole('heading', { name: 'Add an e-mail notification' }),
+    ).toBeVisible();
+    await formsPage.fillEmailAddress(candidateEmail);
+    await formsPage.chooseOptionsForSubscribeOffers();
+
+    // Assert
+    await expect(page.getByText(expectedErrorNotification)).toBeVisible();
   });
 
   test('Should be able to subscribe filtering offers as LOGGED USER', async ({
@@ -73,7 +116,7 @@ test.describe('Save filtering to subscribe offers', () => {
   }) => {
     // Arrange
     const expectedChosenSearches = 'Python Remote With salary';
-    
+
     // Act
     await headerPage.goToSignInPageForCandidateFromPageHeader();
     await loginPage.goToSignInPageByEmail();

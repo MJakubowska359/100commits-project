@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { SendMessageModel } from '../models/form.model';
 import { UserEmailModel } from '../models/user.model';
-import { faker } from '@faker-js/faker/locale/pl';
 import { Page } from '@playwright/test';
 
 export class FormsPage {
@@ -93,7 +92,7 @@ export class FormsPage {
     // await page1.getByText('Wymagane').click();
   }
 
-  async fillEmailField(userEmail: UserEmailModel): Promise<void> {
+  async fillEmailAddress(userEmail: UserEmailModel): Promise<void> {
     await this.emailInputOnSignInPage.fill(userEmail.userEmail);
   }
 
@@ -129,8 +128,6 @@ export class FormsPage {
   }
 
   async chooseOptionsForSubscribeOffers() {
-    const randomEmail = faker.internet.email();
-    await this.emailInputOnSignInPage.fill(randomEmail);
     await this.defaultFrequency.click();
     await this.everydayFrequency.click();
     await this.nameOfNotification.fill('Oferty dla pythonowca');
