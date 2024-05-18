@@ -63,7 +63,7 @@ test.describe('Save filtering to subscribe offers', () => {
       page.getByRole('heading', { name: 'Add an e-mail notification' }),
     ).toBeVisible();
     await formsPage.fillEmailAddress(candidateEmail);
-    await formsPage.chooseOptionsForSubscribeOffers();
+    await formsPage.chooseOptionsForSubscribeOffersForAnonymousUser();
 
     // Assert
     await expect(
@@ -105,7 +105,7 @@ test.describe('Save filtering to subscribe offers', () => {
       page.getByRole('heading', { name: 'Add an e-mail notification' }),
     ).toBeVisible();
     await formsPage.fillEmailAddress(candidateEmail);
-    await formsPage.chooseOptionsForSubscribeOffers();
+    await formsPage.chooseOptionsForSubscribeOffersForAnonymousUser();
 
     // Assert
     await expect(page.getByText(expectedErrorNotification)).toBeVisible();
@@ -121,7 +121,6 @@ test.describe('Save filtering to subscribe offers', () => {
     await headerPage.goToSignInPageForCandidateFromPageHeader();
     await loginPage.goToSignInPageByEmail();
     await loginPage.loginCandidateAccount(candidate1);
-    await loginPage.clickSignInButton();
     await generalPage.clickLogoJustJoin();
     await filtersPage.clickPythonLogo();
     await filtersPage.clickWithSalaryButton();
@@ -129,7 +128,7 @@ test.describe('Save filtering to subscribe offers', () => {
     await filtersPage.clickSubscribeOption();
     await filtersPage.clickSaveYourSearchCheckbox();
     await filtersPage.clickTurnOnEmailNotificationsButton();
-    await formsPage.chooseOptionsForSubscribeOffers();
+    await formsPage.chooseOptionsForSubscribeOffersForLoggedUser();
     await candidateAccountPage.clickMyProfileOnHeaderOfPage();
     await candidateAccountPage.goToSavedSearchesFromTopMenu();
 

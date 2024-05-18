@@ -127,11 +127,18 @@ export class FormsPage {
     await this.emailInput.fill(candidateData.userEmail);
   }
 
-  async chooseOptionsForSubscribeOffers() {
+  async chooseOptionsForSubscribeOffersForAnonymousUser() {
     await this.defaultFrequency.click();
     await this.everydayFrequency.click();
     await this.nameOfNotification.fill('Oferty dla pythonowca');
     await this.acceptTermsCheckbox.check();
+    await this.addNotificationBtn.click();
+  }
+
+  async chooseOptionsForSubscribeOffersForLoggedUser() {
+    await this.defaultFrequency.click();
+    await this.everydayFrequency.click();
+    await this.nameOfNotification.fill('Oferty dla pythonowca');
     await this.addNotificationBtn.click();
   }
 }
