@@ -1,6 +1,3 @@
-/* eslint-disable playwright/no-wait-for-timeout */
-
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Page } from '@playwright/test';
 
 export class TopCompaniesPage {
@@ -19,31 +16,31 @@ export class TopCompaniesPage {
   // get started option
   getStartedBtn = this.page.getByRole('button', { name: 'Get started' });
 
-  async clickStartipButton() {
+  async clickStartupButton(): Promise<void> {
     await this.startUpBtn.click();
   }
 
-  async clickSoftwareHouseButton() {
+  async clickSoftwareHouseButton(): Promise<void> {
     await this.softwareHouseBtn.click();
   }
 
-  async clickEcommerceButton() {
+  async clickEcommerceButton(): Promise<void> {
     await this.eCommerceBtn.click();
   }
 
-  async clickCorporationButton() {
+  async clickCorporationButton(): Promise<void> {
     await this.corporationBtn.click();
   }
 
-  async clickAgencyButton() {
+  async clickAgencyButton(): Promise<void> {
     await this.agencyBtn.click();
   }
 
-  async clickOtherButton() {
+  async clickOtherButton(): Promise<void> {
     await this.otherBtn.click();
   }
 
-  async clickGetStartedButton() {
+  async clickGetStartedButton(): Promise<void> {
     await this.getStartedBtn.click();
   }
 }

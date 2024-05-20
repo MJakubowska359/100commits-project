@@ -1,6 +1,3 @@
-/* eslint-disable playwright/no-wait-for-timeout */
-
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Page } from '@playwright/test';
 
 export class FooterPage {
@@ -38,23 +35,23 @@ export class FooterPage {
   linkedinBtn = this.page.getByLabel('linkedin');
   youtubeBtn = this.page.getByLabel('youtube');
 
-  async clickButtonAboutUsOnFooter() {
+  async clickButtonAboutUsOnFooter(): Promise<void> {
     await this.aboutUsBtn.click();
   }
 
-  async clickFacebookIcon() {
+  async clickFacebookIcon(): Promise<void> {
     await this.facebookBtn.click();
   }
 
-  async clickInstagramIcon() {
+  async clickInstagramIcon(): Promise<void> {
     await this.instagramBtn.click();
   }
 
-  async clickLinkedinIcon() {
+  async clickLinkedinIcon(): Promise<void> {
     await this.linkedinBtn.click();
   }
 
-  async clickYoutubeIcon() {
+  async clickYoutubeIcon(): Promise<void> {
     await this.youtubeBtn.click();
   }
 }

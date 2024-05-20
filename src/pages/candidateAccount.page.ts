@@ -41,51 +41,51 @@ export class CandidateAccountPage {
   deleteAccountBtnInSettings = this.page.locator('#button');
   deleteAccountBtn = this.page.getByRole('button', { name: 'Delete account' });
 
-  async clickMyProfileOnHeaderOfPage() {
+  async clickMyProfileOnHeaderOfPage(): Promise<void> {
     await this.myAccount.click();
   }
 
-  async goToMyProfileFromTopMenu() {
+  async goToMyProfileFromTopMenu(): Promise<void> {
     await this.myProfileTab.click();
   }
 
-  async goToChartsFromTopMenu() {
+  async goToChartsFromTopMenu(): Promise<void> {
     await this.chatsTab.click();
   }
 
-  async goToSavedSearchesFromTopMenu() {
+  async goToSavedSearchesFromTopMenu(): Promise<void> {
     await this.savedSearchesTab.click();
   }
 
-  async goToSettingsFromTopMenu() {
+  async goToSettingsFromTopMenu(): Promise<void> {
     await this.settingsTab.click();
   }
 
-  async clickLogoutInTopMenu() {
+  async clickLogoutInTopMenu(): Promise<void> {
     await this.logoutTab.click();
   }
 
-  async goToChartsFromSideMenu() {
+  async goToChartsFromSideMenu(): Promise<void> {
     await this.chatsSideMenu.click();
   }
 
-  async goToSavedSearchesFromSideMenu() {
+  async goToSavedSearchesFromSideMenu(): Promise<void> {
     await this.savedSearchesSideMenu.click();
   }
 
-  async goToSettingsFromSideMenu() {
+  async goToSettingsFromSideMenu(): Promise<void> {
     await this.settingsSideMenu.click();
   }
 
-  async clickLogoutInSideMenu() {
+  async clickLogoutInSideMenu(): Promise<void> {
     await this.logoutSideMenu.click();
   }
 
-  async clickChangeBtnForChangingPassword() {
+  async clickChangeBtnForChangingPassword(): Promise<void> {
     await this.firstChangeBtn.click();
   }
 
-  async clickChangePasswordBtn() {
+  async clickChangePasswordBtn(): Promise<void> {
     await this.changePasswordBtn.click();
   }
 
@@ -96,11 +96,16 @@ export class CandidateAccountPage {
     await this.changePasswordBtn.click();
   }
 
-  async changeConsent() {
+  async changeConsent(): Promise<void> {
     await this.secondChangeBtn.click();
     await this.moreInformation.click();
     await this.lessInformation.click();
     await this.commercialCorrespondenceCheckbox.check();
     await this.commercialCorrespondenceCheckbox.uncheck();
+  }
+
+  async clickDeleteAccountButton(): Promise<void> {
+    await this.deleteAccountBtnInSettings.click();
+    await this.deleteAccountBtn.click();
   }
 }

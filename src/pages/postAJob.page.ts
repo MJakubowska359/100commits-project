@@ -1,6 +1,3 @@
-/* eslint-disable playwright/no-wait-for-timeout */
-
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Page } from '@playwright/test';
 
 export class PostAJobPage {
@@ -11,17 +8,16 @@ export class PostAJobPage {
   getInTouchBtn = this.page.getByRole('button', { name: 'Get in touch' });
   postAJob = this.page.getByRole('button', { name: 'Post a job' }).first();
 
-  async changeLanguageAndCurrency() {
+  async changeLanguageAndCurrency(): Promise<void> {
     await this.languageAndCurrency.click();
     await this.polishLanguage.click();
   }
 
-  async clickGetInTouchButton() {
+  async clickGetInTouchButton(): Promise<void> {
     await this.getInTouchBtn.click();
-    await this.page.waitForTimeout(3000);
   }
 
-  async clickFirstPostAJobButton() {
+  async clickFirstPostAJobButton(): Promise<void> {
     await this.postAJob.click();
     await this.page.waitForLoadState('domcontentloaded');
   }

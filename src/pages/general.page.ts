@@ -1,6 +1,3 @@
-/* eslint-disable playwright/no-wait-for-timeout */
-
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Page } from '@playwright/test';
 
 export class GeneralPage {
@@ -29,7 +26,7 @@ export class GeneralPage {
 
   logoJustJoin = this.page.locator('#Warstwa_1');
 
-  async choosePerformanceAndFunctionalityCookiesOnPage() {
+  async choosePerformanceAndFunctionalityCookiesOnPage(): Promise<void> {
     await this.aboutCookies.click();
     await this.cookieDeclaration.click();
     await this.showCookies.nth(2).click();
@@ -40,23 +37,23 @@ export class GeneralPage {
     await this.switchBtn.nth(3).click();
   }
 
-  async clickCustomizeCookiesOnPage() {
+  async clickCustomizeCookiesOnPage(): Promise<void> {
     await this.customizeBtn.click();
   }
 
-  async clickAcceptCookiesOnPage() {
+  async clickAcceptCookiesOnPage(): Promise<void> {
     await this.acceptAllBtn.click();
   }
 
-  async saveSettingsOfCookiesAndClose() {
+  async saveSettingsOfCookiesAndClose(): Promise<void> {
     await this.saveAndCloseBtn.click();
   }
 
-  async clickDeclineCookies() {
+  async clickDeclineCookies(): Promise<void> {
     await this.declineAllBtn.click();
   }
 
-  async clickLogoJustJoin() {
+  async clickLogoJustJoin(): Promise<void> {
     await this.logoJustJoin.first().click();
   }
 }

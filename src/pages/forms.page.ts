@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { SendMessageModel } from '../models/form.model';
 import { UserEmailModel } from '../models/user.model';
 import { Page } from '@playwright/test';
@@ -76,7 +75,7 @@ export class FormsPage {
     name: "I confirm that I've read and I agree to the site's Terms & Conditions and Privacy Policy.",
   });
 
-  async fillFormToDownloadReport() {
+  async fillFormToDownloadReport(): Promise<void> {
     await this.nameAndSurnameBtn.fill('');
     await this.emailInputOnSignInPage.fill('');
     await this.whoAreYou.selectOption('');
@@ -96,7 +95,7 @@ export class FormsPage {
     await this.emailInputOnSignInPage.fill(userEmail.userEmail);
   }
 
-  async clickEveryFieldAndstayItEmpty() {
+  async clickEveryFieldAndstayItEmpty(): Promise<void> {
     await this.nameField.press('Tab');
     await this.emailInputOnSignInPage.press('Tab');
     await this.subjectField.press('Tab');
@@ -114,7 +113,7 @@ export class FormsPage {
     await this.leaveMessageBtn.click();
   }
 
-  async fillFormToLearnDetailsAdvertisementsOfJobs() {
+  async fillFormToLearnDetailsAdvertisementsOfJobs(): Promise<void> {
     await this.fullNameField.fill('');
     await this.contactEmailField.fill('');
     await this.phoneField.fill('');
@@ -127,7 +126,7 @@ export class FormsPage {
     await this.emailInput.fill(candidateData.userEmail);
   }
 
-  async chooseOptionsForSubscribeOffersForAnonymousUser() {
+  async chooseOptionsForSubscribeOffersForAnonymousUser(): Promise<void> {
     await this.defaultFrequency.click();
     await this.everydayFrequency.click();
     await this.nameOfNotification.fill('Oferty dla pythonowca');
@@ -135,7 +134,7 @@ export class FormsPage {
     await this.addNotificationBtn.click();
   }
 
-  async chooseOptionsForSubscribeOffersForLoggedUser() {
+  async chooseOptionsForSubscribeOffersForLoggedUser(): Promise<void> {
     await this.defaultFrequency.click();
     await this.everydayFrequency.click();
     await this.nameOfNotification.fill('Oferty dla pythonowca');

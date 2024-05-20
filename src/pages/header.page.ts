@@ -1,6 +1,3 @@
-/* eslint-disable playwright/no-wait-for-timeout */
-
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { Page } from '@playwright/test';
 
 export class HeaderPage {
@@ -44,85 +41,79 @@ export class HeaderPage {
     name: "Sign in to Employer's panel",
   });
 
-  async goToSignInPageForCandidateFromPageHeader() {
+  async goToSignInPageForCandidateFromPageHeader(): Promise<void> {
     await this.signInBtn.click();
     await this.signInAsCandidate.click();
   }
 
-  async goToSignInPageForCandidateFromMenuOnMainPage() {
+  async goToSignInPageForCandidateFromMenuOnMainPage(): Promise<void> {
     await this.menuBtn.click();
     await this.signInAsCandidate.click();
   }
 
-  async goToSignInPageForCompanyFromPageHeader() {
+  async goToSignInPageForCompanyFromPageHeader(): Promise<void> {
     await this.signInBtn.click();
     await this.signInAsCompany.click();
   }
 
-  async goToSignInPageForCompanyFromMenuOnMainPage() {
+  async goToSignInPageForCompanyFromMenuOnMainPage(): Promise<void> {
     await this.menuBtn.click();
     await this.signInAsCompany.click();
   }
 
-  async chooseItSalaryReportFromMenu() {
+  async chooseItSalaryReportFromMenu(): Promise<void> {
     await this.menuBtn.click();
     await this.salaryReportBtn.click();
   }
   // await page.locator('button[name="sidebar-open"]').click();
 
-  async clickTopCompaniesButtonOnTheMainPage() {
+  async clickTopCompaniesButtonOnTheMainPage(): Promise<void> {
     await this.topCompaniesBtn.click();
   }
 
-  async goToPostAJobSubPageOnTheMainPage() {
+  async goToPostAJobSubPageOnTheMainPage(): Promise<void> {
     await this.postAJobBtn.click();
   }
 
-  async changeCurrencyFromPlnToEurOnMainPage() {
+  async changeCurrencyFromPlnToEurOnMainPage(): Promise<void> {
     await this.defaultCurrencyPln.click();
     await this.eurCurrency.click();
-    await this.page.waitForTimeout(3000);
   }
 
-  async changeCurrencyFromEurToUsdOnMainPage() {
+  async changeCurrencyFromEurToUsdOnMainPage(): Promise<void> {
     await this.defaultCurrencyEur.click();
     await this.usdCurrency.click();
-    await this.page.waitForTimeout(3000);
   }
 
-  async changeCurrencyFromUsdToGbpOnMainPage() {
+  async changeCurrencyFromUsdToGbpOnMainPage(): Promise<void> {
     await this.defaultCurrencyUsd.click();
     await this.gbpCurrency.click();
-    await this.page.waitForTimeout(3000);
   }
 
-  async changeCurrencyFromGbpToChfOnMainPage() {
+  async changeCurrencyFromGbpToChfOnMainPage(): Promise<void> {
     await this.defaultCurrencyGbp.click();
     await this.chfCurrency.click();
-    await this.page.waitForTimeout(3000);
   }
 
-  async changeCurrencyFromChfToDefOnMainPage() {
+  async changeCurrencyFromChfToDefOnMainPage(): Promise<void> {
     await this.defaultCurrencyChf.click();
     await this.defCurrency.click();
-    await this.page.waitForTimeout(3000);
   }
 
-  async changeCurrencyFromDefToPlnOnMainPage() {
+  async changeCurrencyFromDefToPlnOnMainPage(): Promise<void> {
     await this.defaultCurrencyDef.click();
     await this.plnCurrency.click();
-    await this.page.waitForTimeout(3000);
   }
 
-  async clickStarIconOnHeaderOfPage() {
+  async clickStarIconOnHeaderOfPage(): Promise<void> {
     await this.starOfSubscribe.click();
   }
 
-  async closeSavedSearches() {
+  async closeSavedSearches(): Promise<void> {
     await this.closeSavedSearchesBtn.click();
   }
 
-  async openMenuAndLiveChat() {
+  async openMenuAndLiveChat(): Promise<void> {
     await this.menuBtn.click();
     await this.helpBtn.click();
   }

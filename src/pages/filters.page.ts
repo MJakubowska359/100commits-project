@@ -1,6 +1,3 @@
-/* eslint-disable playwright/no-wait-for-timeout */
-
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { NameOfCompanyModel } from '../models/form.model';
 import { Page } from '@playwright/test';
 
@@ -69,33 +66,31 @@ export class FiltersPage {
     await this.searchCompany.press('Enter');
   }
 
-  async clickPythonLogo() {
+  async clickPythonLogo(): Promise<void> {
     await this.pythonBtn.click();
-    await this.page.waitForTimeout(2000);
   }
 
-  async clickRemoteCheckbox() {
+  async clickRemoteCheckbox(): Promise<void> {
     await this.remoteCheckbox.click();
   }
 
-  async clickWithSalaryButton() {
+  async clickWithSalaryButton(): Promise<void> {
     await this.withSalaryBtn.click();
-    await this.page.waitForTimeout(2000);
   }
 
-  async clickSubscribeOption() {
+  async clickSubscribeOption(): Promise<void> {
     await this.subscribeOption.click();
   }
 
-  async clickSaveYourSearchCheckbox() {
+  async clickSaveYourSearchCheckbox(): Promise<void> {
     await this.saveSearchCheckbox.click();
   }
 
-  async clickTurnOnEmailNotificationsButton() {
+  async clickTurnOnEmailNotificationsButton(): Promise<void> {
     await this.turnNotificationsCheckbox.click();
   }
 
-  async clickGoToOffersButton() {
+  async clickGoToOffersButton(): Promise<void> {
     await this.goToOffersBtn.click();
   }
 }

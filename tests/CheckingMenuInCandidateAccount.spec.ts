@@ -1,23 +1,21 @@
 /* eslint-disable playwright/no-focused-test */
 import { CandidateAccountPage } from '../src/pages/candidateAccount.page';
-import { FormsPage } from '../src/pages/forms.page';
 import { GeneralPage } from '../src/pages/general.page';
 import { HeaderPage } from '../src/pages/header.page';
 import { LoginPage } from '../src/pages/login.page';
+import { candidate1 } from '../src/test-data/user.data';
 import { expect, test } from '@playwright/test';
 
 test.describe('Save filtering to subscribe offers', () => {
   let loginPage: LoginPage;
   let generalPage: GeneralPage;
   let headerPage: HeaderPage;
-  let formsPage: FormsPage;
   let candidateAccountPage: CandidateAccountPage;
 
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
     generalPage = new GeneralPage(page);
     headerPage = new HeaderPage(page);
-    formsPage = new FormsPage(page);
     candidateAccountPage = new CandidateAccountPage(page);
 
     await page.goto('/');
@@ -30,7 +28,7 @@ test.describe('Save filtering to subscribe offers', () => {
   }) => {
     await headerPage.goToSignInPageForCandidateFromPageHeader();
     await loginPage.goToSignInPageByEmail();
-    await formsPage.fillFormToLoginAsCandidate();
+    await loginPage.loginCandidateAccount(candidate1);
     await loginPage.clickSignInButton();
     await expect(page.getByRole('heading', { name: 'Profile' })).toBeVisible();
     await candidateAccountPage.clickMyProfileOnHeaderOfPage();
@@ -56,7 +54,7 @@ test.describe('Save filtering to subscribe offers', () => {
   }) => {
     await headerPage.goToSignInPageForCandidateFromPageHeader();
     await loginPage.goToSignInPageByEmail();
-    await formsPage.fillFormToLoginAsCandidate();
+    await loginPage.loginCandidateAccount(candidate1);
     await loginPage.clickSignInButton();
     await expect(page.getByRole('heading', { name: 'Profile' })).toBeVisible();
     await candidateAccountPage.goToChartsFromSideMenu();

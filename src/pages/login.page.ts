@@ -1,6 +1,3 @@
-/* eslint-disable playwright/no-wait-for-timeout */
-
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { LoginUserModel } from '../models/user.model';
 import { BasePage } from './base.page';
 import { Page } from '@playwright/test';
@@ -34,23 +31,23 @@ export class LoginPage extends BasePage {
     'At least 8 characters',
   );
 
-  async goToCreateAccountFromSignInPage() {
+  async goToCreateAccountFromSignInPage(): Promise<void> {
     await this.signUpBtn.click();
   }
 
-  async goToSignInPageByEmail() {
+  async goToSignInPageByEmail(): Promise<void> {
     await this.signInUsingEmailBtn.click();
   }
 
-  async clickSignInButton() {
+  async clickSignInButton(): Promise<void> {
     await this.signInBtn.click();
   }
 
-  async clickForgotPasswordButton() {
+  async clickForgotPasswordButton(): Promise<void> {
     await this.forgetPasswordBtn.click();
   }
 
-  async clickResetPasswordButton() {
+  async clickResetPasswordButton(): Promise<void> {
     await this.resetPasswordBtn.click();
   }
 
