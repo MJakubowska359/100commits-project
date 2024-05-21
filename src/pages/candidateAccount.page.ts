@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { ResetPasswordModel } from '../models/user.model';
 import { Page } from '@playwright/test';
 
@@ -40,6 +39,14 @@ export class CandidateAccountPage {
   // locators for delete account
   deleteAccountBtnInSettings = this.page.locator('#button');
   deleteAccountBtn = this.page.getByRole('button', { name: 'Delete account' });
+
+  // locators for personal information form
+  editInformationBtn = this.page.locator(
+    'button[name="personal-informations-edit"]',
+  );
+  addPhoto = this.page.locator('.css-fy324q');
+  // addPhoto = this.page.getByRole('presentation');
+  saveChangesBtn = this.page.getByRole('button', { name: 'Save' });
 
   async clickMyProfileOnHeaderOfPage(): Promise<void> {
     await this.myAccount.click();
@@ -107,5 +114,19 @@ export class CandidateAccountPage {
   async clickDeleteAccountButton(): Promise<void> {
     await this.deleteAccountBtnInSettings.click();
     await this.deleteAccountBtn.click();
+  }
+
+  async clickEditPersonalInformationButton(): Promise<void> {
+    await this.editInformationBtn.click();
+  }
+
+  async addProfilePhotoToAccount(): Promise<void> {
+    await this.addPhoto.setInputFiles(
+      'E:/100commits-project/src/test-data/tru.jpeg',
+    );
+  }
+
+  async clickSaveChangesButton(): Promise<void> {
+    await this.saveChangesBtn.click();
   }
 }
