@@ -1,3 +1,4 @@
+import { PersonalInfoModel } from '../models/form.model';
 import { ResetPasswordModel } from '../models/user.model';
 import { Page } from '@playwright/test';
 
@@ -46,6 +47,9 @@ export class CandidateAccountPage {
   );
   addPhoto = this.page.locator('.css-fy324q');
   // addPhoto = this.page.getByRole('presentation');
+  name = this.page.getByPlaceholder('First name');
+  surname = this.page.getByPlaceholder('Last name');
+  messageToEmployer = this.page.getByPlaceholder('Type something about you');
   saveChangesBtn = this.page.getByRole('button', { name: 'Save' });
 
   async clickMyProfileOnHeaderOfPage(): Promise<void> {
@@ -124,6 +128,14 @@ export class CandidateAccountPage {
     await this.addPhoto.setInputFiles(
       'E:/100commits-project/src/test-data/tru.jpeg',
     );
+  }
+
+  async fillBasicPersonalInformation(
+    personalInfo: PersonalInfoModel,
+  ): Promise<void> {
+    await this.name.fill(personalInfo.name);
+    await this.surname.fill(personalInfo.surname);
+    await this.messageToEmployer.fill(personalInfo.message);
   }
 
   async clickSaveChangesButton(): Promise<void> {

@@ -8,3 +8,9 @@ export interface SendMessageModel {
 export interface NameOfCompanyModel {
   companyName: string;
 }
+
+export interface PersonalInfoModel {
+  name: string;
+  surname: string;
+  message: string;
+}
