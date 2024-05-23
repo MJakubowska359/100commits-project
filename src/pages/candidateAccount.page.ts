@@ -45,8 +45,8 @@ export class CandidateAccountPage {
   editInformationBtn = this.page.locator(
     'button[name="personal-informations-edit"]',
   );
-  addPhoto = this.page.locator('.css-fy324q');
-  // addPhoto = this.page.getByRole('presentation');
+  addPhoto = this.page.locator('input[type=file]').nth(1);
+  addResume = this.page.locator('#resume-upload');
   name = this.page.getByPlaceholder('First name');
   surname = this.page.getByPlaceholder('Last name');
   messageToEmployer = this.page.getByPlaceholder('Type something about you');

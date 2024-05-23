@@ -50,4 +50,22 @@ test.describe('Filling personal information in candidate profile', () => {
     // Assert
     await expect(page.getByText(expectedConfirmationAfterSaving)).toBeVisible();
   });
+
+  test('Should not be able to adding basic information if message is too long', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedConfirmationAfterSaving =
+      'Maximum number of characters 1000.';
+    candidateInformation.message =
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nec turpis non ligula laoreet venenatis. Sed augue felis, vestibulum a fermentum a, iaculis vitae metus. In elementum, tortor eu laoreet condimentum, ante sem porta lorem, sed ultricies arcu orci eget ante. Pellentesque commodo mauris vitae ipsum finibus, at laoreet dolor pretium. Donec mattis id felis sed euismod. Nunc eu lorem et mauris dapibus dapibus quis quis lacus. Aliquam erat volutpat. Morbi a tempor urna. Fusce aliquam, ex a pulvinar dapibus, metus quam aliquam erat, bibendum cursus metus odio sit amet elit. Morbi sagittis elementum tincidunt. Cras risus nunc, bibendum id maximus in, tristique eu libero. Aenean eros libero, tristique et tempus ut, lobortis non quam. Phasellus at ipsum tortor. Sed facilisis nibh eget dui iaculis, nec ultricies nulla lacinia. Proin eget orci pharetra, dapibus neque a, porttitor mauris. Pellentesque malesuada ornare mi, quis viverra elit. Vivamus at finibus enim, et venenatis quam nec.';
+
+    // Act
+    await candidateAccount.clickEditPersonalInformationButton();
+    await candidateAccount.fillBasicPersonalInformation(candidateInformation);
+    await candidateAccount.clickSaveChangesButton();
+
+    // Assert
+    await expect(page.getByText(expectedConfirmationAfterSaving)).toBeVisible();
+  });
 });
