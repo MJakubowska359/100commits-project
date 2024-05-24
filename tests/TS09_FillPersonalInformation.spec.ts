@@ -68,4 +68,17 @@ test.describe('Filling personal information in candidate profile', () => {
     // Assert
     await expect(page.getByText(expectedConfirmationAfterSaving)).toBeVisible();
   });
+
+  test('Should be able to adding resume', async ({ page }) => {
+    // Arrange
+    const expectedConfirmationAfterSaving = 'Your changes have been saved.';
+
+    // Act
+    await candidateAccount.clickEditPersonalInformationButton();
+    await candidateAccount.addResumeToAccount();
+    await candidateAccount.clickSaveChangesButton();
+
+    // Assert
+    await expect(page.getByText(expectedConfirmationAfterSaving)).toBeVisible();
+  });
 });

@@ -45,8 +45,8 @@ export class CandidateAccountPage {
   editInformationBtn = this.page.locator(
     'button[name="personal-informations-edit"]',
   );
-  addPhoto = this.page.locator('input[type=file]').nth(1);
-  addResume = this.page.locator('#resume-upload');
+  addPhoto = this.page.locator('#avatar-input');
+  addResume = this.page.locator('#resume-upload').nth(1);
   name = this.page.getByPlaceholder('First name');
   surname = this.page.getByPlaceholder('Last name');
   messageToEmployer = this.page.getByPlaceholder('Type something about you');
@@ -127,6 +127,12 @@ export class CandidateAccountPage {
   async addProfilePhotoToAccount(): Promise<void> {
     await this.addPhoto.setInputFiles(
       'E:/100commits-project/src/test-data/tru.jpeg',
+    );
+  }
+
+  async addResumeToAccount(): Promise<void> {
+    await this.addResume.setInputFiles(
+      'E:/100commits-project/src/test-data/testowy.pdf',
     );
   }
 
