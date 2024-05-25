@@ -40,7 +40,7 @@ test.describe('Filling personal information in candidate profile', () => {
 
   test('Should be able to adding basic information', async ({ page }) => {
     // Arrange
-    const expectedConfirmationAfterSaving = 'Your changes have been saved.';
+    const expectedFirstAndLastNameAfterSaving = 'Monika Testowa';
 
     // Act
     await candidateAccount.clickEditPersonalInformationButton();
@@ -48,7 +48,9 @@ test.describe('Filling personal information in candidate profile', () => {
     await candidateAccount.clickSaveChangesButton();
 
     // Assert
-    await expect(page.getByText(expectedConfirmationAfterSaving)).toBeVisible();
+    await expect(
+      page.getByText(expectedFirstAndLastNameAfterSaving),
+    ).toBeVisible();
   });
 
   test('Should not be able to adding basic information if message is too long', async ({
@@ -71,7 +73,7 @@ test.describe('Filling personal information in candidate profile', () => {
 
   test('Should be able to adding resume', async ({ page }) => {
     // Arrange
-    const expectedConfirmationAfterSaving = 'Your changes have been saved.';
+    const expectedNameOfResumeAfterSaving = 'testowy.pdf';
 
     // Act
     await candidateAccount.clickEditPersonalInformationButton();
@@ -79,6 +81,21 @@ test.describe('Filling personal information in candidate profile', () => {
     await candidateAccount.clickSaveChangesButton();
 
     // Assert
-    await expect(page.getByText(expectedConfirmationAfterSaving)).toBeVisible();
+    await expect(page.getByText(expectedNameOfResumeAfterSaving)).toBeVisible();
+  });
+
+  test('Should not be able to adding resume if file has wrong format', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedError =
+      'Something went wrong. Make sure you are dropping one file, which meets the requirements';
+
+    // Act
+    await candidateAccount.clickEditPersonalInformationButton();
+    await candidateAccount.addWrongResumeFormatToAccount();
+
+    // Assert
+    await expect(page.getByText(expectedError)).toBeVisible();
   });
 });

@@ -130,18 +130,25 @@ export class CandidateAccountPage {
     );
   }
 
-  async addResumeToAccount(): Promise<void> {
-    await this.addResume.setInputFiles(
-      'E:/100commits-project/src/test-data/testowy.pdf',
-    );
-  }
-
   async fillBasicPersonalInformation(
     personalInfo: PersonalInfoModel,
   ): Promise<void> {
     await this.name.fill(personalInfo.name);
     await this.surname.fill(personalInfo.surname);
     await this.messageToEmployer.fill(personalInfo.message);
+  }
+
+  async addResumeToAccount(): Promise<void> {
+    await this.addResume.setInputFiles(
+      'E:/100commits-project/src/test-data/testowy.pdf',
+    );
+  }
+
+  async addWrongResumeFormatToAccount(): Promise<void> {
+    await this.addResume.setInputFiles(
+      'E:/100commits-project/src/test-data/testowy.xlsx',
+    );
+    await this.addResume.blur();
   }
 
   async clickSaveChangesButton(): Promise<void> {
