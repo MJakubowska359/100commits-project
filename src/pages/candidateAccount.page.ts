@@ -130,6 +130,12 @@ export class CandidateAccountPage {
     );
   }
 
+  async addWrongProfilePhotoToAccount(): Promise<void> {
+    await this.addPhoto.setInputFiles(
+      'E:/100commits-project/src/test-data/testowy.docx',
+    );
+  }
+
   async fillBasicPersonalInformation(
     personalInfo: PersonalInfoModel,
   ): Promise<void> {
