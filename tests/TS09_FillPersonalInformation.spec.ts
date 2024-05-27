@@ -2,7 +2,10 @@ import { CandidateAccountPage } from '../src/pages/candidateAccount.page';
 import { GeneralPage } from '../src/pages/general.page';
 import { HeaderPage } from '../src/pages/header.page';
 import { LoginPage } from '../src/pages/login.page';
-import { candidateInformation } from '../src/test-data/form.data';
+import {
+  candidateInformation,
+  linksToProfiles,
+} from '../src/test-data/form.data';
 import { candidate2 } from '../src/test-data/user.data';
 import { expect, test } from '@playwright/test';
 
@@ -92,6 +95,21 @@ test.describe('Filling personal information in candidate profile', () => {
     ).toBeVisible();
     await expect(page.getByText(expectedErrorUnderSurnameInput)).toBeVisible();
     await expect(page.getByText(expectedErrorUnderMessageInput)).toBeVisible();
+  });
+
+  test('Should be able to adding links to LinkedIn and Github profile', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedConfirmationAfterSaving = 'Your changes have been saved.';
+
+    // Act
+    await candidateAccount.clickEditPersonalInformationButton();
+    await candidateAccount.fillLinksToProfile(linksToProfiles);
+    await candidateAccount.clickSaveChangesButton();
+
+    // Assert
+    await expect(page.getByText(expectedConfirmationAfterSaving)).toBeVisible();
   });
 
   test('Should be able to adding resume', async ({ page }) => {

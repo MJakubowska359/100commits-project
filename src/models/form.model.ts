@@ -14,3 +14,8 @@ export interface PersonalInfoModel {
   surname: string;
   message: string;
 }
+
+export interface ProfileLinksModel {
+  linkedin: string;
+  github: string;
+}

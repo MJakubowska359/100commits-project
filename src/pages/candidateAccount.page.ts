@@ -1,4 +1,4 @@
-import { PersonalInfoModel } from '../models/form.model';
+import { PersonalInfoModel, ProfileLinksModel } from '../models/form.model';
 import { ResetPasswordModel } from '../models/user.model';
 import { Page } from '@playwright/test';
 
@@ -50,6 +50,8 @@ export class CandidateAccountPage {
   name = this.page.getByPlaceholder('First name');
   surname = this.page.getByPlaceholder('Last name');
   messageToEmployer = this.page.getByPlaceholder('Type something about you');
+  linkedinProfile = this.page.getByPlaceholder('Paste your Linkedin profile');
+  githubProfile = this.page.getByPlaceholder('Paste your GitHub profile');
   saveChangesBtn = this.page.getByRole('button', { name: 'Save' });
 
   async clickMyProfileOnHeaderOfPage(): Promise<void> {
@@ -142,6 +144,11 @@ export class CandidateAccountPage {
     await this.name.fill(personalInfo.name);
     await this.surname.fill(personalInfo.surname);
     await this.messageToEmployer.fill(personalInfo.message);
+  }
+
+  async fillLinksToProfile(profile: ProfileLinksModel): Promise<void> {
+    await this.linkedinProfile.fill(profile.linkedin);
+    await this.githubProfile.fill(profile.github);
   }
 
   async addResumeToAccount(): Promise<void> {
