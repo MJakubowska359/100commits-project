@@ -41,6 +41,19 @@ test.describe('Filling personal information in candidate profile', () => {
     await expect(page.getByText(expectedConfirmationAfterSaving)).toBeVisible();
   });
 
+  test('Should be able to changing profile photo', async ({ page }) => {
+    // Arrange
+    const expectedConfirmationAfterSaving = 'Your changes have been saved.';
+
+    // Act
+    await candidateAccount.clickEditPersonalInformationButton();
+    await candidateAccount.editProfilePhotoToAccount();
+    await candidateAccount.clickSaveChangesButton();
+
+    // Assert
+    await expect(page.getByText(expectedConfirmationAfterSaving)).toBeVisible();
+  });
+
   test('Should not be able to adding photo if file has wrong format', async ({
     page,
   }) => {
@@ -110,6 +123,27 @@ test.describe('Filling personal information in candidate profile', () => {
 
     // Assert
     await expect(page.getByText(expectedConfirmationAfterSaving)).toBeVisible();
+  });
+
+  test('Should not be able to adding links to LinkedIn and Github profile if are not complete', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedErrorUnderLinkedinInput =
+      'Please enter your LinkedIn account address.';
+    const expectedErrorUnderGithubInput =
+      'Please enter your Github account address.';
+    linksToProfiles.linkedin = 'Link do LinkedIn';
+    linksToProfiles.github = 'Link do GitHub';
+
+    // Act
+    await candidateAccount.clickEditPersonalInformationButton();
+    await candidateAccount.fillLinksToProfile(linksToProfiles);
+    await candidateAccount.clickSaveChangesButton();
+
+    // Assert
+    await expect(page.getByText(expectedErrorUnderLinkedinInput)).toBeVisible();
+    await expect(page.getByText(expectedErrorUnderGithubInput)).toBeVisible();
   });
 
   test('Should be able to adding resume', async ({ page }) => {

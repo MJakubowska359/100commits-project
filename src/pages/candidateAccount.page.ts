@@ -46,6 +46,8 @@ export class CandidateAccountPage {
     'button[name="personal-informations-edit"]',
   );
   addPhoto = this.page.locator('#avatar-input');
+  deletePhoto = this.page.getByRole('button').nth(1);
+  changePhoto = this.page.getByAltText('avatar');
   addResume = this.page.locator('#resume-upload').nth(1);
   name = this.page.getByPlaceholder('First name');
   surname = this.page.getByPlaceholder('Last name');
@@ -132,7 +134,15 @@ export class CandidateAccountPage {
     );
   }
 
+  async editProfilePhotoToAccount(): Promise<void> {
+    await this.deletePhoto.click();
+    await this.addPhoto.setInputFiles(
+      'C:/100commits-project/src/test-data/cze.jpg',
+    );
+  }
+
   async addWrongProfilePhotoToAccount(): Promise<void> {
+    await this.deletePhoto.click();
     await this.addPhoto.setInputFiles(
       'E:/100commits-project/src/test-data/testowy.docx',
     );
@@ -149,6 +159,7 @@ export class CandidateAccountPage {
   async fillLinksToProfile(profile: ProfileLinksModel): Promise<void> {
     await this.linkedinProfile.fill(profile.linkedin);
     await this.githubProfile.fill(profile.github);
+    await this.githubProfile.blur();
   }
 
   async addResumeToAccount(): Promise<void> {
