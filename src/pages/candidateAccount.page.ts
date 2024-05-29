@@ -49,7 +49,7 @@ export class CandidateAccountPage {
   deletePhoto = this.page.getByRole('button').nth(1);
   changePhoto = this.page.getByAltText('avatar');
   addResume = this.page.locator('#resume-upload').nth(1);
-  name = this.page.getByPlaceholder('First name');
+  firstName = this.page.getByPlaceholder('First name');
   surname = this.page.getByPlaceholder('Last name');
   messageToEmployer = this.page.getByPlaceholder('Type something about you');
   linkedinProfile = this.page.getByPlaceholder('Paste your Linkedin profile');
@@ -130,14 +130,14 @@ export class CandidateAccountPage {
 
   async addProfilePhotoToAccount(): Promise<void> {
     await this.addPhoto.setInputFiles(
-      'E:/100commits-project/src/test-data/tru.jpeg',
+      'C:/100commits-project/src/test-data/cze.jpg',
     );
   }
 
   async editProfilePhotoToAccount(): Promise<void> {
     await this.deletePhoto.click();
     await this.addPhoto.setInputFiles(
-      'C:/100commits-project/src/test-data/cze.jpg',
+      'E:/100commits-project/src/test-data/tru.jpeg',
     );
   }
 
@@ -151,15 +151,49 @@ export class CandidateAccountPage {
   async fillBasicPersonalInformation(
     personalInfo: PersonalInfoModel,
   ): Promise<void> {
-    await this.name.fill(personalInfo.name);
-    await this.surname.fill(personalInfo.surname);
-    await this.messageToEmployer.fill(personalInfo.message);
+    const inputName = await this.firstName.inputValue();
+    const inputSurname = await this.surname.inputValue();
+    const inputMessage = await this.firstName.inputValue();
+
+    if (inputName === '') {
+      await this.firstName.fill(personalInfo.name);
+    } else {
+      await this.firstName.fill('');
+      await this.firstName.fill(personalInfo.name);
+    }
+
+    if (inputSurname === '') {
+      await this.surname.fill(personalInfo.surname);
+    } else {
+      await this.surname.fill('');
+      await this.surname.fill(personalInfo.surname);
+    }
+
+    if (inputMessage === '') {
+      await this.messageToEmployer.fill(personalInfo.message);
+    } else {
+      await this.messageToEmployer.fill('');
+      await this.messageToEmployer.fill(personalInfo.message);
+    }
   }
 
   async fillLinksToProfile(profile: ProfileLinksModel): Promise<void> {
-    await this.linkedinProfile.fill(profile.linkedin);
-    await this.githubProfile.fill(profile.github);
-    await this.githubProfile.blur();
+    const inputLinkedin = await this.linkedinProfile.inputValue();
+    const inputGithub = await this.githubProfile.inputValue();
+
+    if (inputLinkedin === '') {
+      await this.linkedinProfile.fill(profile.linkedin);
+    } else {
+      await this.linkedinProfile.fill('');
+      await this.linkedinProfile.fill(profile.linkedin);
+    }
+
+    if (inputGithub === '') {
+      await this.githubProfile.fill(profile.github);
+    } else {
+      await this.githubProfile.fill('');
+      await this.githubProfile.fill(profile.github);
+    }
   }
 
   async addResumeToAccount(): Promise<void> {

@@ -133,8 +133,8 @@ test.describe('Filling personal information in candidate profile', () => {
       'Please enter your LinkedIn account address.';
     const expectedErrorUnderGithubInput =
       'Please enter your Github account address.';
-    linksToProfiles.linkedin = 'Link do LinkedIn';
-    linksToProfiles.github = 'Link do GitHub';
+    linksToProfiles.linkedin = 'https://justjoin.it/';
+    linksToProfiles.github = 'https://justjoin.it/';
 
     // Act
     await candidateAccount.clickEditPersonalInformationButton();
