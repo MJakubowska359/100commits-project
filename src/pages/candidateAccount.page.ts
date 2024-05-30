@@ -46,6 +46,7 @@ export class CandidateAccountPage {
     'button[name="personal-informations-edit"]',
   );
   addPhoto = this.page.locator('#avatar-input');
+  avatarImage = this.page.getByAltText('avatar');
   deletePhoto = this.page.getByRole('button').nth(1);
   changePhoto = this.page.getByAltText('avatar');
   addResume = this.page.locator('#resume-upload').nth(1);
@@ -129,9 +130,18 @@ export class CandidateAccountPage {
   }
 
   async addProfilePhotoToAccount(): Promise<void> {
-    await this.addPhoto.setInputFiles(
-      'C:/100commits-project/src/test-data/cze.jpg',
-    );
+    const avatarExists = await this.avatarImage.isVisible().catch(() => false);
+
+    if (!avatarExists) {
+      await this.addPhoto.setInputFiles(
+        'C:/100commits-project/src/test-data/cze.jpg',
+      );
+    } else {
+      await this.deletePhoto.click();
+      await this.addPhoto.setInputFiles(
+        'C:/100commits-project/src/test-data/cze.jpg',
+      );
+    }
   }
 
   async editProfilePhotoToAccount(): Promise<void> {
