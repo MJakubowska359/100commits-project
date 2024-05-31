@@ -146,6 +146,20 @@ test.describe('Filling personal information in candidate profile', () => {
     await expect(page.getByText(expectedErrorUnderGithubInput)).toBeVisible();
   });
 
+  test('Should not be able to choosing location if dropdown are empty', async ({
+    page,
+  }) => {
+    // Arrange
+    const expectedError = 'No options found';
+
+    // Act
+    await candidateAccount.clickEditPersonalInformationButton();
+    await candidateAccount.chooseLocation();
+
+    // Assert
+    await expect(page.getByText(expectedError)).toBeVisible();
+  });
+
   test('Should be able to adding resume', async ({ page }) => {
     // Arrange
     const expectedNameOfResumeAfterSaving = 'testowy.pdf';

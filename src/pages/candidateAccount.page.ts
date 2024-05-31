@@ -49,6 +49,7 @@ export class CandidateAccountPage {
   avatarImage = this.page.getByAltText('avatar');
   deletePhoto = this.page.getByRole('button').nth(1);
   changePhoto = this.page.getByAltText('avatar');
+  locationList = this.page.getByPlaceholder('Choose your city');
   addResume = this.page.locator('#resume-upload').nth(1);
   firstName = this.page.getByPlaceholder('First name');
   surname = this.page.getByPlaceholder('Last name');
@@ -133,29 +134,21 @@ export class CandidateAccountPage {
     const avatarExists = await this.avatarImage.isVisible().catch(() => false);
 
     if (!avatarExists) {
-      await this.addPhoto.setInputFiles(
-        'C:/100commits-project/src/test-data/cze.jpg',
-      );
+      await this.addPhoto.setInputFiles('src/test-data/cze.jpg');
     } else {
       await this.deletePhoto.click();
-      await this.addPhoto.setInputFiles(
-        'C:/100commits-project/src/test-data/cze.jpg',
-      );
+      await this.addPhoto.setInputFiles('src/test-data/cze.jpg');
     }
   }
 
   async editProfilePhotoToAccount(): Promise<void> {
     await this.deletePhoto.click();
-    await this.addPhoto.setInputFiles(
-      'E:/100commits-project/src/test-data/tru.jpeg',
-    );
+    await this.addPhoto.setInputFiles('src/test-data/tru.jpeg');
   }
 
   async addWrongProfilePhotoToAccount(): Promise<void> {
     await this.deletePhoto.click();
-    await this.addPhoto.setInputFiles(
-      'E:/100commits-project/src/test-data/testowy.docx',
-    );
+    await this.addPhoto.setInputFiles('src/test-data/testowy.docx');
   }
 
   async fillBasicPersonalInformation(
@@ -206,16 +199,16 @@ export class CandidateAccountPage {
     }
   }
 
+  async chooseLocation(): Promise<void> {
+    await this.locationList.click();
+  }
+
   async addResumeToAccount(): Promise<void> {
-    await this.addResume.setInputFiles(
-      'E:/100commits-project/src/test-data/testowy.pdf',
-    );
+    await this.addResume.setInputFiles('src/test-data/testowy.pdf');
   }
 
   async addWrongResumeFormatToAccount(): Promise<void> {
-    await this.addResume.setInputFiles(
-      'E:/100commits-project/src/test-data/testowy.xlsx',
-    );
+    await this.addResume.setInputFiles('src/test-data/testowy.xlsx');
     await this.addResume.blur();
   }
 
