@@ -50,7 +50,9 @@ export class CandidateAccountPage {
   deletePhoto = this.page.getByRole('button').nth(1);
   changePhoto = this.page.getByAltText('avatar');
   locationList = this.page.getByPlaceholder('Choose your city');
-  addResume = this.page.locator('#resume-upload').nth(1);
+  addResume = this.page.locator('#resume-upload');
+  menuResume = this.page.locator('#profile-small-form').getByRole('button');
+  downloadResume = this.page.getByText('Download');
   firstName = this.page.getByPlaceholder('First name');
   surname = this.page.getByPlaceholder('Last name');
   messageToEmployer = this.page.getByPlaceholder('Type something about you');
@@ -147,8 +149,14 @@ export class CandidateAccountPage {
   }
 
   async addWrongProfilePhotoToAccount(): Promise<void> {
-    await this.deletePhoto.click();
-    await this.addPhoto.setInputFiles('src/test-data/testowy.docx');
+    const avatarExists = await this.avatarImage.isVisible().catch(() => false);
+
+    if (!avatarExists) {
+      await this.addPhoto.setInputFiles('src/test-data/testowy.docx');
+    } else {
+      await this.deletePhoto.click();
+      await this.addPhoto.setInputFiles('src/test-data/testowy.docx');
+    }
   }
 
   async fillBasicPersonalInformation(
@@ -210,6 +218,14 @@ export class CandidateAccountPage {
   async addWrongResumeFormatToAccount(): Promise<void> {
     await this.addResume.setInputFiles('src/test-data/testowy.xlsx');
     await this.addResume.blur();
+  }
+
+  async clickMenuOfResume(): Promise<void> {
+    await this.menuResume.click();
+  }
+
+  async downloadResumeFromAccount(): Promise<void> {
+    await this.downloadResume.click();
   }
 
   async clickSaveChangesButton(): Promise<void> {

@@ -165,9 +165,7 @@ test.describe('Filling personal information in candidate profile', () => {
     const expectedNameOfResumeAfterSaving = 'testowy.pdf';
 
     // Act
-    await candidateAccount.clickEditPersonalInformationButton();
     await candidateAccount.addResumeToAccount();
-    await candidateAccount.clickSaveChangesButton();
 
     // Assert
     await expect(page.getByText(expectedNameOfResumeAfterSaving)).toBeVisible();
@@ -181,10 +179,20 @@ test.describe('Filling personal information in candidate profile', () => {
       'Something went wrong. Make sure you are dropping one file, which meets the requirements';
 
     // Act
-    await candidateAccount.clickEditPersonalInformationButton();
     await candidateAccount.addWrongResumeFormatToAccount();
 
     // Assert
     await expect(page.getByText(expectedError)).toBeVisible();
+  });
+
+  test('Should be able to download added resume', async ({ page }) => {
+    // Act
+    await candidateAccount.clickMenuOfResume();
+    const downloadPromise = page.waitForEvent('download');
+    await candidateAccount.downloadResumeFromAccount();
+    const download = await downloadPromise;
+
+    // Assert
+    expect(download).toBeTruthy();
   });
 });
