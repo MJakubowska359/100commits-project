@@ -195,4 +195,19 @@ test.describe('Filling personal information in candidate profile', () => {
     // Assert
     expect(download).toBeTruthy();
   });
+
+  test('Should be able to delete added resume', async ({ page }) => {
+    // Arrange
+    const resumeForm = '#profile-small-form h6';
+    const expectedTextAfterDeletedTheResume = 'Add document';
+
+    // Act
+    await candidateAccount.clickMenuOfResume();
+    await candidateAccount.deleteResumeFromAccount();
+
+    // Assert
+    await expect(page.locator(resumeForm).nth(1)).toHaveText(
+      expectedTextAfterDeletedTheResume,
+    );
+  });
 });

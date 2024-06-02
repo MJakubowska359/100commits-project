@@ -53,6 +53,7 @@ export class CandidateAccountPage {
   addResume = this.page.locator('#resume-upload');
   menuResume = this.page.locator('#profile-small-form').getByRole('button');
   downloadResume = this.page.getByText('Download');
+  deleteResume = this.page.getByText('Delete');
   firstName = this.page.getByPlaceholder('First name');
   surname = this.page.getByPlaceholder('Last name');
   messageToEmployer = this.page.getByPlaceholder('Type something about you');
@@ -226,6 +227,10 @@ export class CandidateAccountPage {
 
   async downloadResumeFromAccount(): Promise<void> {
     await this.downloadResume.click();
+  }
+
+  async deleteResumeFromAccount(): Promise<void> {
+    await this.deleteResume.click();
   }
 
   async clickSaveChangesButton(): Promise<void> {
