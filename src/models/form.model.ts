@@ -19,3 +19,8 @@ export interface ProfileLinksModel {
   linkedin: string;
   github: string;
 }
+
+export interface MatchingModel {
+  name: string;
+  surname: string;
+}
