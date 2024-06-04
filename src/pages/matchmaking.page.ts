@@ -14,11 +14,7 @@ export class MatchmakingPage {
   firstName = this.page.getByPlaceholder('Write your name');
   surname = this.page.getByPlaceholder('Write your surname');
   testingCheckbox = this.page.locator('#checkbox-testing');
-  // downloadResume = this.page.getByText('Download');
-  // deleteResume = this.page.getByText('Delete');
-  // firstName = this.page.getByPlaceholder('First name');
-  // surname = this.page.getByPlaceholder('Last name');
-  // messageToEmployer = this.page.getByPlaceholder('Type something about you');
+  position = this.page.getByRole('combobox');
 
   async clickGoToYourPreferencesButton(): Promise<void> {
     await this.fillPreferencesBtn.click();
@@ -47,5 +43,17 @@ export class MatchmakingPage {
   async checkInterestingArea(): Promise<void> {
     await this.testingCheckbox.check();
     await this.nextBtn.click();
+  }
+
+  async fillPosition(): Promise<void> {
+    const inputPosition = await this.position.inputValue();
+
+    if (inputPosition === 'Automation QA Engineer') {
+      await this.nextBtn.click();
+    } else {
+      await this.position.fill('');
+      await this.position.fill('Automation QA Engineer');
+      await this.nextBtn.click();
+    }
   }
 }

@@ -39,7 +39,7 @@ test.describe('Filling preferences in candidate profile', () => {
     await expect(page.getByText(expectedAreasHeader)).toBeVisible();
     await matchmakingPage.checkInterestingArea();
     await expect(page.getByText(expectedRoleHeader)).toBeVisible();
-
+    await matchmakingPage.fillPosition();
     // Assert
     // await expect(page.getByText(expectedSuccessNotification)).toBeVisible();
   });
