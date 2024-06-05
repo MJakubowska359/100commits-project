@@ -30,6 +30,10 @@ test.describe('Filling preferences in candidate profile', () => {
     const expectedNameHeader = "Let's start with some basic information";
     const expectedAreasHeader = 'What specific IT areas are you interested in?';
     const expectedRoleHeader = 'What role are you seeking?';
+    const expectedYearsOfExperienceHeader =
+      "How many years of experience do you have in the role you're seeking?";
+    const expectedWorkplaceHeader = 'What is your ideal workplace?';
+
     // const expectedSuccessNotification = '';
 
     // Act
@@ -40,6 +44,11 @@ test.describe('Filling preferences in candidate profile', () => {
     await matchmakingPage.checkInterestingArea();
     await expect(page.getByText(expectedRoleHeader)).toBeVisible();
     await matchmakingPage.fillPosition();
+    await expect(page.getByText(expectedYearsOfExperienceHeader)).toBeVisible();
+    await matchmakingPage.fillYearsOfExperienceByClickPlusIcon();
+    await expect(page.getByText(expectedWorkplaceHeader)).toBeVisible();
+    await matchmakingPage.checkRemotelyWorkplace();
+
     // Assert
     // await expect(page.getByText(expectedSuccessNotification)).toBeVisible();
   });

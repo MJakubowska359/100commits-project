@@ -5,7 +5,6 @@ export class MatchmakingPage {
   constructor(private page: Page) {}
 
   // locators for preferences form
-
   fillPreferencesBtn = this.page.getByRole('button', {
     name: 'Go to fill preferences',
   });
@@ -15,6 +14,11 @@ export class MatchmakingPage {
   surname = this.page.getByPlaceholder('Write your surname');
   testingCheckbox = this.page.locator('#checkbox-testing');
   position = this.page.getByRole('combobox');
+  experienceInput = this.page.getByPlaceholder('Write or choose');
+  plusIcon = this.page.locator('button[name="wizard-experience-plus"]');
+  minusIcon = this.page.locator('button[name="wizard-experience-minus"]');
+  hybridCheckbox = this.page.getByRole('checkbox').first();
+  remotelyCheckbox = this.page.getByRole('checkbox').nth(1);
 
   async clickGoToYourPreferencesButton(): Promise<void> {
     await this.fillPreferencesBtn.click();
@@ -55,5 +59,24 @@ export class MatchmakingPage {
       await this.position.fill('Automation QA Engineer');
       await this.nextBtn.click();
     }
+  }
+
+  async fillYearsOfExperienceByClickPlusIcon(): Promise<void> {
+    const inputExperience = await this.experienceInput.inputValue();
+
+    if (inputExperience === '') {
+      await this.plusIcon.dblclick();
+      await this.nextBtn.click();
+    } else {
+      await this.experienceInput.press('Control+a');
+      await this.experienceInput.press('Backspace');
+      await this.plusIcon.dblclick();
+      await this.nextBtn.click();
+    }
+  }
+
+  async checkRemotelyWorkplace(): Promise<void> {
+    await this.remotelyCheckbox.check();
+    await this.nextBtn.click();
   }
 }
