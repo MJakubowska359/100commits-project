@@ -19,6 +19,11 @@ export class MatchmakingPage {
   minusIcon = this.page.locator('button[name="wizard-experience-minus"]');
   hybridCheckbox = this.page.getByRole('checkbox').first();
   remotelyCheckbox = this.page.getByRole('checkbox').nth(1);
+  b2bCheckbox = this.page.getByRole('checkbox').first();
+  minimumSalaryInput = this.page.getByPlaceholder(
+    'Please enter your minimum expected monthly salary.',
+  );
+  englishB2 = this.page.getByText('B2 Advanced');
 
   async clickGoToYourPreferencesButton(): Promise<void> {
     await this.fillPreferencesBtn.click();
@@ -77,6 +82,26 @@ export class MatchmakingPage {
 
   async checkRemotelyWorkplace(): Promise<void> {
     await this.remotelyCheckbox.check();
+    await this.nextBtn.click();
+  }
+
+  async checkB2BType(): Promise<void> {
+    await this.b2bCheckbox.check();
+    const inputSalary = await this.minimumSalaryInput.inputValue();
+
+    if (inputSalary === '') {
+      await this.minimumSalaryInput.fill('7000');
+      await this.nextBtn.click();
+    } else {
+      await this.minimumSalaryInput.press('Control+a');
+      await this.minimumSalaryInput.press('Backspace');
+      await this.minimumSalaryInput.fill('7000');
+      await this.nextBtn.click();
+    }
+  }
+
+  async chooseLevelOfEnglish(): Promise<void> {
+    await this.englishB2.click();
     await this.nextBtn.click();
   }
 }

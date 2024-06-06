@@ -27,27 +27,41 @@ test.describe('Filling preferences in candidate profile', () => {
 
   test('Should be able to adding basic information', async ({ page }) => {
     // Arrange
-    const expectedNameHeader = "Let's start with some basic information";
+    const header = 'form p';
+    const expectedNameHeader =
+      "Let's start with some basic information 🔥 What's your first and last name?";
     const expectedAreasHeader = 'What specific IT areas are you interested in?';
     const expectedRoleHeader = 'What role are you seeking?';
     const expectedYearsOfExperienceHeader =
       "How many years of experience do you have in the role you're seeking?";
     const expectedWorkplaceHeader = 'What is your ideal workplace?';
+    const expectedJobTypeHeader =
+      'What is your ideal job type and minimum salary expectations?';
+    const expectedLevelOfEnglishHeader = 'How well do you speak English?';
+    const expectedSkillsHeader =
+      'Which of your skills do you want to use in your new position?';
 
     // const expectedSuccessNotification = '';
 
     // Act
     await matchmakingPage.clickGoToYourPreferencesButton();
-    await expect(page.getByText(expectedNameHeader)).toBeVisible();
+    await expect(page.locator(header)).toHaveText(expectedNameHeader);
     await matchmakingPage.fillNameAndSurname(candidateName);
-    await expect(page.getByText(expectedAreasHeader)).toBeVisible();
+    await expect(page.locator(header)).toHaveText(expectedAreasHeader);
     await matchmakingPage.checkInterestingArea();
-    await expect(page.getByText(expectedRoleHeader)).toBeVisible();
+    await expect(page.locator(header)).toHaveText(expectedRoleHeader);
     await matchmakingPage.fillPosition();
-    await expect(page.getByText(expectedYearsOfExperienceHeader)).toBeVisible();
+    await expect(page.locator(header)).toHaveText(
+      expectedYearsOfExperienceHeader,
+    );
     await matchmakingPage.fillYearsOfExperienceByClickPlusIcon();
-    await expect(page.getByText(expectedWorkplaceHeader)).toBeVisible();
+    await expect(page.locator(header)).toHaveText(expectedWorkplaceHeader);
     await matchmakingPage.checkRemotelyWorkplace();
+    await expect(page.locator(header)).toHaveText(expectedJobTypeHeader);
+    await matchmakingPage.checkB2BType();
+    await expect(page.locator(header)).toHaveText(expectedLevelOfEnglishHeader);
+    await matchmakingPage.chooseLevelOfEnglish();
+    await expect(page.locator(header)).toHaveText(expectedSkillsHeader);
 
     // Assert
     // await expect(page.getByText(expectedSuccessNotification)).toBeVisible();
