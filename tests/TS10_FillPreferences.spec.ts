@@ -40,7 +40,6 @@ test.describe('Filling preferences in candidate profile', () => {
     const expectedLevelOfEnglishHeader = 'How well do you speak English?';
     const expectedSkillsHeader =
       'Which of your skills do you want to use in your new position?';
-
     // const expectedSuccessNotification = '';
 
     // Act
@@ -62,6 +61,9 @@ test.describe('Filling preferences in candidate profile', () => {
     await expect(page.locator(header)).toHaveText(expectedLevelOfEnglishHeader);
     await matchmakingPage.chooseLevelOfEnglish();
     await expect(page.locator(header)).toHaveText(expectedSkillsHeader);
+    await matchmakingPage.addFirstSkill();
+    await matchmakingPage.clickAddNextButton();
+    await matchmakingPage.addSecondSkill();
 
     // Assert
     // await expect(page.getByText(expectedSuccessNotification)).toBeVisible();

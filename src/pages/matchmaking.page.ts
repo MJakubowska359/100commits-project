@@ -24,6 +24,11 @@ export class MatchmakingPage {
     'Please enter your minimum expected monthly salary.',
   );
   englishB2 = this.page.getByText('B2 Advanced');
+  automationTestSkill = this.page.getByRole('combobox', {
+    name: 'Type to find your tech stack',
+  });
+  levelOfSkill = this.page.getByLabel('Level');
+  addNextSkillBtn = this.page.getByRole('button', { name: 'Add next' });
 
   async clickGoToYourPreferencesButton(): Promise<void> {
     await this.fillPreferencesBtn.click();
@@ -103,5 +108,41 @@ export class MatchmakingPage {
   async chooseLevelOfEnglish(): Promise<void> {
     await this.englishB2.click();
     await this.nextBtn.click();
+  }
+
+  async addFirstSkill(): Promise<void> {
+    const inputSkill = await this.automationTestSkill.inputValue();
+
+    if (inputSkill === '') {
+      await this.automationTestSkill.selectOption('Test Automation');
+      await this.levelOfSkill.selectOption('Junior');
+      await this.nextBtn.click();
+    } else {
+      await this.automationTestSkill.press('Control+a');
+      await this.automationTestSkill.press('Backspace');
+      await this.automationTestSkill.selectOption('Test Automation');
+      await this.levelOfSkill.selectOption('Junior');
+      await this.nextBtn.click();
+    }
+  }
+
+  async clickAddNextButton(): Promise<void> {
+    await this.addNextSkillBtn.click();
+  }
+
+  async addSecondSkill(): Promise<void> {
+    const inputSkill = await this.automationTestSkill.inputValue();
+
+    if (inputSkill === '') {
+      await this.automationTestSkill.selectOption('Manual Testing');
+      await this.levelOfSkill.selectOption('Regular');
+      await this.nextBtn.click();
+    } else {
+      await this.automationTestSkill.press('Control+a');
+      await this.automationTestSkill.press('Backspace');
+      await this.automationTestSkill.selectOption('Manual Testing');
+      await this.levelOfSkill.selectOption('Regular');
+      await this.nextBtn.click();
+    }
   }
 }
