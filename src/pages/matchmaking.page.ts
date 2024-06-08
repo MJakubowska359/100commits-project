@@ -20,6 +20,7 @@ export class MatchmakingPage {
   hybridCheckbox = this.page.getByRole('checkbox').first();
   remotelyCheckbox = this.page.getByRole('checkbox').nth(1);
   b2bCheckbox = this.page.getByRole('checkbox').first();
+  permanentCheckbox = this.page.getByLabel('Permanent');
   minimumSalaryInput = this.page.getByPlaceholder(
     'Please enter your minimum expected monthly salary.',
   );
@@ -29,6 +30,9 @@ export class MatchmakingPage {
   });
   levelOfSkill = this.page.getByLabel('Level');
   addNextSkillBtn = this.page.getByRole('button', { name: 'Add next' });
+
+  editJobType = this.page.locator('button[name="job-salary-edit"]');
+  saveBtn = this.page.getByRole('button', { name: 'Save' });
 
   async clickGoToYourPreferencesButton(): Promise<void> {
     await this.fillPreferencesBtn.click();
@@ -144,5 +148,11 @@ export class MatchmakingPage {
       await this.levelOfSkill.selectOption('Regular');
       await this.nextBtn.click();
     }
+  }
+
+  async editJobTypeAndChangeB2bTypeOnPermanent(): Promise<void> {
+    await this.editJobType.click();
+    await this.b2bCheckbox.uncheck();
+    await this.permanentCheckbox.check();
   }
 }

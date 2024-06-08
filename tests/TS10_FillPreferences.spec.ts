@@ -68,4 +68,12 @@ test.describe('Filling preferences in candidate profile', () => {
     // Assert
     // await expect(page.getByText(expectedSuccessNotification)).toBeVisible();
   });
+
+  test('Should not be able to editing job type if salary field is empty', async () => {
+    // Act
+    await matchmakingPage.editJobTypeAndChangeB2bTypeOnPermanent();
+
+    // Assert
+    await expect(matchmakingPage.saveBtn).toBeDisabled();
+  });
 });
