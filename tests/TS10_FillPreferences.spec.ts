@@ -76,4 +76,12 @@ test.describe('Filling preferences in candidate profile', () => {
     // Assert
     await expect(matchmakingPage.saveBtn).toBeDisabled();
   });
+
+  test("Should not be able to saving skill's section if the section is without any filling skill", async () => {
+    // Act
+    await matchmakingPage.deleteSkillAndSave();
+
+    // Assert
+    await expect(matchmakingPage.saveBtn).toBeDisabled();
+  });
 });

@@ -32,6 +32,8 @@ export class MatchmakingPage {
   addNextSkillBtn = this.page.getByRole('button', { name: 'Add next' });
 
   editJobType = this.page.locator('button[name="job-salary-edit"]');
+  editSkill = this.page.locator('button[name="job-skills-edit"]');
+  deleteSkill = this.page.locator('button[name="wizard-skills-delete"]');
   saveBtn = this.page.getByRole('button', { name: 'Save' });
 
   async clickGoToYourPreferencesButton(): Promise<void> {
@@ -154,5 +156,10 @@ export class MatchmakingPage {
     await this.editJobType.click();
     await this.b2bCheckbox.uncheck();
     await this.permanentCheckbox.check();
+  }
+
+  async deleteSkillAndSave(): Promise<void> {
+    await this.editSkill.click();
+    await this.deleteSkill.click();
   }
 }
